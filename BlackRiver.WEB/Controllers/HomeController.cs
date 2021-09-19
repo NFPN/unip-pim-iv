@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Black_River_Web.Controllers
+namespace BlackRiver.WEB.Controllers
 {
     public class HomeController : Controller
     {
