@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31605.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackRiver.WEB", "BlackRiver.WEB\BlackRiver.WEB.csproj", "{4C1BA83B-A856-4E12-B46D-AA6FECB0A86B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackRiver.WEB", "WEB\BlackRiver.WEB\BlackRiver.WEB.csproj", "{4C1BA83B-A856-4E12-B46D-AA6FECB0A86B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackRiver.WEB.Tests", "BlackRiver.WEB.Tests\BlackRiver.WEB.Tests.csproj", "{3D050AFE-5F70-43A8-922B-7A4EA928BA89}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackRiver.WEB.Tests", "WEB\BlackRiver.WEB.Tests\BlackRiver.WEB.Tests.csproj", "{3D050AFE-5F70-43A8-922B-7A4EA928BA89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
