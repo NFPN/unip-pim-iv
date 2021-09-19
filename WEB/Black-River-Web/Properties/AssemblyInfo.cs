@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // As informações gerais sobre um assembly são controladas através do seguinte
 // conjunto de atributos a seguir. Altere esses valores de atributo para modificar as informações
 // associadas a um assembly.
-[assembly: AssemblyTitle("WebApplication1")]
+[assembly: AssemblyTitle("Black_River_Web")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("WebApplication1")]
+[assembly: AssemblyProduct("Black_River_Web")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // A GUID a seguir será referente à ID do typelib se este projeto for exposto ao COM
-[assembly: Guid("f3467b0d-5d9a-4a76-bd18-a6b7a254886e")]
+[assembly: Guid("b7e4fd61-6f20-4c42-820d-483d8775e0f2")]
 
 // As informações de versão de um assembly consistem nos seguintes quatro valores:
 //
