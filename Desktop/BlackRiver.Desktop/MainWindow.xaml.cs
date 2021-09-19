@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BlackRiverDesktop
+namespace BlackRiver.Desktop
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
