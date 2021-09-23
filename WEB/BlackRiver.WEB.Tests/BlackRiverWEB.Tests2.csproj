@@ -98,12 +98,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BlackRiver.WEB\BlackRiver.WEB.csproj">
-      <Project>{4C1BA83B-A856-4E12-B46D-AA6FECB0A86B}</Project>
-      <Name>BlackRiver.WEB</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
