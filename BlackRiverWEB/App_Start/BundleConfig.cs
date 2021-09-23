@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
-namespace BlackRiver.WEB
+namespace BlackRiverWEB
 {
     public class BundleConfig
     {

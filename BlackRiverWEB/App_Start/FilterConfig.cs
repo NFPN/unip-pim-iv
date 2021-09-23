@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace BlackRiver.WEB
+namespace BlackRiverWEB
 {
     public class FilterConfig
     {

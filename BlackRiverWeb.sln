@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31605.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackRiverWEB", "WebApplication2\BlackRiverWEB.csproj", "{D9DFC0A4-B09A-47B9-ADD6-BEB481F5DDDA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackRiverWEB.Tests", "BlackRiverWEB.Tests\BlackRiverWEB.Tests.csproj", "{F331449D-0A91-4779-8356-FE195B2FA9A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackRiverWEB", "BlackRiverWEB\BlackRiverWEB.csproj", "{D9DFC0A4-B09A-47B9-ADD6-BEB481F5DDDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D9DFC0A4-B09A-47B9-ADD6-BEB481F5DDDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D9DFC0A4-B09A-47B9-ADD6-BEB481F5DDDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D9DFC0A4-B09A-47B9-ADD6-BEB481F5DDDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D9DFC0A4-B09A-47B9-ADD6-BEB481F5DDDA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F331449D-0A91-4779-8356-FE195B2FA9A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F331449D-0A91-4779-8356-FE195B2FA9A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F331449D-0A91-4779-8356-FE195B2FA9A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F331449D-0A91-4779-8356-FE195B2FA9A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9DFC0A4-B09A-47B9-ADD6-BEB481F5DDDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9DFC0A4-B09A-47B9-ADD6-BEB481F5DDDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9DFC0A4-B09A-47B9-ADD6-BEB481F5DDDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9DFC0A4-B09A-47B9-ADD6-BEB481F5DDDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

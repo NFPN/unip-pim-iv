@@ -80,7 +80,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebApplication2\BlackRiverWEB.csproj">
+    <ProjectReference Include="..\BlackRiverWEB\BlackRiverWEB.csproj">
       <Project>{d9dfc0a4-b09a-47b9-add6-beb481f5ddda}</Project>
       <Name>BlackRiverWEB</Name>
     </ProjectReference>
