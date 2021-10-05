@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		WEB\README.md = WEB\README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackRiver.API", "Server\BlackRiver.API\BlackRiver.API.csproj", "{52BA7F3E-006D-4055-8000-52F4BC64593E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackRiver.Data", "Server\BlackRiver.Data\BlackRiver.Data.csproj", "{3FCAC11E-29F0-45D4-B4E7-1A08B447BD92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +30,14 @@ Global
 		{F331449D-0A91-4779-8356-FE195B2FA9A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F331449D-0A91-4779-8356-FE195B2FA9A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F331449D-0A91-4779-8356-FE195B2FA9A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52BA7F3E-006D-4055-8000-52F4BC64593E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52BA7F3E-006D-4055-8000-52F4BC64593E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52BA7F3E-006D-4055-8000-52F4BC64593E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52BA7F3E-006D-4055-8000-52F4BC64593E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FCAC11E-29F0-45D4-B4E7-1A08B447BD92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FCAC11E-29F0-45D4-B4E7-1A08B447BD92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FCAC11E-29F0-45D4-B4E7-1A08B447BD92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FCAC11E-29F0-45D4-B4E7-1A08B447BD92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
