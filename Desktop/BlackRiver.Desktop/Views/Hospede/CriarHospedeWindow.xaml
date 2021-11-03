@@ -1,0 +1,21 @@
+﻿<Window x:Class="BlackRiver.Desktop.Views.Hospede.CriarHospedeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Novo Hóspede" Height="400" Width="600" Background="#FF2D2D30" ResizeMode="NoResize">
+    <Grid>
+        <Label Content="Nome*" HorizontalAlignment="Left" Margin="42,39,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
+        <TextBox x:Name="txtBoxNovoHospedeNome" HorizontalAlignment="Left" Margin="42,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25" />
+        <Label Content="CPF*" HorizontalAlignment="Left" Margin="42,111,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
+        <TextBox x:Name="txtBoxNovoHospedeCPF" HorizontalAlignment="Left" Margin="42,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25" />
+        <Label Content="RG" HorizontalAlignment="Left" Margin="276,111,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
+        <TextBox x:Name="txtBoxNovoHospedeRG" HorizontalAlignment="Left" Margin="276,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25" />
+        <Label Content="Telefone" HorizontalAlignment="Left" Margin="42,181,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
+        <TextBox x:Name="txtBoxNovoHospedeTel" HorizontalAlignment="Left" Margin="42,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25" />
+        <Label Content="Email" HorizontalAlignment="Left" Margin="42,253,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
+        <TextBox x:Name="txtBoxNovoHospedeEmail" HorizontalAlignment="Left" Margin="42,284,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="25" />
+        <Button x:Name="btnNovoHospedeCadastrar" Content="Cadastrar" HorizontalAlignment="Left" Margin="454,322,0,0" VerticalAlignment="Top" Height="40" Width="120" />
+    </Grid>
+</Window>

@@ -7,7 +7,94 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\BlackRiverLogo_White.png" />
+    <None Remove="Resources\BlackRiverSplash.png" />
+    <None Remove="Resources\Icons\closeBtn_default.png" />
+    <None Remove="Resources\Icons\closeBtn_MouseOver.png" />
+    <None Remove="Resources\Icons\img_background.png" />
+    <None Remove="Resources\Icons\img_contact.png" />
+    <None Remove="Resources\Icons\img_home.png" />
+    <None Remove="Resources\Icons\img_map.png" />
+    <None Remove="Resources\Icons\img_message.png" />
+    <None Remove="Resources\Icons\img_setting.png" />
+    <None Remove="Resources\Icons\img_signout.png" />
+    <None Remove="Resources\Icons\tgBtn_default.png" />
+    <None Remove="Resources\Icons\tgBtn_MouseOver.png" />
+    <None Remove="Resources\Logo.png" />
+    <None Remove="Views\BlackRiverLogo_White.png" />
+    <None Remove="Views\BlackRiverSplash.png" />
+    <None Remove="Views\img_background.png" />
+    <None Remove="Views\img_contact.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Icons\closeBtn_default.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\closeBtn_MouseOver.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\img_background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\img_contact.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\img_home.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\img_map.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\img_message.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\img_setting.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\img_signout.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\tgBtn_default.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\tgBtn_MouseOver.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BlackRiver.EntityModels">
+      <HintPath>Libs\BlackRiver.EntityModels.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\BlackRiverLogo_White.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\BlackRiverSplash.png" />
+    <Resource Include="Resources\Logo.png" />
+    <Resource Include="Resources\img_background.png" />
+    <Resource Include="Resources\img_contact.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\Login\AdminLoginWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Views\Login\AdminLoginWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BlackRiver.Desktop
+namespace BlackRiver.Desktop.Views.Produto
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for CriarProdutoWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class CriarProdutoWindow : Window
     {
-        public MainWindow()
+        public CriarProdutoWindow()
         {
             InitializeComponent();
         }

@@ -8,6 +8,19 @@ namespace BlackRiver.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Categoria",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categoria", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Municipios",
                 columns: table => new
                 {
@@ -98,6 +111,36 @@ namespace BlackRiver.Data.Migrations
                         name: "FK_Quartos_Hoteis_HotelId",
                         column: x => x.HotelId,
                         principalTable: "Hoteis",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Produtos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Marca = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Lote = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: true),
+                    Fornecedor = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Valor = table.Column<decimal>(type: "decimal(7,2)", precision: 7, scale: 2, nullable: false),
+                    QuantidadeDisponivel = table.Column<int>(type: "int", nullable: false),
+                    DataValidade = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DataAquisicao = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Tipo = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    CategoriaId = table.Column<int>(type: "int", nullable: true),
+                    VendaId = table.Column<int>(type: "int", nullable: true),
+                    VendaId1 = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Produtos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Produtos_Categoria_CategoriaId",
+                        column: x => x.CategoriaId,
+                        principalTable: "Categoria",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -220,7 +263,8 @@ namespace BlackRiver.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ValorPago = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DataVenda = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    HospedePagadorId = table.Column<int>(type: "int", nullable: true)
+                    HospedePagadorId = table.Column<int>(type: "int", nullable: true),
+                    ProdutoId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -231,39 +275,10 @@ namespace BlackRiver.Data.Migrations
                         principalTable: "Hospedes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Produtos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Marca = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Lote = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: true),
-                    Fornecedor = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    Valor = table.Column<decimal>(type: "decimal(7,2)", precision: 7, scale: 2, nullable: false),
-                    QuantidadeDisponivel = table.Column<int>(type: "int", nullable: false),
-                    DataValidade = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DataAquisicao = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Tipo = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
-                    VendaId = table.Column<int>(type: "int", nullable: true),
-                    VendaId1 = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Produtos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Produtos_Vendas_VendaId",
-                        column: x => x.VendaId,
-                        principalTable: "Vendas",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Produtos_Vendas_VendaId1",
-                        column: x => x.VendaId1,
-                        principalTable: "Vendas",
+                        name: "FK_Vendas_Produtos_ProdutoId",
+                        column: x => x.ProdutoId,
+                        principalTable: "Produtos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -309,6 +324,11 @@ namespace BlackRiver.Data.Migrations
                 column: "ReservaId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Produtos_CategoriaId",
+                table: "Produtos",
+                column: "CategoriaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Produtos_VendaId",
                 table: "Produtos",
                 column: "VendaId");
@@ -347,6 +367,27 @@ namespace BlackRiver.Data.Migrations
                 name: "IX_Vendas_HospedePagadorId",
                 table: "Vendas",
                 column: "HospedePagadorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vendas_ProdutoId",
+                table: "Vendas",
+                column: "ProdutoId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Produtos_Vendas_VendaId",
+                table: "Produtos",
+                column: "VendaId",
+                principalTable: "Vendas",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Produtos_Vendas_VendaId1",
+                table: "Produtos",
+                column: "VendaId1",
+                principalTable: "Vendas",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_HospedeReserva_Hospedes_HospedesId",
@@ -407,6 +448,22 @@ namespace BlackRiver.Data.Migrations
                 name: "FK_Reservas_Hospedes_HospedeId",
                 table: "Reservas");
 
+            migrationBuilder.DropForeignKey(
+                name: "FK_Vendas_Hospedes_HospedePagadorId",
+                table: "Vendas");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Produtos_Categoria_CategoriaId",
+                table: "Produtos");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Produtos_Vendas_VendaId",
+                table: "Produtos");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Produtos_Vendas_VendaId1",
+                table: "Produtos");
+
             migrationBuilder.DropTable(
                 name: "Funcionarios");
 
@@ -417,13 +474,7 @@ namespace BlackRiver.Data.Migrations
                 name: "Ocorrencias");
 
             migrationBuilder.DropTable(
-                name: "Produtos");
-
-            migrationBuilder.DropTable(
                 name: "VagasEstacionamento");
-
-            migrationBuilder.DropTable(
-                name: "Vendas");
 
             migrationBuilder.DropTable(
                 name: "Hoteis");
@@ -439,6 +490,15 @@ namespace BlackRiver.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Quartos");
+
+            migrationBuilder.DropTable(
+                name: "Categoria");
+
+            migrationBuilder.DropTable(
+                name: "Vendas");
+
+            migrationBuilder.DropTable(
+                name: "Produtos");
         }
     }
 }

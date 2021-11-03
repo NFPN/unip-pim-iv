@@ -18,31 +18,9 @@ namespace BlackRiver.Data
         public DbSet<Venda> Vendas { get; set; }
         public DbSet<Produto> Produtos { get; set; }
 
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder
-                .UseSqlServer(BlackRiverConstants.ConnectionString));
-        }
+        public BlackRiverDBContext(DbContextOptions options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            //Debugger.Launch();
-
-            modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
-
-
-
-            //var typesToRegister = Assembly.GetAssembly(typeof(BlackRiverDBContext))
-            //     .GetTypes()
-            //     .Where(type => type.Namespace != null)
-            //     .Where(type => type.BaseType.IsGenericType && type.BaseType.GetGenericTypeDefinition() == typeof(IEntityTypeConfiguration<>));
-
-            //foreach (var type in typesToRegister)
-            //{
-            //    dynamic instance = Activator.CreateInstance(type);
-            //    modelBuilder.ApplyConfiguration(instance);
-            //}
-        }
+            => modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
     }
 }
