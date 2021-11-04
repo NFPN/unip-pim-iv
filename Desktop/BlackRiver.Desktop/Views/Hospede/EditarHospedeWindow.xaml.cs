@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace BlackRiver.Desktop.Views.Hospede
+namespace BlackRiver.Desktop.Views
 {
     /// <summary>
     /// Interaction logic for EditarHospedeWindow.xaml

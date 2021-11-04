@@ -5,9 +5,9 @@ namespace BlackRiver.Desktop.Views
     /// <summary>
     /// Interaction logic for MainLoginWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class AdminLoginWindow : Window
     {
-        public LoginWindow()
+        public AdminLoginWindow()
         {
             InitializeComponent();
         }

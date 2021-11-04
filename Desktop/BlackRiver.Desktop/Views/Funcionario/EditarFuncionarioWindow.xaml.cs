@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace BlackRiver.Desktop.Views.Funcionario
+namespace BlackRiver.Desktop.Views
 {
     /// <summary>
     /// Interaction logic for EditarFuncionarioWindow.xaml

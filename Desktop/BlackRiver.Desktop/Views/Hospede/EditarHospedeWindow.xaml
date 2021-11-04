@@ -1,9 +1,8 @@
-﻿<Window x:Class="BlackRiver.Desktop.Views.Hospede.EditarHospedeWindow"
+﻿<Window x:Class="BlackRiver.Desktop.Views.EditarHospedeWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BlackRiver.Desktop.Views.Hospede"
         mc:Ignorable="d"
         Title="Editar Hóspede" Height="401" Width="600" Background="#FF2D2D30">
     <Grid>
@@ -18,6 +17,6 @@
         <Label Content="Email" HorizontalAlignment="Left" Margin="42,253,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
         <TextBox x:Name="txtBoxEditHospedeEmail" HorizontalAlignment="Left" Margin="42,284,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="25" />
         <Button x:Name="btnNovoHospedeCadastrar" Content="Atualizar dados" HorizontalAlignment="Left" Margin="454,322,0,0" VerticalAlignment="Top" Height="40" Width="120" />
-        <CheckBox x:Name="checkResetarSenha" Content="Resetar Senha" HorizontalAlignment="Left" Margin="276,217,0,0" VerticalAlignment="Top" Foreground="White" IsChecked="True"/>
+        <CheckBox x:Name="checkResetarSenha" Content="Resetar Senha" HorizontalAlignment="Left" Margin="276,217,0,0" VerticalAlignment="Top" Foreground="White" IsChecked="True" />
     </Grid>
 </Window>
