@@ -4,19 +4,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Editar Hóspede" Height="401" Width="600" Background="#FF2D2D30">
+        Title="Editar Hóspede" Height="401" Width="600" Background="#FF2D2D30" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Label Content="Nome" HorizontalAlignment="Left" Margin="42,39,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
-        <TextBox x:Name="txtBoxEditHospedeNome" HorizontalAlignment="Left" Margin="42,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25" />
-        <Label Content="CPF" HorizontalAlignment="Left" Margin="42,111,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
-        <TextBox x:Name="txtBoxEditHospedeCPF" HorizontalAlignment="Left" Margin="42,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25" />
-        <Label Content="RG" HorizontalAlignment="Left" Margin="276,111,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
-        <TextBox x:Name="txtBoxEditHospedeRG" HorizontalAlignment="Left" Margin="276,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25" />
-        <Label Content="Telefone" HorizontalAlignment="Left" Margin="42,181,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
-        <TextBox x:Name="txtBoxEditHospedeTel" HorizontalAlignment="Left" Margin="42,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25" />
-        <Label Content="Email" HorizontalAlignment="Left" Margin="42,253,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
-        <TextBox x:Name="txtBoxEditHospedeEmail" HorizontalAlignment="Left" Margin="42,284,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="25" />
-        <Button x:Name="btnNovoHospedeCadastrar" Content="Atualizar dados" HorizontalAlignment="Left" Margin="454,322,0,0" VerticalAlignment="Top" Height="40" Width="120" />
+
+        <Label Content="Editar Hóspede" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="500" FontWeight="Bold" FontSize="14" Height="26" />
+
+        <Label Content="Nome" HorizontalAlignment="Left" Margin="42,41,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
+        <TextBox x:Name="txtBoxEditHospedeNome" HorizontalAlignment="Left" Margin="42,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25" Foreground="White" />
+        <Label Content="CPF" HorizontalAlignment="Left" Margin="42,113,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
+        <TextBox x:Name="txtBoxEditHospedeCPF" HorizontalAlignment="Left" Margin="42,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25" Foreground="White" />
+        <Label Content="RG" HorizontalAlignment="Left" Margin="276,113,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
+        <TextBox x:Name="txtBoxEditHospedeRG" HorizontalAlignment="Left" Margin="276,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25" Foreground="White" />
+        <Label Content="Telefone" HorizontalAlignment="Left" Margin="42,183,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
+        <TextBox x:Name="txtBoxEditHospedeTel" HorizontalAlignment="Left" Margin="42,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25" Foreground="White" />
+        <Label Content="Email" HorizontalAlignment="Left" Margin="42,255,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
+        <TextBox x:Name="txtBoxEditHospedeEmail" HorizontalAlignment="Left" Margin="42,284,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="25" Foreground="White" />
         <CheckBox x:Name="checkResetarSenha" Content="Resetar Senha" HorizontalAlignment="Left" Margin="276,217,0,0" VerticalAlignment="Top" Foreground="White" IsChecked="True" />
+        <Button x:Name="btnEditHospedeRemover" Content="Remover" HorizontalAlignment="Right" Margin="0,0,137,10" VerticalAlignment="Bottom" Height="40" Width="100" Click="btnEditHospedeRemover_Click" />
+        <Button x:Name="btnEditHospedeAtualizar" Content="Atualizar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Height="40" Width="100" Click="btnEditHospedeAtualizar_Click" />
+        <Button x:Name="btnCloseWindow" HorizontalAlignment="Right" Margin="0,3,0,0" VerticalAlignment="Top" Width="35" BorderBrush="{x:Null}" Click="btnCloseWindow_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/Icons/window-close.png" Stretch="UniformToFill"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

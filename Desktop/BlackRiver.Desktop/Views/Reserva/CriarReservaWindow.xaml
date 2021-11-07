@@ -1,24 +1,41 @@
-﻿<Window x:Class="BlackRiver.Desktop.Views.CriarReservaWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
-        Title="Criar Reserva" Height="400" Width="600" Background="#FF2D2D30">
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Class="BlackRiver.Desktop.Views.CriarReservaWindow"   
+    mc:Ignorable="d"
+    Title="Criar Reserva" Height="400" Width="600" Background="#FF2D2D30" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid>
-        <Label Content="Data*" HorizontalAlignment="Left" Margin="44,29,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
-        <DatePicker HorizontalAlignment="Left" Margin="64,63,0,0" VerticalAlignment="Top" Height="27" Width="199" RenderTransformOrigin="0.5,0.5">
+        <Label Content="Criar Reserva" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="46,11,0,0" VerticalAlignment="Top" Width="500" FontWeight="Bold" FontSize="14" />
+
+        <Label Content="Data*" HorizontalAlignment="Left" Margin="39,37,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
+        <DatePicker x:Name="dateNovaReserva" HorizontalAlignment="Left" Margin="39,66,0,0" VerticalAlignment="Top" Height="27" Width="199" RenderTransformOrigin="0.5,0.5" Foreground="White">
             <DatePicker.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleY="1.25" ScaleX="1.25" />
+                    <ScaleTransform ScaleY="1" ScaleX="1" />
                     <SkewTransform />
                     <RotateTransform />
                     <TranslateTransform />
                 </TransformGroup>
             </DatePicker.RenderTransform>
         </DatePicker>
-        <Label Content="CPF" HorizontalAlignment="Left" Margin="39,111,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
-        <TextBox x:Name="txtBoxNovaReservaCPF" HorizontalAlignment="Left" Margin="39,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25" />
-        <Button Content="Confirmar" HorizontalAlignment="Left" Margin="470,334,0,0" VerticalAlignment="Top" Height="40" Width="120" />
+        <materialDesign:TimePicker x:Name="timeNovaReserva" HorizontalAlignment="Left" Margin="255,60,0,0" VerticalAlignment="Top" Height="33" Width="123" Foreground="White" Is24Hours="True" />
+        <Label Content="CPF*" HorizontalAlignment="Left" Margin="39,118,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
+        <TextBox x:Name="txtBoxNovaReservaCPF" HorizontalAlignment="Left" Margin="39,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25" Foreground="White" />
+        <Label Content="Quantidade Pessoas*" HorizontalAlignment="Left" Margin="39,192,0,0" VerticalAlignment="Top" Foreground="White" Width="125" />
+        <TextBox x:Name="txtBoxNovaReservaQtdPessoas" HorizontalAlignment="Left" Margin="39,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" Height="25" Foreground="White" />
+        <Label Content="Quantidade Dias*" HorizontalAlignment="Center" Margin="0,197,0,0" VerticalAlignment="Top" Foreground="White" Width="130" />
+        <TextBox x:Name="txtBoxNovaReservaQtdDias" HorizontalAlignment="Left" Margin="235,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" Height="25" Foreground="White" />
+        <CheckBox x:Name="checkNovaReservaVaga" Content="Vaga de estacionamento" HorizontalAlignment="Left" Margin="39,269,0,0" VerticalAlignment="Top" Foreground="White" />
+        <ComboBox x:Name="comboNovaReservaVagas" HorizontalAlignment="Left" Margin="39,295,0,0" VerticalAlignment="Top" Width="120" Foreground="White" />
+        <CheckBox x:Name="checkNovaReservaVIP" Content="VIP" HorizontalAlignment="Left" Margin="235,269,0,0" VerticalAlignment="Top" Foreground="White" />
+        <Button x:Name="btnNovaReservaCriar" Content="Criar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Height="40" Width="100" Click="btnNovaReservaCriar_Click" />
+        <Button x:Name="btnCloseWindow" HorizontalAlignment="Right" Margin="0,3,0,0" VerticalAlignment="Top" Width="35" BorderBrush="{x:Null}" Click="btnCloseWindow_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/Icons/window-close.png" Stretch="UniformToFill"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

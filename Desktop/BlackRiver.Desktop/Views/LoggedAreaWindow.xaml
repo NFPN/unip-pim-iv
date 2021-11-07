@@ -8,6 +8,7 @@
         Title="LoggedAreaWindow" Width="1280" Height="720" Background="#FF2D2D30">
 
     <Grid>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition />

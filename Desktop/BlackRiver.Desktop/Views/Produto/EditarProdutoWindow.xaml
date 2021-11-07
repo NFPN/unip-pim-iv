@@ -4,7 +4,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="EditarProdutoWindow" Height="450" Width="800">
+        Title="Editar Produto" Height="400" Width="600" Background="#FF2D2D30" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid>
+        <Label Content="Nome" HorizontalAlignment="Left" Margin="55,45,0,0" VerticalAlignment="Top" Height="25" Width="45" />
+        <TextBox x:Name="txtBoxEditProdutoNome" HorizontalAlignment="Left" Margin="60,75,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Foreground="White" Height="25" />
+        <Label Content="Tipo" HorizontalAlignment="Left" Margin="55,141,0,0" VerticalAlignment="Top" Width="45" Height="25" />
+        <ComboBox x:Name="comboEditProdutoTipo" HorizontalAlignment="Left" Margin="60,167,0,0" VerticalAlignment="Top" Width="120" />
+        <Label Content="Quantidade" HorizontalAlignment="Left" Margin="55,218,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="txtBoxEditProdutoQtd" HorizontalAlignment="Left" Margin="60,247,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Foreground="White" Height="25" />
+        <Label Content="Valor unitário" HorizontalAlignment="Left" Margin="295,218,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="txtBoxEditProdutoValorUnit" HorizontalAlignment="Left" Margin="300,247,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Foreground="White" Height="25" />
+        <Button x:Name="btnEditProdutoAtualizar" Content="Atualizar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="100" Height="40" Click="btnEditProdutoAtualizar_Click"  />
+        <Button x:Name="btnCloseWindow" HorizontalAlignment="Right" Margin="0,3,0,0" VerticalAlignment="Top" Width="35" BorderBrush="{x:Null}" Click="btnCloseWindow_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/Icons/window-close.png" Stretch="UniformToFill" />
+            </Button.Background>
+        </Button>
+        <Label Content="Editar Produto" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,6,0,0" VerticalAlignment="Top" Height="26" Width="530" FontSize="14" FontWeight="Bold" />
     </Grid>
 </Window>

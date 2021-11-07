@@ -9,7 +9,24 @@ namespace BlackRiver.Desktop.Views
     {
         public LoginWindow()
         {
+            MouseDown += delegate { DragMove(); };
             InitializeComponent();
+        }
+
+        private void btnCloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: Validate with API
+            if (true)
+            {
+                var mainWindow = new LoggedAreaWindow();
+                mainWindow.Show();
+                Close();
+            }
         }
     }
 }

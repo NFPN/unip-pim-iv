@@ -1,12 +1,26 @@
 ﻿<Window x:Class="BlackRiver.Desktop.Views.PagamentoWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BlackRiver.Desktop.Views"
         mc:Ignorable="d"
-        Title="PagamentoWindow" Height="450" Width="800">
+        Title="Pagamento" Height="400" Width="600" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="#FF2D2D30">
     <Grid>
-        
+
+        <Label Content="Novo Pagamento" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="490" FontWeight="Bold" FontSize="14" />
+        <Label Content="CPF" HorizontalAlignment="Left" Margin="50,65,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="txtBoxPagamentoCPF" HorizontalAlignment="Left" Margin="55,89,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="White" />
+        <Label Content="Nome*" HorizontalAlignment="Left" Margin="50,151,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="txtBoxPagamentoNome" HorizontalAlignment="Left" Margin="55,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213" Foreground="White" />
+        <Label Content="Tipo" HorizontalAlignment="Left" Margin="50,234,0,0" VerticalAlignment="Top" />
+        <ComboBox x:Name="comboPagamaentoTipo" HorizontalAlignment="Left" Margin="55,258,0,0" VerticalAlignment="Top" Width="120" />
+        <Label Content="Valor*" HorizontalAlignment="Left" Margin="270,234,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="txtBoxPagamentoValor" HorizontalAlignment="Left" Margin="275,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="White" />
+        <Button x:Name="btnPagamentoAdicionar" Content="Adicionar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="100" Height="40" Click="btnPagamentoAdicionar_Click" />
+        <Button x:Name="btnCloseWindow" HorizontalAlignment="Right" Margin="0,3,0,0" VerticalAlignment="Top" Width="35" BorderBrush="{x:Null}" Click="btnCloseWindow_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/Icons/window-close.png" Stretch="UniformToFill" />
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

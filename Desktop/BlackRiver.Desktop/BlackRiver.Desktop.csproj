@@ -4,6 +4,9 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <PackageIcon>LogoIcon.ico</PackageIcon>
+    <PackageIconUrl />
+    <ApplicationIcon>Resources\LogoIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,11 +23,20 @@
     <None Remove="Resources\Icons\img_signout.png" />
     <None Remove="Resources\Icons\tgBtn_default.png" />
     <None Remove="Resources\Icons\tgBtn_MouseOver.png" />
+    <None Remove="Resources\Icons\window-close.png" />
     <None Remove="Resources\Logo.png" />
     <None Remove="Views\BlackRiverLogo_White.png" />
     <None Remove="Views\BlackRiverSplash.png" />
     <None Remove="Views\img_background.png" />
     <None Remove="Views\img_contact.png" />
+    <Resource Include="Resources\Icons\window-close.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\LogoIcon.ico">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -65,6 +77,10 @@
 
   <ItemGroup>
     <None Include="..\..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="4.2.1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,6 +9,7 @@ namespace BlackRiver.Desktop.Views
     {
         public LoggedAreaWindow()
         {
+            MouseDown += delegate { DragMove(); };
             InitializeComponent();
         }
 

@@ -9,7 +9,13 @@ namespace BlackRiver.Desktop.Views
     {
         public AdminLoginWindow()
         {
+            MouseDown += delegate { DragMove(); };
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

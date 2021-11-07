@@ -9,7 +9,18 @@ namespace BlackRiver.Desktop.Views
     {
         public CriarHospedeWindow()
         {
+            MouseDown += delegate { DragMove(); };
             InitializeComponent();
+        }
+
+        private void btnNovoHospedeCadastrar_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: Create with API call
+        }
+
+        private void btnCloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -9,7 +9,18 @@ namespace BlackRiver.Desktop.Views
     {
         public CriarReservaWindow()
         {
+            MouseDown += delegate { DragMove(); };
             InitializeComponent();
+        }
+
+        private void btnCloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void btnNovaReservaCriar_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: Create with API call
         }
     }
 }

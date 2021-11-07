@@ -2,3 +2,6 @@
 
 # IDE0011: Add braces
 csharp_prefer_braces = false
+
+# IDE0008: Use explicit type
+csharp_style_var_when_type_is_apparent = true

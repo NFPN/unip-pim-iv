@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace BlackRiver.Desktop.Views
 {
@@ -21,7 +9,25 @@ namespace BlackRiver.Desktop.Views
     {
         public PagamentoWindow()
         {
+            MouseDown += delegate { DragMove(); };
             InitializeComponent();
+        }
+
+        private void btnCloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void btnPagamentoAdicionar_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO:Post to api
+        }
+
+        public string ShowDialog(object data)
+        {
+            var test = ShowDialog();
+
+            return test.ToString();
         }
     }
 }

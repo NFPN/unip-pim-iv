@@ -9,7 +9,19 @@ namespace BlackRiver.Desktop.Views
     {
         public EditarQuartoWindow()
         {
+            MouseDown += delegate { DragMove(); };
             InitializeComponent();
+        }
+
+        private void btnEditQuartoAdicionar_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: get quarto from api
+            //update quarto
+        }
+
+        private void btnCloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

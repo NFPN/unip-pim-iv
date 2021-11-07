@@ -9,7 +9,13 @@ namespace BlackRiver.Desktop.Views
     {
         public EditarReservaWindow()
         {
+            MouseDown += delegate { DragMove(); };
             InitializeComponent();
+        }
+
+        private void btnCloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

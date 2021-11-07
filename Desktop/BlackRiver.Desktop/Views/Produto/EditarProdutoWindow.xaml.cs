@@ -9,7 +9,18 @@ namespace BlackRiver.Desktop.Views
     {
         public EditarProdutoWindow()
         {
+            MouseDown += delegate { DragMove(); };
             InitializeComponent();
+        }
+
+        private void btnCloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void btnEditProdutoAtualizar_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: post to api
         }
     }
 }

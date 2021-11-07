@@ -4,7 +4,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="CriarQuartoWindow" Height="450" Width="800">
+        Title="Criar Quarto" Height="400" Width="600" Background="#FF2D2D30" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid>
+        <Label Content="Tipo*" HorizontalAlignment="Left" Margin="80,90,0,0" VerticalAlignment="Top" />
+        <ComboBox x:Name="comboAddQuartoTipo" HorizontalAlignment="Left" Margin="85,119,0,0" VerticalAlignment="Top" Width="120" Foreground="White" />
+        <Label Content="Status*" HorizontalAlignment="Left" Margin="265,90,0,0" VerticalAlignment="Top" />
+        <ComboBox x:Name="comboAddQuartoStatus" HorizontalAlignment="Left" Margin="270,119,0,0" VerticalAlignment="Top" Width="120" Foreground="White" />
+        <Label Content="Quantidade" HorizontalAlignment="Left" Margin="80,200,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="txtBoxAddQuartoQtd" HorizontalAlignment="Left" Margin="85,240,0,0" Text="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="51" Foreground="White" />
+        <Label Content="Valor diária*" HorizontalAlignment="Left" Margin="265,200,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="txtBoxAddQuartoValorDiaria" HorizontalAlignment="Center" Margin="0,240,0,0" Text="0,00" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Foreground="White" />
+        <Button x:Name="btnAddQuartoAdicionar" Content="Adicionar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="120" Height="40" Click="btnAddQuartoAdicionar_Click"  />
+        <Label Content="Adicionar Quarto" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="46,11,0,0" VerticalAlignment="Top" Width="500" FontWeight="Bold" FontSize="14" />
+        <Button x:Name="btnCloseWindow" HorizontalAlignment="Right" Margin="0,3,0,0" VerticalAlignment="Top" Width="35" BorderBrush="{x:Null}" Click="btnCloseWindow_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/Icons/window-close.png" Stretch="UniformToFill" />
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>
