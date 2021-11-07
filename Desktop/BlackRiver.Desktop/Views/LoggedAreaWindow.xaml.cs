@@ -13,7 +13,7 @@ namespace BlackRiver.Desktop.Views
             InitializeComponent();
         }
 
-        private void CloseWindow(object sender, RoutedEventArgs e)
+        private void btnCloseWindow_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }

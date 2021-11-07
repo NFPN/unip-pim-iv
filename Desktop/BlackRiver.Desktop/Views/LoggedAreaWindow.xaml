@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="LoggedAreaWindow" Width="1280" Height="720" Background="#FF2D2D30">
+        Title="LoggedAreaWindow" Width="1280" Height="720" Background="#FF2D2D30" WindowStyle="None">
 
     <Grid>
         
@@ -27,5 +27,10 @@
         <Label Content="Nome Hotel" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,155,0,0" VerticalAlignment="Top" Width="200" FontFamily="Roboto Light" FontWeight="Bold" FontSize="16" Foreground="#FFBEA042"/>
         <GridSplitter Grid.Column="1" HorizontalAlignment="Left" Height="720" Margin="0,0,0,0" VerticalAlignment="Top" Width="1" Background="Black"/>
         <ContentControl  Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding Path=CurrentContent}"/>
+        <Button x:Name="btnCloseWindow" Grid.Column="1" HorizontalAlignment="Right" Margin="0,3,0,0" VerticalAlignment="Top" Width="35" BorderBrush="{x:Null}" Click="btnCloseWindow_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/Icons/window-close.png" Stretch="UniformToFill" />
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>
