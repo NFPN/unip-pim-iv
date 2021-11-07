@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BlackRiver.Desktop.Views
+namespace BlackRiver.Desktop.Views.AppMainControls
 {
     /// <summary>
-    /// Interaction logic for DashboardUserControl.xaml
+    /// Interaction logic for FinanceiroControl.xaml
     /// </summary>
-    public partial class DashboardUserControl : UserControl
+    public partial class FinanceiroControl : UserControl
     {
-        public DashboardUserControl()
+        public FinanceiroControl()
         {
             InitializeComponent();
         }
