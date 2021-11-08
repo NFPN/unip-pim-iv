@@ -1,12 +1,32 @@
-﻿<UserControl x:Class="BlackRiver.Desktop.Views.AppMainControls.DashboardControl"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:BlackRiver.Desktop.Views.AppMainControls"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Class="BlackRiver.Desktop.Views.DashboardControl"
+             mc:Ignorable="d"
+             d:DesignHeight="680" d:DesignWidth="1080">
     <Grid>
-            
+
+        <Label Content="Dashboard" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="400" FontWeight="Bold" />
+        <GroupBox Header="Fluxo de caixa" Margin="55,66,715,475" FontWeight="Bold" FontSize="14">
+            <Grid>
+                <StackPanel  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="Auto">
+                    <Label x:Name="labelDashboardFluxoDia" Content="Dia:" />
+                    <Label x:Name="labelDashboardFluxoMes" Content="Mês:" />
+                    <Label x:Name="labelDashboardFluxoSemana" Content="Semana:" />
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+        <Calendar x:Name="calendarDashboard" Language="pt-BR" HorizontalAlignment="Left" Margin="55,270,0,0" VerticalAlignment="Top" Width="310" Height="345" Background="#FF444343" />
+
+        <Label Content="Ocupação: 000%" HorizontalAlignment="Left" Margin="400,66,0,0" VerticalAlignment="Top" Height="40" FontSize="16" />
+        <Label Content="Quartos Disponíveis: 000" HorizontalAlignment="Left" Margin="584,65,0,0" VerticalAlignment="Top" Height="40" FontSize="16" />
+        <materialDesign:Card HorizontalAlignment="Left" Margin="400,115,0,0" VerticalAlignment="Top" Height="500" Width="644">
+            <GroupBox Header="Diário">
+                <DataGrid x:Name="datagridDashboard" RowHeight="40" CanUserAddRows="False" Background="#FF444343" ScrollViewer.CanContentScroll="True" />
+            </GroupBox>
+        </materialDesign:Card>
     </Grid>
 </UserControl>
