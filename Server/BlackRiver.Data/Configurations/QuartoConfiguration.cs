@@ -9,6 +9,8 @@ namespace BlackRiver.Data
         public void Configure(EntityTypeBuilder<Quarto> builder)
         {
             builder.HasKey(q => q.Id);
+            builder.Property(q => q.Id)
+                .UseIdentityColumn();
 
             builder.Property(q => q.TipoQuarto)
                 .HasMaxLength(15);

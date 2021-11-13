@@ -9,6 +9,8 @@ namespace BlackRiver.Data
         public void Configure(EntityTypeBuilder<Hospede> builder)
         {
             builder.HasKey(h => h.Id);
+            builder.Property(h => h.Id)
+                .UseIdentityColumn();
 
             builder.Property(h => h.Nome)
                 .HasMaxLength(100);
@@ -30,13 +32,6 @@ namespace BlackRiver.Data
 
             builder.Property(h => h.Email)
                 .HasMaxLength(70);
-
-            builder.HasMany<Reserva>();
-
-            builder.HasMany<Ocorrencia>();
-
-            builder.HasMany<VagaEstacionamento>();
         }
     }
-
 }

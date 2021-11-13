@@ -4,6 +4,6 @@
     {
         public const string DatabaseName = "BlackRiverDB";
 
-        public static string ConnectionString = @$"Data Source=DSK-PCSSD0001\SQLEXPRESS;Initial Catalog={DatabaseName};Integrated Security=True";
+        public static string ConnectionString = @$"Data Source=localhost\SQLEXPRESS;Initial Catalog={DatabaseName};Integrated Security=True";
     }
 }

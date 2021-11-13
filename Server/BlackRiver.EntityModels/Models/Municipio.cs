@@ -11,8 +11,7 @@ namespace BlackRiver.EntityModels
         [DataMember]
         public string UF { get; set; }
 
-
-        public override string ToString() 
+        public override string ToString()
             => $"{Nome} - {UF}";
     }
 }

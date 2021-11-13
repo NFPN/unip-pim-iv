@@ -8,12 +8,6 @@ namespace BlackRiver.EntityModels
     public class Reserva : BaseModel
     {
         [DataMember]
-        public List<Hospede> Hospedes { get; set; }
-
-        [DataMember]
-        public Quarto Quarto { get; set; }
-
-        [DataMember]
         public decimal ValorDiaria { get; set; }
 
         [DataMember]
@@ -26,7 +20,13 @@ namespace BlackRiver.EntityModels
         public DateTime DataCancelamento { get; set; }
 
         [DataMember]
+        public Quarto Quarto { get; set; }
+
+        [DataMember]
         public string Status { get; set; }
+
+        [DataMember]
+        public List<Hospede> Hospedes { get; set; }
 
         [IgnoreDataMember]
         public TimeSpan TempoEstadia => DataSaida.Subtract(DataEntrada);

@@ -9,6 +9,8 @@ namespace BlackRiver.Data
         public void Configure(EntityTypeBuilder<Hotel> builder)
         {
             builder.HasKey(h => h.Id);
+            builder.Property(h => h.Id)
+                .UseIdentityColumn();
 
             builder.Property(h => h.Nome)
                 .HasMaxLength(50);

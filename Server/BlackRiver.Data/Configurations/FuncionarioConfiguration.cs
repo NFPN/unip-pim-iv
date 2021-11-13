@@ -9,6 +9,8 @@ namespace BlackRiver.Data
         public void Configure(EntityTypeBuilder<Funcionario> builder)
         {
             builder.HasKey(f => f.Id);
+            builder.Property(f => f.Id)
+                .UseIdentityColumn();
 
             builder.Property(f => f.Nome)
                 .HasMaxLength(50);
@@ -38,5 +40,4 @@ namespace BlackRiver.Data
                 .HasMaxLength(50);
         }
     }
-
 }

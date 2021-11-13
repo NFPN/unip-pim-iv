@@ -17,6 +17,7 @@ namespace BlackRiver.Data
 
         public DbSet<Venda> Vendas { get; set; }
         public DbSet<Produto> Produtos { get; set; }
+        public DbSet<ProdutoCategoria> Categorias { get; set; }
 
         public BlackRiverDBContext(DbContextOptions options) : base(options) { }
 

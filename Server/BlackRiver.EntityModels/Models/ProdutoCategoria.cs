@@ -3,9 +3,9 @@
 namespace BlackRiver.EntityModels
 {
     [DataContract()]
-    public class Categoria:BaseModel
+    public class ProdutoCategoria : BaseModel
     {
         [DataMember]
-        public int Nome { get; set; }
+        public string Nome { get; set; }
     }
 }

@@ -9,15 +9,20 @@ namespace BlackRiver.Data
         public void Configure(EntityTypeBuilder<Reserva> builder)
         {
             builder.HasKey(r => r.Id);
+            builder.Property(r => r.Id)
+                .UseIdentityColumn();
 
-            builder.Property(p => p.ValorDiaria)
-                .HasPrecision(7,2);
+            builder.Property(r => r.ValorDiaria)
+                .HasPrecision(7, 2);
 
-            builder.Property(p => p.Status)
+            builder.Property(r => r.Status)
                 .HasMaxLength(50);
 
-            builder.HasMany<Hospede>();
+            builder.Property(r => r.DataEntrada)
+                .IsRequired();
+
+            builder.Property(r => r.DataSaida)
+                .IsRequired();
         }
     }
-
 }

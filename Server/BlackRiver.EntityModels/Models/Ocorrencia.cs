@@ -16,6 +16,9 @@ namespace BlackRiver.EntityModels
         public string Departamento { get; set; }
 
         [DataMember]
+        public string Descricao { get; set; }
+
+        [DataMember]
         public Reserva Reserva { get; set; }
     }
 }

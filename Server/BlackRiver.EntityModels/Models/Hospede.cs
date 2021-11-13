@@ -32,6 +32,9 @@ namespace BlackRiver.EntityModels
         public string Email { get; set; }
 
         [DataMember]
+        public VagaEstacionamento VagaEstacionamento { get; set; }
+
+        [DataMember]
         public List<Reserva> Reservas { get; set; }
 
         [DataMember]

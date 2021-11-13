@@ -9,10 +9,14 @@ namespace BlackRiver.Data
         public void Configure(EntityTypeBuilder<Ocorrencia> builder)
         {
             builder.HasKey(o => o.Id);
+            builder.Property(o => o.Id)
+                .UseIdentityColumn();
 
             builder.Property(o => o.Departamento)
                 .HasMaxLength(30);
+
+            builder.Property(o => o.Descricao)
+                .HasMaxLength(30);
         }
     }
-
 }

@@ -9,8 +9,11 @@ namespace BlackRiver.Data
         public void Configure(EntityTypeBuilder<Venda> builder)
         {
             builder.HasKey(v => v.Id);
+            builder.Property(v => v.Id)
+                .UseIdentityColumn();
 
-            builder.HasMany<Produto>();
+            builder.HasMany(v => v.Produtos)
+                .WithMany(p => p.Vendas);
         }
     }
 }

@@ -9,6 +9,8 @@ namespace BlackRiver.Data
         public void Configure(EntityTypeBuilder<Municipio> builder)
         {
             builder.HasKey(m => m.Id);
+            builder.Property(m => m.Id)
+                .UseIdentityColumn();
 
             builder.Property(m => m.Nome)
                 .HasMaxLength(50);

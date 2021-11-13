@@ -9,6 +9,9 @@ namespace BlackRiver.Data
         public void Configure(EntityTypeBuilder<VagaEstacionamento> builder)
         {
             builder.HasKey(ve => ve.Id);
+            builder.Property(ve => ve.Id)
+                .UseIdentityColumn();
+
 
             builder.Property(ve => ve.Placa)
                 .HasMaxLength(7);
@@ -17,5 +20,4 @@ namespace BlackRiver.Data
                 .HasMaxLength(5);
         }
     }
-
 }
