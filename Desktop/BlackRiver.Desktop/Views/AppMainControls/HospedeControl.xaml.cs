@@ -16,5 +16,15 @@ namespace BlackRiver.Desktop.Views
         {
             //TODO: refresh data
         }
+
+        private void btnNovoHospede_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnEditarHospede_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
     }
 }

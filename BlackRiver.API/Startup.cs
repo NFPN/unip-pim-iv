@@ -22,6 +22,8 @@ namespace BlackRiver.API
         {
             services.AddDbContext<BlackRiverDBContext>();
             services.AddControllers();
+            services.AddCors();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BlackRiver.API", Version = "v1" });

@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
@@ -42,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\AuthModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\ProdutoCategoria.cs" />
     <Compile Include="Models\Funcionario.cs" />
@@ -52,6 +54,7 @@
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\Quarto.cs" />
     <Compile Include="Models\Reserva.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Models\VagaEstacionamento.cs" />
     <Compile Include="Models\Venda.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

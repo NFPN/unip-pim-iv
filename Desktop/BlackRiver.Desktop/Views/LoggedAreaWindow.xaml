@@ -12,7 +12,7 @@
             <ColumnDefinition Width="200" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Margin="0,200,0,0">
+        <StackPanel x:Name="MainButtonStack" Grid.Column="0" Margin="0,200,0,44">
             <Button x:Name="DashboardButton" Height="40" Content="Dashboard" BorderBrush="#FF30302E" Background="Gold" Foreground="Black" Click="DashboardButton_Click" />
             <Button x:Name="HospedeButton" Height="40" Content="Hóspede" BorderBrush="#FF30302E" Background="#FF545454" Foreground="White" Click="HospedeButton_Click" />
             <Button x:Name="QuartosButton" Height="40" Content="Quartos" BorderBrush="#FF30302E" Background="#FF545454" Foreground="White" Click="QuartosButton_Click" />
@@ -21,6 +21,19 @@
             <Button x:Name="FuncionariosButton" Height="40" Content="Funcionários" BorderBrush="#FF30302E" Background="#FF545454" Foreground="White" Click="FuncionariosButton_Click" />
             <Button x:Name="RelatoriosButton" Height="40" Content="Relatórios" BorderBrush="#FF30302E" Background="#FF545454" Foreground="White" Click="RelatoriosButton_Click" />
             <Button x:Name="HotelButton" Height="40" Content="Hotel" BorderBrush="#FF30302E" Background="#FF545454" Foreground="White" Click="HotelButton_Click" />
+            <Button Content="" Height="50" Width="50" RenderTransformOrigin="0.5,0.5" BorderBrush="#00FFC107">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="180"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="/Resources/Icons/img_signout.png"/>
+                </Button.Background>
+            </Button>
         </StackPanel>
         <Image HorizontalAlignment="Left" Height="118" Margin="36,23,0,0" VerticalAlignment="Top" Width="132" Source="/Resources/Logo.png" OpacityMask="White" Stretch="UniformToFill" />
         <Label Content="Black River" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,155,0,0" VerticalAlignment="Top" Width="200" FontFamily="Roboto Light" FontWeight="Bold" FontSize="16" Foreground="#FFBEA042" />

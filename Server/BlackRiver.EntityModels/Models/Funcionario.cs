@@ -41,5 +41,8 @@ namespace BlackRiver.EntityModels
 
         [DataMember]
         public Municipio MunicipioAtual { get; set; }
+
+        [DataMember]
+        public User UserInfo { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace BlackRiver.Desktop.Views
@@ -16,6 +17,8 @@ namespace BlackRiver.Desktop.Views
         {
             InitializeComponent();
             UpdateControlData();
+
+            datagridDashboard.Loaded += CorrectColumHeaders;
         }
 
         public void UpdateControlData()
@@ -27,56 +30,66 @@ namespace BlackRiver.Desktop.Views
 
         public void MockDataGrid()
         {
-            var mockReservas = new List<Reserva>
-            {
-                new Reserva
-                {
-                    Id  = 0,
-                    ValorDiaria = 100.0m,
-                    Quarto = new Quarto
-                    {
-                        Id = 0,
-                        NumeroAndar = 1,
-                        NumeroQuarto = 45,
-                        StatusQuarto = 1,
-                    },
-                    Hospedes = new List<Hospede>
-                    {
-                        new Hospede
-                        {
-                            Id = 345,
-                            Nome = "TEST01",
-                            Email = "TEST@TEST.COM"
-                        },
-                    },
-                    Status = "Reservado",
-                    DataEntrada = DateTime.Today.AddHours(9),
-                },
+            var mockReservas = new List<Reserva>();
 
-                new Reserva
-                {
-                    Id  = 1,
-                    ValorDiaria = 123.0m,
-                    Quarto = new Quarto
+            var rand = new System.Random();
+
+            for (int i = 0; i < 10; i++)
+            {
+                var status = rand.Next(1000) > 500 ? "Não confirmado" : "Reservado";
+
+                mockReservas.Add(
+                    new Reserva
                     {
-                        Id = 1,
-                        NumeroAndar = 1,
-                        NumeroQuarto = 44,
-                        StatusQuarto = 1,
-                    },
-                    Hospedes = new List<Hospede>
+                        Id = rand.Next(1000),
+                        ValorDiaria = (decimal)(rand.NextDouble() * 27 * rand.NextDouble() * 99),
+                        Quarto = new Quarto
+                        {
+                            Id = rand.Next(1000),
+                            NumeroAndar = rand.Next(10),
+                            NumeroQuarto = rand.Next(1000),
+                            StatusQuarto = rand.Next(2),
+                        },
+                        Hospedes = new List<Hospede>
                     {
                         new Hospede
                         {
-                            Id = 34,
-                            Nome = "TEST02",
-                            Email = "TEST2@TEST.COM"
+                            Id = rand.Next(1000),
+                            Nome = $"TEST{rand.Next(1000)}" ,
+                            Email = $"TEST{rand.Next(1000)}@TEST.COM"
                         },
                     },
-                    Status = "Não confirmado",
-                    DataEntrada = DateTime.Today.AddHours(6),
-                },
-            };
+                        Status = status,
+                        DataEntrada = DateTime.Today.AddHours(rand.Next(1000)),
+                    });
+
+                status = rand.Next() > 300 ? "Não confirmado" : "Reservado";
+
+                mockReservas.Add(
+                    new Reserva
+                    {
+                        Id = rand.Next(1000),
+                        ValorDiaria = (decimal)(rand.NextDouble() * 27 * rand.NextDouble() * 99),
+                        Quarto = new Quarto
+                        {
+                            Id = rand.Next(1000),
+                            NumeroAndar = rand.Next(10),
+                            NumeroQuarto = rand.Next(1000),
+                            StatusQuarto = rand.Next(2),
+                        },
+                        Hospedes = new List<Hospede>
+                    {
+                        new Hospede
+                        {
+                            Id = rand.Next(1000),
+                            Nome = $"TEST{rand.Next(1000)}" ,
+                            Email = $"TEST{rand.Next(1000)}@TEST.COM"
+                        },
+                    },
+                        Status = status,
+                        DataEntrada = DateTime.Today.AddHours(rand.Next(1000)),
+                    });
+            }
 
             var dashboardDataList = new List<DashboardReserva>();
 
@@ -94,7 +107,22 @@ namespace BlackRiver.Desktop.Views
             datagridDashboard.ItemsSource = dashboardDataList;
         }
 
-        
+        private void CorrectColumHeaders(object sender = null, RoutedEventArgs e = null)
+        {
+            foreach (var prop in typeof(DashboardReserva).GetProperties())
+            {
+                var column = datagridDashboard.Columns.FirstOrDefault(c => c.Header.ToString().Equals(prop.Name, StringComparison.InvariantCultureIgnoreCase));
+                var displayName = prop.GetCustomAttributes(typeof(DisplayNameAttribute), true).FirstOrDefault() as DisplayNameAttribute;
+
+                if (column != null)
+                    column.Header = displayName.DisplayName;
+            }
+        }
+
+        private void calendarDashboard_DisplayDateChanged(object sender, CalendarDateChangedEventArgs e)
+        {
+            //Update dashboard grid to show Reservas only on that day
+        }
     }
 
     [Serializable]
@@ -103,10 +131,10 @@ namespace BlackRiver.Desktop.Views
         [DisplayName("Nome")]
         public string Nome { get; set; }
 
-        [DisplayName("Horário")]
+        [DisplayName("Horário de chegada")]
         public DateTime Horário { get; set; }
 
-        [DisplayName("Numero Quarto")]
+        [DisplayName("Numero do Quarto")]
         public int NumeroQuarto { get; set; }
 
         [DisplayName("Reservado")]

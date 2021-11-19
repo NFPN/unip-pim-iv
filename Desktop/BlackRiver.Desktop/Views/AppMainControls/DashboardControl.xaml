@@ -8,24 +8,24 @@
              mc:Ignorable="d"
              d:DesignHeight="680" d:DesignWidth="1080">
     <Grid>
-
-        <Label Content="Dashboard" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="400" FontWeight="Bold" />
         <GroupBox Header="Fluxo de caixa" Margin="55,66,715,475" FontWeight="Bold" FontSize="14">
             <Grid>
                 <StackPanel  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="Auto">
-                    <Label x:Name="labelDashboardFluxoDia" Content="Dia:" />
-                    <Label x:Name="labelDashboardFluxoMes" Content="Mês:" />
-                    <Label x:Name="labelDashboardFluxoSemana" Content="Semana:" />
+                    <Label x:Name="labelDashboardFluxoDia" Content="Dia: R$ 0.000,00" />
+                    <Label x:Name="labelDashboardFluxoSemana" Content="Semana: R$ 0.000,00" />
+                    <Label x:Name="labelDashboardFluxoMes" Content="Mês: R$ 0.000,00" />
                 </StackPanel>
             </Grid>
         </GroupBox>
-        <Calendar x:Name="calendarDashboard" Language="pt-BR" HorizontalAlignment="Left" Margin="55,270,0,0" VerticalAlignment="Top" Width="310" Height="345" Background="#FF444343" />
+        <Calendar x:Name="calendarDashboard" Language="pt-BR" HorizontalAlignment="Left" Margin="55,270,0,0" VerticalAlignment="Top" Width="310" Height="345" Background="#FF444343" DisplayDateChanged="calendarDashboard_DisplayDateChanged" />
 
-        <Label Content="Ocupação: 000%" HorizontalAlignment="Left" Margin="400,66,0,0" VerticalAlignment="Top" Height="40" FontSize="16" />
-        <Label Content="Quartos Disponíveis: 000" HorizontalAlignment="Left" Margin="584,65,0,0" VerticalAlignment="Top" Height="40" FontSize="16" />
-        <materialDesign:Card HorizontalAlignment="Left" Margin="400,115,0,0" VerticalAlignment="Top" Height="500" Width="644">
-            <GroupBox Header="Diário">
-                <DataGrid x:Name="datagridDashboard" RowHeight="40" CanUserAddRows="False" Background="#FF444343" ScrollViewer.CanContentScroll="True" />
+        <Label Content="Ocupação:" HorizontalAlignment="Left" Margin="402,31,0,0" VerticalAlignment="Top" Height="30" FontSize="16" />
+        <Label x:Name="lblDashboardOcupacao" Content="000%" HorizontalAlignment="Left" Margin="490,31,0,0" VerticalAlignment="Top" Height="30" FontSize="16" />
+        <Label Content="Quartos Disponíveis:" HorizontalAlignment="Left" Margin="586,31,0,0" VerticalAlignment="Top" Height="30" FontSize="16" />
+        <Label x:Name="lblDashboardQuartosDisp" Content="000" HorizontalAlignment="Left" Margin="744,31,0,0" VerticalAlignment="Top" Height="30" FontSize="16" />
+        <materialDesign:Card HorizontalAlignment="Left" Margin="400,0,0,0" VerticalAlignment="Center" Height="548" Width="644" FontFamily="Roboto Light">
+            <GroupBox Header="Diário" FontWeight="Bold" FontFamily="Segoe UI" FontSize="14">
+                <DataGrid x:Name="datagridDashboard" IsReadOnly="True" RowHeight="40" CanUserAddRows="False" Background="#FF444343" ScrollViewer.CanContentScroll="True" />
             </GroupBox>
         </materialDesign:Card>
     </Grid>

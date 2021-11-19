@@ -17,18 +17,17 @@ namespace BlackRiver.Desktop.Views
             { ContentType.Quartos, new QuartoControl() },
             { ContentType.Estoque, new EstoqueControl() },
             { ContentType.Financeiro, new FinanceiroControl() },
-            { ContentType.Funcionarios, new FuncionariosControl() },
-            { ContentType.Relatorios, new RelatoriosControl() },
-            { ContentType.Hotel, new HotelControl() },
         };
 
+        private readonly SolidColorBrush defaultButtonBrush = new((Color)ColorConverter.ConvertFromString("#FF545454"));
         private Button lastSenderButton;
-        private SolidColorBrush defaultButtonBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF545454"));
 
         public LoggedAreaWindow()
         {
             InitializeComponent();
+            SetControlButtons();
             SwitchContent(ContentType.Dashboard);
+
             MouseDown += delegate { SafeDragMove(); };
             lastSenderButton = DashboardButton;
         }
@@ -51,26 +50,43 @@ namespace BlackRiver.Desktop.Views
 
         private void HotelButton_Click(object sender, RoutedEventArgs e) => SwitchContent(ContentType.Hotel, sender);
 
+        private void SetControlButtons()
+        {
+            if (BlackRiverGlobal.IsAdminLogin)
+            {
+                controls.Add(ContentType.Funcionarios, new FuncionariosControl());
+                controls.Add(ContentType.Relatorios, new RelatoriosControl());
+                controls.Add(ContentType.Hotel, new HotelControl());
+            }
+            else
+            {
+                FuncionariosButton.Visibility = Visibility.Collapsed;
+                RelatoriosButton.Visibility = Visibility.Collapsed;
+                HotelButton.Visibility = Visibility.Collapsed;
+            }
+        }
+
         private void SwitchContent(ContentType content, object sender = null)
         {
             if (ControlGrid.Children.Contains(controls[content]))
                 return;
 
             if (sender != null)
-            {
-                var button = (Button)sender;
-
-                lastSenderButton.Background = defaultButtonBrush;
-                lastSenderButton.Foreground = Brushes.White;
-
-                button.Background = Brushes.Gold;
-                button.Foreground = Brushes.Black;
-
-                lastSenderButton = button;
-            }
+                ChangeButtonColor((Button)sender);
 
             ControlGrid.Children.Clear();
-            ControlGrid.Children.Add(controls[content]);
+            _ = ControlGrid.Children.Add(controls[content]);
+        }
+
+        private void ChangeButtonColor(Button button)
+        {
+            lastSenderButton.Background = defaultButtonBrush;
+            lastSenderButton.Foreground = Brushes.White;
+
+            button.Background = Brushes.Gold;
+            button.Foreground = Brushes.Black;
+
+            lastSenderButton = button;
         }
 
         public void SafeDragMove()
