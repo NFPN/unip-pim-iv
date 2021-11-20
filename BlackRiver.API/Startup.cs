@@ -41,10 +41,14 @@ namespace BlackRiver.API
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors(c => c
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowAnyOrigin());
 
             app.UseEndpoints(endpoints =>
             {

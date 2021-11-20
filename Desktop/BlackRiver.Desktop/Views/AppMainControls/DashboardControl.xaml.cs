@@ -32,7 +32,7 @@ namespace BlackRiver.Desktop.Views
         {
             var mockReservas = new List<Reserva>();
 
-            var rand = new System.Random();
+            var rand = new Random();
 
             for (int i = 0; i < 10; i++)
             {
@@ -91,11 +91,11 @@ namespace BlackRiver.Desktop.Views
                     });
             }
 
-            var dashboardDataList = new List<DashboardReserva>();
+            var dashboardDataList = new List<DashboardReservaDataItem>();
 
             foreach (var item in mockReservas)
             {
-                dashboardDataList.Add(new DashboardReserva
+                dashboardDataList.Add(new DashboardReservaDataItem
                 {
                     Nome = item.Hospedes.First().Nome,
                     Horário = item.DataEntrada,
@@ -109,7 +109,7 @@ namespace BlackRiver.Desktop.Views
 
         private void CorrectColumHeaders(object sender = null, RoutedEventArgs e = null)
         {
-            foreach (var prop in typeof(DashboardReserva).GetProperties())
+            foreach (var prop in typeof(DashboardReservaDataItem).GetProperties())
             {
                 var column = datagridDashboard.Columns.FirstOrDefault(c => c.Header.ToString().Equals(prop.Name, StringComparison.InvariantCultureIgnoreCase));
                 var displayName = prop.GetCustomAttributes(typeof(DisplayNameAttribute), true).FirstOrDefault() as DisplayNameAttribute;
@@ -126,7 +126,7 @@ namespace BlackRiver.Desktop.Views
     }
 
     [Serializable]
-    public class DashboardReserva
+    public class DashboardReservaDataItem
     {
         [DisplayName("Nome")]
         public string Nome { get; set; }

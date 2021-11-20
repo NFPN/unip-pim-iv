@@ -15,5 +15,15 @@ namespace BlackRiver.Desktop.Views
         {
             //TODO: refresh data
         }
+
+        private void btnAddReserva_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnEditarReserva_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
     }
 }
