@@ -35,6 +35,21 @@ namespace BlackRiver.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Type = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Produtos",
                 columns: table => new
                 {
@@ -99,8 +114,9 @@ namespace BlackRiver.Data.Migrations
                     Email = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: true),
                     Departamento = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
                     Cargo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    MunicipioAtualId = table.Column<int>(type: "int", nullable: true),
                     HotelAtualId = table.Column<int>(type: "int", nullable: true),
-                    MunicipioAtualId = table.Column<int>(type: "int", nullable: true)
+                    LoginId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -115,6 +131,12 @@ namespace BlackRiver.Data.Migrations
                         name: "FK_Funcionarios_Municipios_MunicipioAtualId",
                         column: x => x.MunicipioAtualId,
                         principalTable: "Municipios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Funcionarios_Users_LoginId",
+                        column: x => x.LoginId,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -202,11 +224,18 @@ namespace BlackRiver.Data.Migrations
                     Endereco = table.Column<string>(type: "nvarchar(14)", maxLength: 14, nullable: true),
                     CEP = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: true),
+                    LoginId = table.Column<int>(type: "int", nullable: true),
                     VagaEstacionamentoId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Hospedes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Hospedes_Users_LoginId",
+                        column: x => x.LoginId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Hospedes_VagasEstacionamento_VagaEstacionamentoId",
                         column: x => x.VagaEstacionamentoId,
@@ -320,6 +349,11 @@ namespace BlackRiver.Data.Migrations
                 column: "HotelAtualId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Funcionarios_LoginId",
+                table: "Funcionarios",
+                column: "LoginId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Funcionarios_MunicipioAtualId",
                 table: "Funcionarios",
                 column: "MunicipioAtualId");
@@ -328,6 +362,11 @@ namespace BlackRiver.Data.Migrations
                 name: "IX_HospedeReserva_ReservasId",
                 table: "HospedeReserva",
                 column: "ReservasId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Hospedes_LoginId",
+                table: "Hospedes",
+                column: "LoginId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Hospedes_VagaEstacionamentoId",
@@ -411,6 +450,9 @@ namespace BlackRiver.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Hospedes");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "VagasEstacionamento");

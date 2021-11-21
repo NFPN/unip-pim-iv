@@ -1,11 +1,10 @@
 ﻿using BlackRiver.Data;
+using BlackRiver.Data.Services;
 using BlackRiver.EntityModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using System.Threading.Tasks;
 
 namespace BlackRiver.API.Controllers
 {
@@ -13,92 +12,60 @@ namespace BlackRiver.API.Controllers
     [ApiController]
     public class ProdutoCategoriaController : ControllerBase
     {
-        private readonly BlackRiverDBContextFactory factory = new();
+        private readonly GenericDataService<ProdutoCategoria> service = new(new BlackRiverDBContextFactory());
 
-        // GET: api/<ProdutoCategoriaController>
+
         [HttpGet]
-        public IEnumerable<ProdutoCategoria> Get()
+        public async Task<IEnumerable<ProdutoCategoria>> Get()
         {
-            using var context = factory.CreateDbContext();
-            return context.Categorias.ToList();
+            return await service.GetAllData();
         }
 
-        // GET api/<ProdutoCategoriaController>/5
         [HttpGet("{id}")]
-        public ProdutoCategoria Get(int id)
+        public async Task<ProdutoCategoria> Get(int id)
         {
-            using var context = factory.CreateDbContext();
-            return context.Categorias.FirstOrDefault(c => c.Id == id);
+            return await service.GetData(id);
         }
 
-        // POST api/<ProdutoCategoriaController>
         [HttpPost]
-        public ActionResult Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] ProdutoCategoria categoria)
         {
             try
             {
-                using var context = factory.CreateDbContext();
-                context.Categorias.Add(new ProdutoCategoria
+                var result = await service.CreateData(categoria);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, [FromBody] string value)
+        {
+            try
+            {
+                var result = await service.UpdateData(id, new ProdutoCategoria
                 {
                     Nome = value,
                 });
 
-                var result = context.SaveChanges();
                 return Ok(result);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                return BadRequest(ex);
             }
         }
 
-        // PUT api/<ProdutoCategoriaController>/5
-        [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] string value)
-        {
-            try
-            {
-                using var context = factory.CreateDbContext();
-                var categoria = context.Categorias.FirstOrDefault(c => c.Id == id);
-
-                if (categoria != null)
-                {
-                    categoria.Nome = value;
-                    var result = context.SaveChanges();
-                    return Ok(result);
-                }
-
-                return NotFound(id);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        // DELETE api/<ProdutoCategoriaController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            try
-            {
-                using var context = factory.CreateDbContext();
+            if (await service.DeleteData(id))
+                return Ok();
 
-                var produtoToDelete = context.Categorias.FirstOrDefault(c => c.Id == id);
-
-                if (produtoToDelete != null)
-                {
-                    var result = context.Categorias.Remove(produtoToDelete);
-                    context.SaveChanges();
-                    return Ok(result);
-                }
-
-                return NotFound(id);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return BadRequest("Item does't exist");
         }
     }
 }

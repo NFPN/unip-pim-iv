@@ -21,6 +21,7 @@
     <None Remove="Resources\Icons\img_message.png" />
     <None Remove="Resources\Icons\img_setting.png" />
     <None Remove="Resources\Icons\img_signout.png" />
+    <None Remove="Resources\Icons\logout_icon.png" />
     <None Remove="Resources\Icons\tgBtn_default.png" />
     <None Remove="Resources\Icons\tgBtn_MouseOver.png" />
     <None Remove="Resources\Icons\window-close.png" />
@@ -29,6 +30,9 @@
     <None Remove="Views\BlackRiverSplash.png" />
     <None Remove="Views\img_background.png" />
     <None Remove="Views\img_contact.png" />
+    <Resource Include="Resources\Icons\logout_icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Icons\window-close.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

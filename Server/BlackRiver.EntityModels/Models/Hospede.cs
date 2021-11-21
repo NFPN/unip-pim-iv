@@ -32,15 +32,15 @@ namespace BlackRiver.EntityModels
         public string Email { get; set; }
 
         [DataMember]
+        public Login Login { get; set; }
+
+        [DataMember]
         public VagaEstacionamento VagaEstacionamento { get; set; }
 
         [DataMember]
-        public User UserInfo { get; set; }
+        public List<Ocorrencia> Ocorrencias { get; set; }
 
         [DataMember]
         public List<Reserva> Reservas { get; set; }
-
-        [DataMember]
-        public List<Ocorrencia> Ocorrencias { get; set; }
     }
 }

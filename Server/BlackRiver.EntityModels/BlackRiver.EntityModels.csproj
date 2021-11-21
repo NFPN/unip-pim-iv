@@ -54,7 +54,7 @@
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\Quarto.cs" />
     <Compile Include="Models\Reserva.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Login.cs" />
     <Compile Include="Models\VagaEstacionamento.cs" />
     <Compile Include="Models\Venda.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

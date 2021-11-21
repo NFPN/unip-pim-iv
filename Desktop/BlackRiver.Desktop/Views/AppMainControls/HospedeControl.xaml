@@ -14,9 +14,9 @@
             </GroupBox>
         </materialDesign:Card>
         <Label Content="Hospedes" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,133,0,0" VerticalAlignment="Top" Width="120" Foreground="#DD000000" FontWeight="Bold" Height="39" FontSize="18" FontStyle="Normal" FontFamily="Arial Black" />
-        <Button x:Name="btnNovoHospede" Content="Novo" HorizontalAlignment="Left" Margin="817,71,0,0" VerticalAlignment="Top" Width="120" Height="40" FontSize="16" Click="btnNovoHospede_Click" />
-        <Button x:Name="btnEditarHospede" Content="Editar" HorizontalAlignment="Left" Margin="950,71,0,0" VerticalAlignment="Top" Width="120" Height="40" FontSize="16" Click="btnEditarHospede_Click" />
         <ComboBox x:Name="comboSearchType" HorizontalAlignment="Left" Margin="235,71,0,0" VerticalAlignment="Top" Width="140" Height="40" />
         <TextBox x:Name="txtBoxHospedsSearch" HorizontalAlignment="Left" Margin="50,71,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Foreground="White" Height="40" />
+        <Button x:Name="btnNovoHospede" Content="Novo" HorizontalAlignment="Left" Margin="817,71,0,0" VerticalAlignment="Top" Width="120" Height="40" FontSize="16" Click="btnNovoHospede_Click" />
+        <Button x:Name="btnEditarHospede" Content="Editar" HorizontalAlignment="Left" Margin="950,71,0,0" VerticalAlignment="Top" Width="120" Height="40" FontSize="16" Click="btnEditarHospede_Click" />
     </Grid>
 </UserControl>

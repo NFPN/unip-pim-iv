@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlackRiver.Data.Migrations
 {
     [DbContext(typeof(BlackRiverDBContext))]
-    [Migration("20211113033805_Initial")]
+    [Migration("20211120213711_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,6 +60,9 @@ namespace BlackRiver.Data.Migrations
                     b.Property<int?>("HotelAtualId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("LoginId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("MunicipioAtualId")
                         .HasColumnType("int");
 
@@ -78,6 +81,8 @@ namespace BlackRiver.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("HotelAtualId");
+
+                    b.HasIndex("LoginId");
 
                     b.HasIndex("MunicipioAtualId");
 
@@ -112,6 +117,9 @@ namespace BlackRiver.Data.Migrations
                         .HasMaxLength(14)
                         .HasColumnType("nvarchar(14)");
 
+                    b.Property<int?>("LoginId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nome")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -128,6 +136,8 @@ namespace BlackRiver.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LoginId");
 
                     b.HasIndex("VagaEstacionamentoId");
 
@@ -159,6 +169,27 @@ namespace BlackRiver.Data.Migrations
                     b.HasIndex("MunicipioAtualId");
 
                     b.ToTable("Hoteis");
+                });
+
+            modelBuilder.Entity("BlackRiver.EntityModels.Login", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("BlackRiver.EntityModels.Municipio", b =>
@@ -452,20 +483,32 @@ namespace BlackRiver.Data.Migrations
                         .WithMany()
                         .HasForeignKey("HotelAtualId");
 
+                    b.HasOne("BlackRiver.EntityModels.Login", "Login")
+                        .WithMany()
+                        .HasForeignKey("LoginId");
+
                     b.HasOne("BlackRiver.EntityModels.Municipio", "MunicipioAtual")
                         .WithMany()
                         .HasForeignKey("MunicipioAtualId");
 
                     b.Navigation("HotelAtual");
 
+                    b.Navigation("Login");
+
                     b.Navigation("MunicipioAtual");
                 });
 
             modelBuilder.Entity("BlackRiver.EntityModels.Hospede", b =>
                 {
+                    b.HasOne("BlackRiver.EntityModels.Login", "Login")
+                        .WithMany()
+                        .HasForeignKey("LoginId");
+
                     b.HasOne("BlackRiver.EntityModels.VagaEstacionamento", "VagaEstacionamento")
                         .WithMany()
                         .HasForeignKey("VagaEstacionamentoId");
+
+                    b.Navigation("Login");
 
                     b.Navigation("VagaEstacionamento");
                 });
