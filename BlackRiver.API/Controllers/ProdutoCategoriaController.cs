@@ -1,6 +1,7 @@
 ﻿using BlackRiver.Data;
 using BlackRiver.Data.Services;
 using BlackRiver.EntityModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace BlackRiver.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProdutoCategoriaController : ControllerBase

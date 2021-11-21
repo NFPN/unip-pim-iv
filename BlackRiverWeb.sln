@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31605.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackRiver.WEB", "WEB\BlackRiver.WEB\BlackRiver.WEB.csproj", "{D9DFC0A4-B09A-47B9-ADD6-BEB481F5DDDA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackRiver.WEB.Tests", "WEB\BlackRiver.WEB.Tests\BlackRiver.WEB.Tests.csproj", "{F331449D-0A91-4779-8356-FE195B2FA9A7}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{749C9642-233D-4597-8E17-5806A0C96925}"
 	ProjectSection(SolutionItems) = preProject
 		WEB\README.md = WEB\README.md
@@ -18,7 +14,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackRiver.Data", "Server\B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleDatabaseTests", "Server\ConsoleDatabaseTests\ConsoleDatabaseTests.csproj", "{22C17C32-A18E-496F-83F3-2577B17AC931}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackRiver.API", "BlackRiver.API\BlackRiver.API.csproj", "{CED450C6-6F4C-4FA0-BA04-73EFC4C7E019}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackRiver.API", "BlackRiver.API\BlackRiver.API.csproj", "{CED450C6-6F4C-4FA0-BA04-73EFC4C7E019}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HostAPI", "Server\HostAPI\HostAPI.csproj", "{55BC526B-734F-4418-AE27-CFC484AA6DF1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,14 +24,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D9DFC0A4-B09A-47B9-ADD6-BEB481F5DDDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D9DFC0A4-B09A-47B9-ADD6-BEB481F5DDDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D9DFC0A4-B09A-47B9-ADD6-BEB481F5DDDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D9DFC0A4-B09A-47B9-ADD6-BEB481F5DDDA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F331449D-0A91-4779-8356-FE195B2FA9A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F331449D-0A91-4779-8356-FE195B2FA9A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F331449D-0A91-4779-8356-FE195B2FA9A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F331449D-0A91-4779-8356-FE195B2FA9A7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{07BFC6DE-BBC1-426E-A1CC-CE0936906D04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{07BFC6DE-BBC1-426E-A1CC-CE0936906D04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07BFC6DE-BBC1-426E-A1CC-CE0936906D04}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -50,6 +40,10 @@ Global
 		{CED450C6-6F4C-4FA0-BA04-73EFC4C7E019}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CED450C6-6F4C-4FA0-BA04-73EFC4C7E019}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CED450C6-6F4C-4FA0-BA04-73EFC4C7E019}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55BC526B-734F-4418-AE27-CFC484AA6DF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55BC526B-734F-4418-AE27-CFC484AA6DF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55BC526B-734F-4418-AE27-CFC484AA6DF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55BC526B-734F-4418-AE27-CFC484AA6DF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
