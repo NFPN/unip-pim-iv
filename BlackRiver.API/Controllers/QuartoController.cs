@@ -12,25 +12,25 @@ namespace BlackRiver.API.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class ProdutoCategoriaController : ControllerBase
+    public class QuartoController : Controller
     {
-        private readonly GenericDataService<ProdutoCategoria> service = new(new BlackRiverDBContextFactory());
+        private readonly GenericDataService<Quarto> service = new(new BlackRiverDBContextFactory());
 
 
         [HttpGet]
-        public async Task<IEnumerable<ProdutoCategoria>> Get()
+        public async Task<IEnumerable<Quarto>> Get()
         {
             return await service.GetAll();
         }
 
         [HttpGet("{id}")]
-        public async Task<ProdutoCategoria> Get(int id)
+        public async Task<Quarto> Get(int id)
         {
             return await service.Get(id);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] ProdutoCategoria categoria)
+        public async Task<IActionResult> Post([FromBody] Quarto categoria)
         {
             try
             {
@@ -48,9 +48,8 @@ namespace BlackRiver.API.Controllers
         {
             try
             {
-                var result = await service.Update(id, new ProdutoCategoria
+                var result = await service.Update(id, new Quarto
                 {
-                    Nome = value,
                 });
 
                 return Ok(result);

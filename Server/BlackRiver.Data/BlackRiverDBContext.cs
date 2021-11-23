@@ -19,7 +19,7 @@ namespace BlackRiver.Data
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<ProdutoCategoria> Categorias { get; set; }
 
-        public DbSet<Login> Users { get; set; }
+        public DbSet<UserLogin> Users { get; set; }
 
 
         public BlackRiverDBContext(DbContextOptions options) : base(options) { }

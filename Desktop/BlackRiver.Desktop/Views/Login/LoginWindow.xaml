@@ -14,13 +14,16 @@
         <Label Content="USUARIO / EMAIL" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="270,231,0,0" VerticalAlignment="Top" Foreground="White" Width="120" FontWeight="Normal" />
         <Label Content="SENHA" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="270,297,0,0" VerticalAlignment="Top" Foreground="White" Width="120" FontWeight="Normal" />
         <TextBox x:Name="txtBoxUsername" HorizontalAlignment="Center" Margin="0,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25" FontSize="14" Foreground="White" />
-        <PasswordBox x:Name="txtBoxPassword" HorizontalAlignment="Center" Margin="0,323,0,0" VerticalAlignment="Top" Width="200" Height="25" Foreground="White" />
-        <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Center" Margin="0,382,0,0" VerticalAlignment="Top" Height="39" Width="150" FontSize="16" FontWeight="Bold" Click="btnLogin_Click" />
+        <PasswordBox x:Name="txtBoxPassword" HorizontalAlignment="Center" Margin="0,323,0,0" VerticalAlignment="Top" Width="200" Height="25" Foreground="White" KeyDown="txtBoxPassword_KeyDown" />
+        <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Center" Margin="0,417,0,0" VerticalAlignment="Top" Height="39" Width="150" FontSize="16" FontWeight="Bold" Click="btnLogin_Click" />
         <Button x:Name="btnCloseWindow" HorizontalAlignment="Right" Margin="0,3,0,0" VerticalAlignment="Top" Width="35" BorderBrush="{x:Null}" Click="btnCloseWindow_Click">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/Icons/window-close.png" Stretch="UniformToFill" />
             </Button.Background>
         </Button>
         <Label Content="Login" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,7,0,0" VerticalAlignment="Top" Width="605" FontWeight="Bold" FontSize="14" />
+        <Label Margin="270,372,270,103" Height="25">
+            <TextBlock x:Name="txtBlockForgotPassword" TextDecorations="Underline" Text="Esqueci a senha" VerticalAlignment="Center" HorizontalAlignment="Center" Height="25" Margin="55,0,0,0" MouseLeftButtonDown="txtBlockForgotPassword_MouseLeftButtonDown"/>
+        </Label>
     </Grid>
 </Window>

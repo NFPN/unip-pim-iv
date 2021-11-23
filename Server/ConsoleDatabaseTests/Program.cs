@@ -11,7 +11,7 @@ namespace ConsoleDatabaseTests
         {
             var userService = new GenericDataService<Municipio>(new BlackRiverDBContextFactory());
 
-            var create = userService.CreateData(
+            var create = userService.Create(
                 new Municipio
                 {
                     Nome = "Test",
@@ -20,8 +20,8 @@ namespace ConsoleDatabaseTests
 
             create.Wait();
 
-            var data = userService.GetData(create.Result.Id);
-            var removedData = userService.DeleteData(data.Result.Id);
+            var data = userService.Get(create.Result.Id);
+            var removedData = userService.Delete(data.Result.Id);
 
             Console.WriteLine(data.Result);
             Console.WriteLine(removedData.Result);

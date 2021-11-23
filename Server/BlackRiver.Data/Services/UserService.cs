@@ -1,40 +1,88 @@
 ﻿using BlackRiver.EntityModels;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace BlackRiver.Data.Services
 {
-    public interface IUserService
-    {
-        Task<Login> Authenticate(string username, string password);
-
-        Task<IEnumerable<Login>> GetAll();
-    }
-
     public class UserService : IUserService
     {
-        // users hardcoded for simplicity, store in a db with hashed passwords in production applications
-        private List<Login> _users = new List<Login>
-        {
-            new Login { Id = 1, Username = "admin", Password = "admin" }
-        };
+        public readonly GenericDataService<UserLogin> loginService;
+        public readonly GenericDataService<Funcionario> funcionarioService;
+        public readonly GenericDataService<Hospede> hospedeService;
 
-        public async Task<Login> Authenticate(string username, string password)
+        public UserService()
         {
-            var user = await Task.Run(() => _users.SingleOrDefault(x => x.Username == username && x.Password == password));
+            loginService = new GenericDataService<UserLogin>(new BlackRiverDBContextFactory());
+            funcionarioService = new GenericDataService<Funcionario>(new BlackRiverDBContextFactory());
+            hospedeService = new GenericDataService<Hospede>(new BlackRiverDBContextFactory());
+        }
 
-            // return null if user not found
+        public async Task<UserLogin> Authenticate(string username, string password)
+        {
+            var user = (await loginService.GetAll()).FirstOrDefault(x => x.Username == username && x.Password == password);
+
             if (user == null)
                 return null;
 
-            // authentication successful so return user details without password
             return user.WithoutPassword();
         }
 
-        public async Task<IEnumerable<Login>> GetAll()
+        public async Task<bool> Register(UserLogin login, int id, bool isCustomer)
         {
-            return await Task.Run(() => _users.WithoutPasswords());
+            var user = (await loginService.GetAll()).FirstOrDefault(l => l.Username.Equals(login.Username));
+
+            if (user != null)
+                return false;
+
+            _ = await loginService.Create(login);
+
+            if (isCustomer)
+            {
+                var hospede = (await hospedeService.GetAll()).FirstOrDefault(h => h.Email == login.Username);
+
+                if (hospede != null)
+                {
+                    hospede.Login = login;
+                    _ = await hospedeService.Update(id, hospede);
+                }
+            }
+            else
+            {
+                var funcionario = (await funcionarioService.GetAll()).FirstOrDefault(h => h.Email == login.Username);
+
+                if (funcionario != null)
+                {
+                    funcionario.Login = login;
+                    _ = await funcionarioService.Update(id, funcionario);
+                }
+            }
+
+            return true;
+        }
+
+        public async Task<bool> Update(string username, string password)
+        {
+            var user = (await loginService.GetAll()).FirstOrDefault(x => x.Username == username);
+
+            if (user == null)
+                return false;
+
+            user.Password = password;
+
+            var newLogin = await loginService.Update(user.Id, user);
+
+            if (newLogin == null)
+                return false;
+
+            return true;
+        }
+
+        public async Task<UserLogin> GetAuthUser(string name)
+        {
+            return (await loginService
+                .GetAll())
+                .FirstOrDefault(x => x.Username == name)
+                .WithoutPassword();
         }
     }
 }

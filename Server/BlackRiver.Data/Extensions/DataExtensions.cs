@@ -6,12 +6,12 @@ namespace BlackRiver.Data
 {
     public static class DataExtensions
     {
-        public static IEnumerable<Login> WithoutPasswords(this IEnumerable<Login> users)
+        public static IEnumerable<UserLogin> WithoutPasswords(this IEnumerable<UserLogin> users)
         {
             return users.Select(x => x.WithoutPassword());
         }
 
-        public static Login WithoutPassword(this Login user)
+        public static UserLogin WithoutPassword(this UserLogin user)
         {
             user.Password = null;
             return user;

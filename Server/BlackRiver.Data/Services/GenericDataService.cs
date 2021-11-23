@@ -13,7 +13,7 @@ namespace BlackRiver.Data.Services
         public GenericDataService(BlackRiverDBContextFactory contextFactory)
             => this.contextFactory = contextFactory;
 
-        public async Task<T> CreateData(T entity)
+        public async Task<T> Create(T entity)
         {
             using var context = contextFactory.CreateDbContext();
             var result = await context.Set<T>().AddAsync(entity);
@@ -21,7 +21,7 @@ namespace BlackRiver.Data.Services
             return result.Entity;
         }
 
-        public async Task<bool> DeleteData(int id)
+        public async Task<bool> Delete(int id)
         {
             try
             {
@@ -37,19 +37,19 @@ namespace BlackRiver.Data.Services
             }
         }
 
-        public async Task<IEnumerable<T>> GetAllData()
+        public async Task<IEnumerable<T>> GetAll()
         {
             using var context = contextFactory.CreateDbContext();
             return await context.Set<T>().ToListAsync();
         }
 
-        public async Task<T> GetData(int id)
+        public async Task<T> Get(int id)
         {
             using var context = contextFactory.CreateDbContext();
             return await context.Set<T>().FirstOrDefaultAsync((e) => e.Id == id);
         }
 
-        public async Task<T> UpdateData(int id, T entity)
+        public async Task<T> Update(int id, T entity)
         {
             using var context = contextFactory.CreateDbContext();
             entity.Id = id;

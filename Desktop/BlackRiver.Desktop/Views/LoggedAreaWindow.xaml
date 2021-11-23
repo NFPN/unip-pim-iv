@@ -21,7 +21,7 @@
             <Button x:Name="FuncionariosButton" Height="40" Content="Funcionários" BorderBrush="#FF30302E" Background="#FF545454" Foreground="White" Click="FuncionariosButton_Click" />
             <Button x:Name="RelatoriosButton" Height="40" Content="Relatórios" BorderBrush="#FF30302E" Background="#FF545454" Foreground="White" Click="RelatoriosButton_Click" />
             <Button x:Name="HotelButton" Height="40" Content="Hotel" BorderBrush="#FF30302E" Background="#FF545454" Foreground="White" Click="HotelButton_Click" />
-            <Button x:Name="btnLogout" Content="" Height="50" Width="50" RenderTransformOrigin="0.5,0.5" BorderBrush="#00FFC107">
+            <Button x:Name="btnLogout" Content="" Height="50" Width="50" RenderTransformOrigin="0.5,0.5" BorderBrush="#00FFC107" Click="btnLogout_Click">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>

@@ -2,7 +2,7 @@
 
 namespace BlackRiver.EntityModels
 {
-    public class Login : BaseModel
+    public class UserLogin : BaseModel
     {
         [DataMember]
         public string Username { get; set; }

@@ -43,6 +43,6 @@ namespace BlackRiver.EntityModels
         public Hotel HotelAtual { get; set; }
 
         [DataMember]
-        public Login Login { get; set; }
+        public UserLogin Login { get; set; }
     }
 }

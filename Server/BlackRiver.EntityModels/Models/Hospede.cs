@@ -32,7 +32,7 @@ namespace BlackRiver.EntityModels
         public string Email { get; set; }
 
         [DataMember]
-        public Login Login { get; set; }
+        public UserLogin Login { get; set; }
 
         [DataMember]
         public VagaEstacionamento VagaEstacionamento { get; set; }

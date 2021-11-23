@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoginTypes.cs" />
     <Compile Include="Models\AuthModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\ProdutoCategoria.cs" />
@@ -54,7 +55,7 @@
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\Quarto.cs" />
     <Compile Include="Models\Reserva.cs" />
-    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Models\VagaEstacionamento.cs" />
     <Compile Include="Models\Venda.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

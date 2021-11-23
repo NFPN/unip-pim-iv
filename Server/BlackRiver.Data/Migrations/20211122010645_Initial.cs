@@ -304,7 +304,7 @@ namespace BlackRiver.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ValorPago = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ValorPago = table.Column<decimal>(type: "decimal(7,2)", precision: 7, scale: 2, nullable: false),
                     DataVenda = table.Column<DateTime>(type: "datetime2", nullable: false),
                     HospedePagadorId = table.Column<int>(type: "int", nullable: true)
                 },

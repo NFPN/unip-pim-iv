@@ -97,5 +97,12 @@ namespace BlackRiver.Desktop.Views
             }
             catch { }
         }
+
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            var login = new LoginWindow();
+            login.Show();
+            Close();
+        }
     }
 }
