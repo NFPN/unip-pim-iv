@@ -30,11 +30,11 @@ namespace BlackRiver.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Ocorrencia categoria)
+        public async Task<IActionResult> Post([FromBody] Ocorrencia ocorrencia)
         {
             try
             {
-                var result = await service.Create(categoria);
+                var result = await service.Create(ocorrencia);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -44,14 +44,11 @@ namespace BlackRiver.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(int id, [FromBody] Ocorrencia ocorrencia)
         {
             try
             {
-                var result = await service.Update(id, new Ocorrencia
-                {
-                });
-
+                var result = await service.Update(id, ocorrencia);
                 return Ok(result);
             }
             catch (Exception ex)

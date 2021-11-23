@@ -47,7 +47,7 @@ namespace BlackRiver.Desktop.Views.Login
 
             if (File.Exists(BlackRiverGlobal.FirstUseFile))
             {
-                var resetResponse = await BlackRiverGlobal.APIClient.GetAsync(BlackRiverGlobal.UpdateLoginUri + $"?username={txtBoxUser.Text}&password={txtBoxPassword.Password}");
+                var resetResponse = await BlackRiverAPI.Client.GetAsync(BlackRiverAPI.UpdateLoginUri + $"?username={txtBoxUser.Text}&password={txtBoxPassword.Password}");
 
                 if (resetResponse.IsSuccessStatusCode)
                     Close();
@@ -62,7 +62,7 @@ namespace BlackRiver.Desktop.Views.Login
                 Type = 1,
             };
 
-            var postResponse = await BlackRiverGlobal.APIClient.PostAsJsonAsync(BlackRiverGlobal.RegisterUri + $"?isCustomer={false}", adminLogin);
+            var postResponse = await BlackRiverAPI.Client.PostAsJsonAsync(BlackRiverAPI.RegisterUri + $"?isCustomer={false}", adminLogin);
 
             if (postResponse.IsSuccessStatusCode)
             {

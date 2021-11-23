@@ -16,7 +16,6 @@ namespace BlackRiver.API.Controllers
     {
         private readonly GenericDataService<Reserva> service = new(new BlackRiverDBContextFactory());
 
-
         [HttpGet]
         public async Task<IEnumerable<Reserva>> Get()
         {
@@ -30,11 +29,11 @@ namespace BlackRiver.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Reserva categoria)
+        public async Task<IActionResult> Post([FromBody] Reserva reserva)
         {
             try
             {
-                var result = await service.Create(categoria);
+                var result = await service.Create(reserva);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -44,14 +43,11 @@ namespace BlackRiver.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(int id, [FromBody] Reserva reserva)
         {
             try
             {
-                var result = await service.Update(id, new Reserva
-                {
-                });
-
+                var result = await service.Update(id, reserva);
                 return Ok(result);
             }
             catch (Exception ex)

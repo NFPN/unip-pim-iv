@@ -15,10 +15,18 @@ namespace BlackRiver.Desktop.Views
     {
         public LoginWindow()
         {
-            MouseDown += delegate { DragMove(); };
             InitializeComponent();
             BringIntoView();
             _ = Focus();
+
+            MouseDown += delegate
+            {
+                try
+                {
+                    DragMove();
+                }
+                catch { }
+            };
         }
 
         private void btnCloseWindow_Click(object sender, RoutedEventArgs e)
@@ -38,8 +46,8 @@ namespace BlackRiver.Desktop.Views
                 return;
             }
 
-            var tokenResponse = await BlackRiverGlobal.APIClient
-                .GetAsync(BlackRiverGlobal.LoginUri + $"?username={txtBoxUsername.Text}&password={txtBoxPassword.Password}");
+            var tokenResponse = await BlackRiverAPI.Client
+                .GetAsync(BlackRiverAPI.LoginUri + $"?username={txtBoxUsername.Text}&password={txtBoxPassword.Password}");
 
             if (!tokenResponse.IsSuccessStatusCode)
             {
@@ -48,10 +56,9 @@ namespace BlackRiver.Desktop.Views
             }
 
             var token = JsonConvert.DeserializeObject<APIToken>(await tokenResponse.Content.ReadAsStringAsync());
-            BlackRiverGlobal.LoginToken = token.Token;
+            BlackRiverAPI.Token = token.Token;
 
-            var userResponse = await BlackRiverGlobal.APIClient
-                .GetAsync(BlackRiverGlobal.AuthUserUri);
+            var userResponse = await BlackRiverAPI.Client.GetAsync(BlackRiverAPI.AuthUserUri);
 
             if (!userResponse.IsSuccessStatusCode)
             {
