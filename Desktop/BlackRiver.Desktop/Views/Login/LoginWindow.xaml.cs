@@ -60,7 +60,15 @@ namespace BlackRiver.Desktop.Views
             }
 
             var user = JsonConvert.DeserializeObject<UserLogin>(await userResponse.Content.ReadAsStringAsync());
-            BlackRiverGlobal.IsAdminLogin = ((LoginTypes)user.Type) == LoginTypes.Manager;
+            var userType = (LoginTypes)user.Type;
+
+            if (userType == LoginTypes.Customer || userType == LoginTypes.Customer)
+            {
+                BlackRiverExtensions.ShowMessage("Usuário inválido", "Erro");
+                return;
+            }
+
+            BlackRiverGlobal.IsAdminLogin = userType == LoginTypes.Manager;
 
             var mainWindow = new LoggedAreaWindow();
             mainWindow.Show();
@@ -69,7 +77,7 @@ namespace BlackRiver.Desktop.Views
 
         private void txtBlockForgotPassword_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            var resetAdminPassword = new NewPasswordEditWindow(txtBoxUsername.Text).ShowDialog();
+            _ = new NewPasswordEditWindow(txtBoxUsername.Text).ShowDialog();
             return;
         }
 
