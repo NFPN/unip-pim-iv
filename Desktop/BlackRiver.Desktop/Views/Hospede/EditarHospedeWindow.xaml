@@ -24,7 +24,7 @@
         <Button x:Name="btnEditHospedeAtualizar" Content="Atualizar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Height="40" Width="100" Click="btnEditHospedeAtualizar_Click" />
         <Button x:Name="btnCloseWindow" HorizontalAlignment="Right" Margin="0,3,0,0" VerticalAlignment="Top" Width="35" BorderBrush="{x:Null}" Click="btnCloseWindow_Click">
             <Button.Background>
-                <ImageBrush ImageSource="/Resources/Icons/window-close.png" Stretch="UniformToFill"/>
+                <ImageBrush ImageSource="/Resources/Icons/window-close.png" Stretch="UniformToFill" />
             </Button.Background>
         </Button>
     </Grid>

@@ -23,7 +23,7 @@
         </Button>
         <Label Content="Login" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,7,0,0" VerticalAlignment="Top" Width="605" FontWeight="Bold" FontSize="14" />
         <Label Margin="270,372,270,103" Height="25">
-            <TextBlock x:Name="txtBlockForgotPassword" TextDecorations="Underline" Text="Esqueci a senha" VerticalAlignment="Center" HorizontalAlignment="Center" Height="25" Margin="55,0,0,0" MouseLeftButtonDown="txtBlockForgotPassword_MouseLeftButtonDown"/>
+            <TextBlock x:Name="txtBlockForgotPassword" TextDecorations="Underline" Text="Esqueci a senha" VerticalAlignment="Center" HorizontalAlignment="Center" Height="25" Margin="55,0,0,0" MouseLeftButtonDown="txtBlockForgotPassword_MouseLeftButtonDown" />
         </Label>
     </Grid>
 </Window>

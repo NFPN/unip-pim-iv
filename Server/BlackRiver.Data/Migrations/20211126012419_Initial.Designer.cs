@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlackRiver.Data.Migrations
 {
     [DbContext(typeof(BlackRiverDBContext))]
-    [Migration("20211122010645_Initial")]
+    [Migration("20211126012419_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -219,6 +219,10 @@ namespace BlackRiver.Data.Migrations
                     b.Property<int?>("ReservaId")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("Score")
+                        .HasPrecision(2, 1)
+                        .HasColumnType("decimal(2,1)");
+
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
@@ -330,6 +334,9 @@ namespace BlackRiver.Data.Migrations
                     b.Property<decimal>("ValorQuarto")
                         .HasPrecision(7, 2)
                         .HasColumnType("decimal(7,2)");
+
+                    b.Property<bool>("Vip")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

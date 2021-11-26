@@ -37,6 +37,9 @@ namespace BlackRiver.Desktop.Views
                 });
             }
 
+            lblDashboardQuartosDisp.Content = 999;
+            lblDashboardOcupacao.Content = $"{85.5}%";
+
             SetDashboardDataGrid(DateTime.UtcNow);
         }
 

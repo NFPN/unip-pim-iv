@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using BlackRiver.Desktop.Extensions;
+using System.Windows.Controls;
 
 namespace BlackRiver.Desktop.Views
 {
@@ -11,19 +12,20 @@ namespace BlackRiver.Desktop.Views
         {
             InitializeComponent();
         }
+
         public void UpdateControlData()
         {
             //TODO: refresh data
         }
 
-        private void btnAddReserva_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void btnAddQuarto_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            new CriarQuartoWindow().SafeShowDialog(null);
         }
 
-        private void btnEditarReserva_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void btnEditarQuarto_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            new EditarQuartoWindow().SafeShowDialog(null);
         }
     }
 }

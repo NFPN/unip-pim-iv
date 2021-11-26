@@ -43,7 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LoginTypes.cs" />
+    <Compile Include="Enums\LoginTypes.cs" />
+    <Compile Include="Enums\QuartoStatus.cs" />
     <Compile Include="Models\AuthModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\ProdutoCategoria.cs" />

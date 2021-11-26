@@ -1,9 +1,10 @@
 ﻿<Window
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="BlackRiver.Desktop.Views.EditarReservaWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Class="BlackRiver.Desktop.Views.EditarReservaWindow"
         mc:Ignorable="d"
         Title="Editar Reserva" Height="400" Width="600" Background="#FF2D2D30" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid>
@@ -30,10 +31,10 @@
         <materialDesign:TimePicker x:Name="timeEditReservaCheckIn" HorizontalAlignment="Left" Margin="484,74,0,0" VerticalAlignment="Top" Width="76" Height="27" RenderTransformOrigin="0.5,0.5" Foreground="White">
             <materialDesign:TimePicker.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="1.25" ScaleY="1.25"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
+                    <ScaleTransform ScaleX="1.25" ScaleY="1.25" />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
                 </TransformGroup>
             </materialDesign:TimePicker.RenderTransform>
         </materialDesign:TimePicker>
@@ -48,10 +49,10 @@
         <materialDesign:TimePicker x:Name="timeEditReservaCheckOut" HorizontalAlignment="Left" Margin="484,151,0,0" VerticalAlignment="Top" Width="76" Height="27" RenderTransformOrigin="0.5,0.5" Foreground="White">
             <materialDesign:TimePicker.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="1.25" ScaleY="1.25"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
+                    <ScaleTransform ScaleX="1.25" ScaleY="1.25" />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
                 </TransformGroup>
             </materialDesign:TimePicker.RenderTransform>
         </materialDesign:TimePicker>
@@ -59,7 +60,7 @@
         <Button x:Name="btnEditReservaAlterar" Content="Alterar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Height="40" Width="100" />
         <Button x:Name="btnCloseWindow" HorizontalAlignment="Right" Margin="0,3,0,0" VerticalAlignment="Top" Width="35" BorderBrush="{x:Null}" Click="btnCloseWindow_Click">
             <Button.Background>
-                <ImageBrush ImageSource="/Resources/Icons/window-close.png" Stretch="UniformToFill"/>
+                <ImageBrush ImageSource="/Resources/Icons/window-close.png" Stretch="UniformToFill" />
             </Button.Background>
         </Button>
     </Grid>

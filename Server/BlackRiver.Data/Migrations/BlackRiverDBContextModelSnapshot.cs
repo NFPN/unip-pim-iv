@@ -217,9 +217,9 @@ namespace BlackRiver.Data.Migrations
                     b.Property<int?>("ReservaId")
                         .HasColumnType("int");
 
-                    b.Property<float>("Score")
+                    b.Property<decimal>("Score")
                         .HasPrecision(2, 1)
-                        .HasColumnType("real(2)");
+                        .HasColumnType("decimal(2,1)");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");

@@ -7,7 +7,7 @@ namespace BlackRiver.EntityModels
     public class Ocorrencia : BaseModel
     {
         [DataMember]
-        public float Score { get; set; }
+        public decimal Score { get; set; }
 
         [DataMember]
         public bool Status { get; set; }

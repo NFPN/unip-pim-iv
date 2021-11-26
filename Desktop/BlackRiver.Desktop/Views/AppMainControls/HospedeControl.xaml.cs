@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using BlackRiver.Desktop.Extensions;
+using System.Windows.Controls;
 
 namespace BlackRiver.Desktop.Views
 {
@@ -19,12 +20,12 @@ namespace BlackRiver.Desktop.Views
 
         private void btnNovoHospede_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            new CriarHospedeWindow().SafeShowDialog(null);
         }
 
         private void btnEditarHospede_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            new EditarHospedeWindow().SafeShowDialog(null);
         }
     }
 }

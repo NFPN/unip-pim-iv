@@ -14,7 +14,7 @@
         <TextBox x:Name="txtBoxAddQuartoQtd" HorizontalAlignment="Left" Margin="85,240,0,0" Text="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="51" Foreground="White" />
         <Label Content="Valor diária*" HorizontalAlignment="Left" Margin="265,200,0,0" VerticalAlignment="Top" />
         <TextBox x:Name="txtBoxAddQuartoValorDiaria" HorizontalAlignment="Center" Margin="0,240,0,0" Text="0,00" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Foreground="White" />
-        <Button x:Name="btnAddQuartoAdicionar" Content="Adicionar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="120" Height="40" Click="btnAddQuartoAdicionar_Click"  />
+        <Button x:Name="btnAddQuartoAdicionar" Content="Adicionar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="120" Height="40" Click="btnAddQuartoAdicionar_Click" />
         <Label Content="Adicionar Quarto" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="46,11,0,0" VerticalAlignment="Top" Width="500" FontWeight="Bold" FontSize="14" />
         <Button x:Name="btnCloseWindow" HorizontalAlignment="Right" Margin="0,3,0,0" VerticalAlignment="Top" Width="35" BorderBrush="{x:Null}" Click="btnCloseWindow_Click">
             <Button.Background>

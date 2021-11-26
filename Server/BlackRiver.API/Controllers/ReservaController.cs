@@ -18,6 +18,7 @@ namespace BlackRiver.API.Controllers
     {
         private readonly GenericDataService<Reserva> reservaService = new(new BlackRiverDBContextFactory());
         private readonly GenericDataService<Hospede> hospedeService = new(new BlackRiverDBContextFactory());
+        private readonly GenericDataService<Quarto> quartoService = new(new BlackRiverDBContextFactory());
 
         #region Workers
 
@@ -70,7 +71,7 @@ namespace BlackRiver.API.Controllers
             if (await reservaService.Delete(id))
                 return Ok();
 
-            return BadRequest("Item does't exist");
+            return BadRequest("Reserva não existe ou já foi excluída");
         }
 
         #endregion Workers
@@ -108,7 +109,7 @@ namespace BlackRiver.API.Controllers
             try
             {
                 var hospede = await GetHospede();
-                var reserva = CreateReserva(dataInicial, qtdDias, hospede);
+                var reserva = await CreateReserva(dataInicial, qtdDias, hospede);
 
                 _ = await hospedeService.Update(hospede.Id, hospede);
                 _ = await reservaService.Update(reserva.Id, reserva);
@@ -163,23 +164,17 @@ namespace BlackRiver.API.Controllers
             return all.FirstOrDefault(h => h.Nome.Equals(User.Identity.Name, StringComparison.InvariantCultureIgnoreCase));
         }
 
-        private static Reserva CreateReserva(DateTime dataInicial, int qtdDias, Hospede user)
+        private async Task<Reserva> CreateReserva(DateTime dataInicial, int qtdDias, Hospede user)
         {
-            var rand = new Random();
+            var quartos = await quartoService.GetAll();
+            var quarto = quartos.FirstOrDefault(q => q.StatusQuarto == (int)QuartoStatus.Disponivel);
 
             return new Reserva
             {
                 DataEntrada = dataInicial,
                 DataSaida = dataInicial.AddDays(qtdDias),
                 Hospedes = new() { user },
-                Quarto = new()
-                {
-                    NumeroAndar = rand.Next(5),
-                    NumeroQuarto = rand.Next(999),
-                    TipoQuarto = rand.Next(4),
-                    ValorQuarto = (decimal)(rand.NextDouble() + rand.NextDouble()) * 999,
-                    Vip = rand.Next(2) != 0
-                }
+                Quarto = quarto
             };
         }
     }

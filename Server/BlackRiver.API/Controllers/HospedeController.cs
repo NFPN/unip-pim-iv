@@ -39,7 +39,7 @@ namespace BlackRiver.API.Controllers
             try
             {
                 if (string.IsNullOrEmpty(hospede.Login.Username) && string.IsNullOrEmpty(hospede.Login.Password))
-                    return BadRequest("Para cadastrar passe as credenciais");
+                    return BadRequest("Para cadastrar passe as credenciais corretamente");
 
                 var result = await service.Create(hospede);
                 return Ok(result);
@@ -78,21 +78,6 @@ namespace BlackRiver.API.Controllers
         #endregion Hotel workers
 
         #region Customer
-
-        //[HttpPost]
-        //[Route("token")]
-        //public async Task<IActionResult> CustomerPost([FromBody] Hospede hospede)
-        //{
-        //    try
-        //    {
-        //        var result = await service.Create(hospede);
-        //        return Ok(result);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex);
-        //    }
-        //}
 
         [HttpPut]
         [Route("token")]

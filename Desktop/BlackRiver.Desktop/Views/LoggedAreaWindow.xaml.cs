@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -32,7 +33,7 @@ namespace BlackRiver.Desktop.Views
             lastSenderButton = DashboardButton;
         }
 
-        private void btnCloseWindow_Click(object sender, RoutedEventArgs e) => Close();
+        private void btnCloseWindow_Click(object sender, RoutedEventArgs e) => Environment.Exit(0);
 
         private void DashboardButton_Click(object sender, RoutedEventArgs e) => SwitchContent(ContentType.Dashboard, sender);
 

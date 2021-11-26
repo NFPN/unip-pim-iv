@@ -24,14 +24,14 @@
             <Button x:Name="btnLogout" Content="" Height="50" Width="50" RenderTransformOrigin="0.5,0.5" BorderBrush="#00FFC107" Click="btnLogout_Click">
                 <Button.RenderTransform>
                     <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="180"/>
-                        <TranslateTransform/>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform Angle="180" />
+                        <TranslateTransform />
                     </TransformGroup>
                 </Button.RenderTransform>
                 <Button.Background>
-                    <ImageBrush ImageSource="/Resources/Icons/logout_icon.png"/>
+                    <ImageBrush ImageSource="/Resources/Icons/logout_icon.png" />
                 </Button.Background>
             </Button>
         </StackPanel>
@@ -43,6 +43,6 @@
                 <ImageBrush ImageSource="/Resources/Icons/window-close.png" Stretch="UniformToFill" />
             </Button.Background>
         </Button>
-        <UniformGrid x:Name="ControlGrid" Grid.Column="1" Margin="0,35,0,0"/>
+        <UniformGrid x:Name="ControlGrid" Grid.Column="1" Margin="0,35,0,0" />
     </Grid>
 </Window>

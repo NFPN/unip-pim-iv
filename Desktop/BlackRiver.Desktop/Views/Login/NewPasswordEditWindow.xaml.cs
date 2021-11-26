@@ -40,7 +40,6 @@ namespace BlackRiver.Desktop.Views.Login
         {
             if (!txtBoxPassword.Password.Equals(txtBoxConfirmPassword.Password, System.StringComparison.Ordinal))
             {
-
                 BlackRiverExtensions.ShowMessage("A senha de confirmação não é a mesma", "Erro");
                 return;
             }

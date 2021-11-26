@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using BlackRiver.Desktop.Extensions;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace BlackRiver.Desktop.Views.AppMainControls
@@ -15,12 +16,12 @@ namespace BlackRiver.Desktop.Views.AppMainControls
 
         private void btnAddReserva_Click(object sender, RoutedEventArgs e)
         {
-
+            new CriarReservaWindow().SafeShowDialog(null);
         }
 
         private void btnEditarReserva_Click(object sender, RoutedEventArgs e)
         {
-
+            new EditarReservaWindow().SafeShowDialog(null);
         }
     }
 }

@@ -17,7 +17,7 @@
         <ComboBox x:Name="comboEditQuartoStatus" HorizontalAlignment="Left" Margin="270,119,0,0" VerticalAlignment="Top" Width="120" Foreground="White" />
         <Label Content="Valor diária" HorizontalAlignment="Left" Margin="80,203,0,0" VerticalAlignment="Top" />
         <TextBox x:Name="txtBoxEditQuartoValorDiaria" HorizontalAlignment="Left" Margin="85,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Foreground="White" />
-        <Button x:Name="btnEditQuartoAdicionar" Content="Adicionar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="120" Height="40" Click="btnEditQuartoAdicionar_Click"  />
+        <Button x:Name="btnEditQuartoAdicionar" Content="Editar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="120" Height="40" Click="btnEditQuartoAdicionar_Click" />
         <Label Content="Editar Quarto" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="46,11,0,0" VerticalAlignment="Top" Width="500" FontWeight="Bold" FontSize="14" />
         <Button x:Name="btnCloseWindow_Copy" HorizontalAlignment="Right" Margin="0,3,0,0" VerticalAlignment="Top" Width="35" BorderBrush="{x:Null}" Click="btnCloseWindow_Click">
             <Button.Background>

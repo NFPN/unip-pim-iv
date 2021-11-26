@@ -10,6 +10,6 @@
     <Grid>
 
         <Button Content="OK" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Click="Button_Click" />
-        <TextBlock x:Name="txtBlockMessage" HorizontalAlignment="Center" Text="Message" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="140" Width="380" Foreground="White" FontSize="14" Margin="0,23,0,0"/>
+        <TextBlock x:Name="txtBlockMessage" HorizontalAlignment="Center" Text="Message" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="140" Width="380" Foreground="White" FontSize="14" Margin="0,23,0,0" />
     </Grid>
 </Window>

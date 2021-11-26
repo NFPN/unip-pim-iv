@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using BlackRiver.EntityModels;
+using System.Windows.Controls;
 
 namespace BlackRiver.Desktop.Views
 {
@@ -15,6 +16,7 @@ namespace BlackRiver.Desktop.Views
         public void UpdateControlData()
         {
             //TODO: refresh data
+            var hotel = new Hotel { };
         }
     }
 }

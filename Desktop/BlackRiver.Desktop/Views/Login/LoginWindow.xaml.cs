@@ -2,6 +2,7 @@
 using BlackRiver.Desktop.Views.Login;
 using BlackRiver.EntityModels;
 using Newtonsoft.Json;
+using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
@@ -31,7 +32,7 @@ namespace BlackRiver.Desktop.Views
 
         private void btnCloseWindow_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            Environment.Exit(0);
         }
 
         private async void btnLogin_Click(object sender, RoutedEventArgs e)

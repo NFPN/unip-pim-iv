@@ -152,6 +152,7 @@ namespace BlackRiver.Data.Migrations
                     NumeroAndar = table.Column<int>(type: "int", nullable: false),
                     ValorQuarto = table.Column<decimal>(type: "decimal(7,2)", precision: 7, scale: 2, nullable: false),
                     StatusQuarto = table.Column<int>(type: "int", nullable: false),
+                    Vip = table.Column<bool>(type: "bit", nullable: false),
                     HotelId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -274,6 +275,7 @@ namespace BlackRiver.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Score = table.Column<decimal>(type: "decimal(2,1)", precision: 2, scale: 1, nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
                     Data = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Departamento = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),

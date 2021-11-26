@@ -17,7 +17,7 @@
         <Label Content="Quartos" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,133,0,0" VerticalAlignment="Top" Width="120" Foreground="#DD000000" FontWeight="Bold" Height="39" FontSize="18" FontStyle="Normal" FontFamily="Arial Black" />
         <TextBox x:Name="txtBoxQuartoSearch" HorizontalAlignment="Left" Margin="50,71,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Foreground="White" Height="40" />
         <ComboBox x:Name="comboSearchType" HorizontalAlignment="Left" Margin="235,71,0,0" VerticalAlignment="Top" Width="140" Height="40" />
-        <Button x:Name="btnAddQuarto" Content="Adicionar" HorizontalAlignment="Left" Margin="817,71,0,0" VerticalAlignment="Top" Width="120" Height="40" FontSize="16" />
-        <Button x:Name="btnEditarQuarto" Content="Editar" HorizontalAlignment="Left" Margin="950,71,0,0" VerticalAlignment="Top" Width="120" Height="40" FontSize="16" />
+        <Button x:Name="btnAddQuarto" Content="Adicionar" HorizontalAlignment="Left" Margin="817,71,0,0" VerticalAlignment="Top" Width="120" Height="40" FontSize="16" Click="btnAddQuarto_Click" />
+        <Button x:Name="btnEditarQuarto" Content="Editar" HorizontalAlignment="Left" Margin="950,71,0,0" VerticalAlignment="Top" Width="120" Height="40" FontSize="16" Click="btnEditarQuarto_Click" />
     </Grid>
 </UserControl>

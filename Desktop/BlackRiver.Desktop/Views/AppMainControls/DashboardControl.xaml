@@ -20,13 +20,15 @@
         <Calendar x:Name="calendarDashboard" Language="pt-BR" HorizontalAlignment="Left" Margin="55,270,0,0" VerticalAlignment="Top" Width="310" Height="345" Background="#FF444343" DisplayDateChanged="calendarDashboard_DisplayDateChanged" />
 
         <Label Content="Ocupação:" HorizontalAlignment="Left" Margin="402,31,0,0" VerticalAlignment="Top" Height="30" FontSize="16" />
-        <Label x:Name="lblDashboardOcupacao" Content="000%" HorizontalAlignment="Left" Margin="490,31,0,0" VerticalAlignment="Top" Height="30" FontSize="16" />
-        <Label Content="Quartos Disponíveis:" HorizontalAlignment="Left" Margin="586,31,0,0" VerticalAlignment="Top" Height="30" FontSize="16" />
-        <Label x:Name="lblDashboardQuartosDisp" Content="000" HorizontalAlignment="Left" Margin="744,31,0,0" VerticalAlignment="Top" Height="30" FontSize="16" />
-        <materialDesign:Card HorizontalAlignment="Left" Margin="400,0,0,0" VerticalAlignment="Center" Height="548" Width="644" FontFamily="Roboto Light">
+        <Label x:Name="lblDashboardOcupacao" Content="000%" HorizontalAlignment="Left" Margin="489,31,0,0" VerticalAlignment="Top" Height="30" FontSize="16" />
+        <Label Content="Quartos Disponíveis:" HorizontalAlignment="Left" Margin="402,66,0,0" VerticalAlignment="Top" Height="30" FontSize="16" />
+        <Label x:Name="lblDashboardQuartosDisp" Content="000" HorizontalAlignment="Left" Margin="560,66,0,0" VerticalAlignment="Top" Height="30" FontSize="16" />
+        <materialDesign:Card HorizontalAlignment="Left" Margin="390,104,0,0" VerticalAlignment="Top" Height="511" Width="644" FontFamily="Roboto Light">
             <GroupBox Header="Diário" FontWeight="Bold" FontFamily="Segoe UI" FontSize="14">
                 <DataGrid x:Name="datagridDashboard" IsReadOnly="True" RowHeight="40" CanUserAddRows="False" Background="#FF444343" ScrollViewer.CanContentScroll="True" />
             </GroupBox>
         </materialDesign:Card>
+        <Button Content="Nova reserva" HorizontalAlignment="Left" Margin="834,64,0,0" VerticalAlignment="Top"/>
+        <Button Content="Editar" HorizontalAlignment="Left" Margin="965,64,0,0" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

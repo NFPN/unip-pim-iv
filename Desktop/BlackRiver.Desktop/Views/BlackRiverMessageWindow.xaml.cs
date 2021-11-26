@@ -10,7 +10,6 @@ namespace BlackRiver.Desktop.Views
         public string Message { get; }
         public string WindowTitle { get; }
 
-
         public BlackRiverMessageWindow(string message = null, string title = null)
         {
             InitializeComponent();
@@ -18,8 +17,6 @@ namespace BlackRiver.Desktop.Views
             WindowTitle = title;
             Loaded += SetupInfo;
         }
-
-        
 
         private void SetupInfo(object sender, RoutedEventArgs e)
         {

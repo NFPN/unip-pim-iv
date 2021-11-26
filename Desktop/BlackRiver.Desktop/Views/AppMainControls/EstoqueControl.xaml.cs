@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using BlackRiver.Desktop.Extensions;
+using System.Windows.Controls;
 
 namespace BlackRiver.Desktop.Views
 {
@@ -11,9 +12,20 @@ namespace BlackRiver.Desktop.Views
         {
             InitializeComponent();
         }
+
         public void UpdateControlData()
         {
             //TODO: refresh data
+        }
+
+        private void btnAddProduto_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            new CriarProdutoWindow().SafeShowDialog(null);
+        }
+
+        private void btnEditarProduto_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            new EditarProdutoWindow().SafeShowDialog(null);
         }
     }
 }

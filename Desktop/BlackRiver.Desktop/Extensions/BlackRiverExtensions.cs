@@ -13,11 +13,11 @@ namespace BlackRiver.Desktop.Extensions
             });
         }
 
-        public static void ShowWindowDialog(string usermessage, string title = null)
+        public static void SafeShowDialog<T>(this T window, object[] args) where T : Window
         {
             Application.Current.Dispatcher.Invoke(delegate
             {
-                var errorWindow = new BlackRiverMessageWindow(usermessage, title).ShowDialog();
+                window.ShowDialog();
             });
         }
     }
