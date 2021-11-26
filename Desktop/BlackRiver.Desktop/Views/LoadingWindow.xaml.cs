@@ -17,7 +17,7 @@ namespace BlackRiver.Desktop.Views
             Start();
         }
 
-        //this can be changed to load resources instad
+        //this can be changed to load resources instead
         private void StartupWorker(object sender, DoWorkEventArgs e)
         {
             long sum = 0;

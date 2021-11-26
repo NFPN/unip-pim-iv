@@ -23,12 +23,14 @@ namespace BlackRiver.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "manager")]
         public async Task<Hotel> Get(int id)
         {
             return await service.Get(id);
         }
 
         [HttpPost]
+        [Authorize(Roles = "manager")]
         public async Task<IActionResult> Post([FromBody] Hotel hotel)
         {
             try
@@ -43,6 +45,7 @@ namespace BlackRiver.API.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "manager")]
         public async Task<IActionResult> Put(int id, [FromBody] Hotel hotel)
         {
             try
@@ -57,6 +60,7 @@ namespace BlackRiver.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "manager")]
         public async Task<IActionResult> Delete(int id)
         {
             if (await service.Delete(id))

@@ -17,18 +17,21 @@ namespace BlackRiver.API.Controllers
         private readonly GenericDataService<Funcionario> service = new(new BlackRiverDBContextFactory());
 
         [HttpGet]
+        [Authorize(Roles = "manager")]
         public async Task<IEnumerable<Funcionario>> Get()
         {
             return await service.GetAll();
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "manager")]
         public async Task<Funcionario> Get(int id)
         {
             return await service.Get(id);
         }
 
         [HttpPost]
+        [Authorize(Roles = "manager")]
         public async Task<IActionResult> Post([FromBody] Funcionario funcionario)
         {
             try
@@ -43,6 +46,7 @@ namespace BlackRiver.API.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "manager")]
         public async Task<IActionResult> Put(int id, [FromBody] string value)
         {
             try
@@ -61,6 +65,7 @@ namespace BlackRiver.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "manager")]
         public async Task<IActionResult> Delete(int id)
         {
             if (await service.Delete(id))

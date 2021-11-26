@@ -7,7 +7,7 @@ namespace BlackRiver.Desktop.Views
     /// </summary>
     public partial class EditarProdutoWindow : Window
     {
-        public EditarProdutoWindow()
+        public EditarProdutoWindow(object[] arguments = null)
         {
             MouseDown += delegate { DragMove(); };
             InitializeComponent();

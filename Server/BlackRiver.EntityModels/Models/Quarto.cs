@@ -19,5 +19,8 @@ namespace BlackRiver.EntityModels
 
         [DataMember]
         public int StatusQuarto { get; set; }
+
+        [DataMember]
+        public bool Vip { get; set; }
     }
 }

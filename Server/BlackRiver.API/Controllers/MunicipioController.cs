@@ -17,18 +17,21 @@ namespace BlackRiver.API.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "employee,manager")]
         public async Task<IEnumerable<Municipio>> Get()
         {
             return await service.GetAll();
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "employee,manager")]
         public async Task<Municipio> Get(int id)
         {
             return await service.Get(id);
         }
 
         [HttpPost]
+        [Authorize(Roles = "employee,manager")]
         public async Task<IActionResult> Post([FromBody] Municipio municipio)
         {
             try
@@ -43,6 +46,7 @@ namespace BlackRiver.API.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "employee,manager")]
         public async Task<IActionResult> Put(int id, [FromBody] Municipio municipio)
         {
             try
@@ -57,6 +61,7 @@ namespace BlackRiver.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "manager")]
         public async Task<IActionResult> Delete(int id)
         {
             if (await service.Delete(id))

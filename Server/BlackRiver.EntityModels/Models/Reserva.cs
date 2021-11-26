@@ -23,7 +23,7 @@ namespace BlackRiver.EntityModels
         public Quarto Quarto { get; set; }
 
         [DataMember]
-        public string Status { get; set; }
+        public string Status { get; set; } // ativo, concluido, cancelado
 
         [DataMember]
         public List<Hospede> Hospedes { get; set; }

@@ -17,6 +17,9 @@ namespace BlackRiver.Data
 
             builder.Property(o => o.Descricao)
                 .HasMaxLength(30);
+
+            builder.Property(q => q.Score)
+                .HasPrecision(2, 1);
         }
     }
 }

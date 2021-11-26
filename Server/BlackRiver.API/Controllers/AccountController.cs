@@ -67,7 +67,7 @@ namespace BlackRiver.API.Controllers
         [HttpGet]
         [Route("authenticated")]
         [Authorize]
-        public string Authenticated() => string.Format("Autenticado - {0}", User.Identity.Name);
+        public string Authenticated() => string.Format("Usuário Autenticado - {0}", User.Identity.Name);
 
         [HttpGet]
         [Route("authuser")]
@@ -75,13 +75,13 @@ namespace BlackRiver.API.Controllers
         public Task<UserLogin> GetRole() => userService.GetAuthUser(User.Identity.Name);
 
         [HttpGet]
-        [Route("employee")]
+        [Route("funcionario")]
         [Authorize(Roles = "employee,manager")]
-        public string Employee() => "Funcionário";
+        public string Employee() => "Você tem permissões de Funcionário";
 
         [HttpGet]
-        [Route("manager")]
+        [Route("gerente")]
         [Authorize(Roles = "manager")]
-        public string Manager() => "Gerente";
+        public string Manager() => "Você tem permissões de Gerente";
     }
 }

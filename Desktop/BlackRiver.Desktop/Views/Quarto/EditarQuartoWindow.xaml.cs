@@ -7,7 +7,7 @@ namespace BlackRiver.Desktop.Views
     /// </summary>
     public partial class EditarQuartoWindow : Window
     {
-        public EditarQuartoWindow()
+        public EditarQuartoWindow(object[] arguments = null)
         {
             MouseDown += delegate { DragMove(); };
             InitializeComponent();

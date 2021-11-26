@@ -12,5 +12,13 @@ namespace BlackRiver.Desktop.Extensions
                 var errorWindow = new BlackRiverMessageWindow(usermessage, title).ShowDialog();
             });
         }
+
+        public static void ShowWindowDialog(string usermessage, string title = null)
+        {
+            Application.Current.Dispatcher.Invoke(delegate
+            {
+                var errorWindow = new BlackRiverMessageWindow(usermessage, title).ShowDialog();
+            });
+        }
     }
 }
