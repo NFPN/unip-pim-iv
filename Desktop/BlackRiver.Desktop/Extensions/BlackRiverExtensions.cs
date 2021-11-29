@@ -1,5 +1,6 @@
 ﻿using BlackRiver.Desktop.Views;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace BlackRiver.Desktop.Extensions
 {
@@ -19,6 +20,11 @@ namespace BlackRiver.Desktop.Extensions
             {
                 _ = window.ShowDialog();
             });
+        }
+
+        public static T GetParentWindow<T>(this Control control) where T : Window
+        {
+            return (T)Window.GetWindow(control);
         }
     }
 }

@@ -11,11 +11,12 @@ namespace BlackRiver.Desktop.Views
         public QuartoControl()
         {
             InitializeComponent();
+            UpdateControlData();
         }
 
-        public void UpdateControlData()
+        public async void UpdateControlData()
         {
-            //TODO: refresh data
+            datagridQuartos.ItemsSource = await BlackRiverAPI.GetQuartos();
         }
 
         private void btnAddQuarto_Click(object sender, System.Windows.RoutedEventArgs e)

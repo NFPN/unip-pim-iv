@@ -18,6 +18,7 @@ namespace BlackRiver.Desktop.Views
             { ContentType.Quartos, new QuartoControl() },
             { ContentType.Estoque, new EstoqueControl() },
             { ContentType.Financeiro, new FinanceiroControl() },
+            { ContentType.Reservas, new ReservaControl() },
         };
 
         private readonly SolidColorBrush defaultButtonBrush = new((Color)ColorConverter.ConvertFromString("#FF545454"));
@@ -50,6 +51,8 @@ namespace BlackRiver.Desktop.Views
         private void RelatoriosButton_Click(object sender, RoutedEventArgs e) => SwitchContent(ContentType.Relatorios, sender);
 
         private void HotelButton_Click(object sender, RoutedEventArgs e) => SwitchContent(ContentType.Hotel, sender);
+
+        private void ReservaButton_Click(object sender, RoutedEventArgs e) => SwitchContent(ContentType.Reservas, sender);
 
         private void SetControlButtons()
         {

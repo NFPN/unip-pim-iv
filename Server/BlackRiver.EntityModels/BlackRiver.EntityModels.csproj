@@ -43,8 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\Cargos.cs" />
+    <Compile Include="Enums\Departamentos.cs" />
     <Compile Include="Enums\LoginTypes.cs" />
     <Compile Include="Enums\QuartoStatus.cs" />
+    <Compile Include="Enums\QuartoTypes.cs" />
+    <Compile Include="Enums\ReservaStatus.cs" />
     <Compile Include="Models\AuthModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\ProdutoCategoria.cs" />

@@ -17,7 +17,7 @@
                 </StackPanel>
             </Grid>
         </GroupBox>
-        <Calendar x:Name="calendarDashboard" Language="pt-BR" HorizontalAlignment="Left" Margin="55,270,0,0" VerticalAlignment="Top" Width="310" Height="345" Background="#FF444343" DisplayDateChanged="calendarDashboard_DisplayDateChanged" />
+        <Calendar x:Name="calendarDashboard" Language="pt-BR" HorizontalAlignment="Left" Margin="55,270,0,0" VerticalAlignment="Top" Width="310" Height="345" Background="#FF444343" SelectedDatesChanged="calendarDashboard_SelectedDatesChanged" />
 
         <Label Content="Ocupação:" HorizontalAlignment="Left" Margin="402,31,0,0" VerticalAlignment="Top" Height="30" FontSize="16" />
         <Label x:Name="lblDashboardOcupacao" Content="000%" HorizontalAlignment="Left" Margin="489,31,0,0" VerticalAlignment="Top" Height="30" FontSize="16" />
@@ -28,7 +28,5 @@
                 <DataGrid x:Name="datagridDashboard" IsReadOnly="True" RowHeight="40" CanUserAddRows="False" Background="#FF444343" ScrollViewer.CanContentScroll="True" />
             </GroupBox>
         </materialDesign:Card>
-        <Button Content="Nova reserva" HorizontalAlignment="Left" Margin="834,64,0,0" VerticalAlignment="Top"/>
-        <Button Content="Editar" HorizontalAlignment="Left" Margin="965,64,0,0" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

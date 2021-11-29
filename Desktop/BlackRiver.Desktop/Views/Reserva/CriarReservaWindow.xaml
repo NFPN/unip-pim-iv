@@ -22,8 +22,8 @@
             </DatePicker.RenderTransform>
         </DatePicker>
         <materialDesign:TimePicker x:Name="timeNovaReserva" HorizontalAlignment="Left" Margin="255,60,0,0" VerticalAlignment="Top" Height="33" Width="123" Foreground="White" Is24Hours="True" />
-        <Label Content="CPF*" HorizontalAlignment="Left" Margin="39,118,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
-        <TextBox x:Name="txtBoxNovaReservaCPF" HorizontalAlignment="Left" Margin="39,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25" Foreground="White" />
+        <Label Content="Email*" HorizontalAlignment="Left" Margin="39,118,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
+        <TextBox x:Name="txtBoxNovaReservaEmail" HorizontalAlignment="Left" Margin="39,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25" Foreground="White" />
         <Label Content="Quantidade Pessoas*" HorizontalAlignment="Left" Margin="39,192,0,0" VerticalAlignment="Top" Foreground="White" Width="125" />
         <TextBox x:Name="txtBoxNovaReservaQtdPessoas" HorizontalAlignment="Left" Margin="39,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" Height="25" Foreground="White" />
         <Label Content="Quantidade Dias*" HorizontalAlignment="Center" Margin="0,197,0,0" VerticalAlignment="Top" Foreground="White" Width="130" />

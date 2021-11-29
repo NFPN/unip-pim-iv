@@ -22,9 +22,9 @@ namespace BlackRiver.EntityModels
         public List<VagaEstacionamento> VagasEstacionamento { get; set; }
 
         [IgnoreDataMember]
-        public int TotalVagasEstacionamento => VagasEstacionamento.Count;
+        public int TotalVagasEstacionamento => VagasEstacionamento?.Count ?? 0;
 
         [IgnoreDataMember]
-        public int TotalQuartos => Quartos.Count;
+        public int TotalQuartos => Quartos?.Count ?? 0;
     }
 }

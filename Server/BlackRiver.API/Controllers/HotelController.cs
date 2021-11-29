@@ -2,6 +2,7 @@
 using BlackRiver.EntityModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,7 +14,6 @@ namespace BlackRiver.API.Controllers
     [ApiController]
     public class HotelController : Controller
     {
-
         [HttpGet]
         [Authorize(Roles = "manager")]
         public async Task<IEnumerable<Hotel>> Get()
@@ -25,7 +25,7 @@ namespace BlackRiver.API.Controllers
         [Authorize(Roles = "manager")]
         public async Task<Hotel> Get(int id)
         {
-            return await DataServices.HotelService.Get(id);
+            return await GetHotel(id);
         }
 
         [HttpPost]
@@ -66,6 +66,18 @@ namespace BlackRiver.API.Controllers
                 return Ok();
 
             return BadRequest("Item does't exist");
+        }
+
+        private async Task<Hotel> GetHotel(int id)
+        {
+            using var context = DataServices.HotelService.ContextFactory.CreateDbContext();
+
+            return await context
+                .Set<Hotel>()
+                .Include(h => h.MunicipioAtual)
+                .Include(h => h.VagasEstacionamento)
+                .Include(h => h.Quartos)
+                .FirstOrDefaultAsync(h => h.Id == id);
         }
     }
 }

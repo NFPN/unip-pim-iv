@@ -12,6 +12,7 @@
             Funcionarios,
             Relatorios,
             Hotel,
+            Reservas,
         }
     }
 }

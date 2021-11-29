@@ -1,4 +1,5 @@
-﻿using BlackRiver.EntityModels;
+﻿using BlackRiver.Desktop.Extensions;
+using BlackRiver.EntityModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,8 +27,28 @@ namespace BlackRiver.Desktop.Views
 
         public void UpdateControlData()
         {
-            var rand = new Random();
+            //LoadMockData();
 
+            foreach (var item in currentReservas)
+            {
+                currentDatalist.Add(new DashboardReservaDataItem
+                {
+                    Nome = item.Hospedes.First().Nome,
+                    Horário = item.DataEntrada,
+                    NumeroQuarto = item.Quarto.NumeroQuarto,
+                    Status = item.Status.Equals("Reservado", StringComparison.InvariantCultureIgnoreCase)
+                });
+            }
+
+            lblDashboardQuartosDisp.Content = 999;
+            lblDashboardOcupacao.Content = $"{85.5}%";
+
+            SetDashboardDataGrid(DateTime.UtcNow);
+        }
+
+        private void LoadMockData()
+        {
+            var rand = new Random();
             for (int i = 0; i < 30; i++)
             {
                 var status = rand.Next(1000) > 500 ? "Não confirmado" : "Reservado";
@@ -57,22 +78,6 @@ namespace BlackRiver.Desktop.Views
                         DataEntrada = DateTime.Today.AddHours(rand.Next(72)),
                     });
             }
-
-            foreach (var item in currentReservas)
-            {
-                currentDatalist.Add(new DashboardReservaDataItem
-                {
-                    Nome = item.Hospedes.First().Nome,
-                    Horário = item.DataEntrada,
-                    NumeroQuarto = item.Quarto.NumeroQuarto,
-                    Status = item.Status.Equals("Reservado", StringComparison.InvariantCultureIgnoreCase)
-                });
-            }
-
-            lblDashboardQuartosDisp.Content = 999;
-            lblDashboardOcupacao.Content = $"{85.5}%";
-
-            SetDashboardDataGrid(DateTime.UtcNow);
         }
 
         public void SetDashboardDataGrid(DateTime date)
@@ -81,6 +86,7 @@ namespace BlackRiver.Desktop.Views
                 d.Horário.Day.Equals(date.Day) &&
                 d.Horário.Month.Equals(date.Month) &&
                 d.Horário.Year.Equals(date.Year));
+            datagridDashboard.UpdateLayout();
         }
 
         private void CorrectColumHeaders(object sender = null, RoutedEventArgs e = null)
@@ -95,9 +101,19 @@ namespace BlackRiver.Desktop.Views
             }
         }
 
-        private void calendarDashboard_DisplayDateChanged(object sender, CalendarDateChangedEventArgs e)
+        private void calendarDashboard_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
-            SetDashboardDataGrid(e.AddedDate.GetValueOrDefault().ToUniversalTime());
+            SetDashboardDataGrid(calendarDashboard.SelectedDate.GetValueOrDefault().ToUniversalTime());
+        }
+
+        private void btnDashboardNovaReserva_Click(object sender, RoutedEventArgs e)
+        {
+            new CriarReservaWindow().SafeShowDialog();
+        }
+
+        private void btnDashboardEditReserva_Click(object sender, RoutedEventArgs e)
+        {
+            new EditarReservaWindow().SafeShowDialog();
         }
     }
 }

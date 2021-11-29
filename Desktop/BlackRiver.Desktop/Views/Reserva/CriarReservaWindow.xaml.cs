@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using BlackRiver.EntityModels;
+using System.Windows;
 
 namespace BlackRiver.Desktop.Views
 {
@@ -20,7 +21,21 @@ namespace BlackRiver.Desktop.Views
 
         private void btnNovaReservaCriar_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Create with API call
+            //get quartos
+            //get hospedes
+            //compare & vip
+
+            var data = dateNovaReserva.SelectedDate.GetValueOrDefault();
+            var reserva = new Reserva
+            {
+                DataEntrada = data.ToUniversalTime(),
+                DataSaida = data.AddDays(int.Parse(txtBoxNovaReservaQtdDias.Text)),
+                Status = ReservaStatus.Aberto.ToString(),
+            };
+
+            BlackRiverAPI.CreateReserva(reserva);
+
+            //TODO: call API 
         }
     }
 }

@@ -15,6 +15,7 @@
         <StackPanel x:Name="MainButtonStack" Grid.Column="0" Margin="0,200,0,44">
             <Button x:Name="DashboardButton" Height="40" Content="Dashboard" BorderBrush="#FF30302E" Background="Gold" Foreground="Black" Click="DashboardButton_Click" />
             <Button x:Name="HospedeButton" Height="40" Content="Hóspede" BorderBrush="#FF30302E" Background="#FF545454" Foreground="White" Click="HospedeButton_Click" />
+            <Button x:Name="ReservasButton" Height="40" Content="Reserva" BorderBrush="#FF30302E" Background="#FF545454" Foreground="White" Click="ReservaButton_Click" />
             <Button x:Name="QuartosButton" Height="40" Content="Quartos" BorderBrush="#FF30302E" Background="#FF545454" Foreground="White" Click="QuartosButton_Click" />
             <Button x:Name="EstoqueButton" Height="40" Content="Estoque" BorderBrush="#FF30302E" Background="#FF545454" Foreground="White" Click="EstoqueButton_Click" />
             <Button x:Name="FinanceiroButton" Height="40" Content="Financeiro" BorderBrush="#FF30302E" Background="#FF545454" Foreground="White" Click="FinanceiroButton_Click" />

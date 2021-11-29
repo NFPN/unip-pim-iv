@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace BlackRiver.Desktop.Views.AppMainControls
+namespace BlackRiver.Desktop.Views
 {
     /// <summary>
     /// Interaction logic for ReservaControl.xaml
@@ -22,6 +22,11 @@ namespace BlackRiver.Desktop.Views.AppMainControls
         private void btnEditarReserva_Click(object sender, RoutedEventArgs e)
         {
             new EditarReservaWindow().SafeShowDialog();
+        }
+
+        private void txtBoxReservaSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -22,12 +22,25 @@ namespace BlackRiver.Data
             if (context.Set<UserLogin>().Local.Any(e => e.Username.Equals("admin")))
                 return;
 
+
             await context.AddAsync(new UserLogin
             {
                 Username = "admin",
                 Password = "admin",
                 Type = (int)LoginTypes.Manager
             });
+
+            await context.AddAsync(new Hotel
+            {
+                Nome = "Black River",
+                Endereco = "Av. Pres. Juscelino K. de Oliveira, s/n - Jardim Tarraf II",
+                MunicipioAtual =  new () 
+                {
+                    Nome = "São José do Rio Preto",
+                    UF = "SP"
+                },
+            });
+
             await context.SaveChangesAsync();
         }
     }

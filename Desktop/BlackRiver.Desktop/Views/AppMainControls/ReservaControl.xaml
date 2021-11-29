@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    x:Class="BlackRiver.Desktop.Views.AppMainControls.ReservaControl"
+    x:Class="BlackRiver.Desktop.Views.ReservaControl"
              mc:Ignorable="d"
              d:DesignHeight="680" d:DesignWidth="1080">
     <Grid>
@@ -15,7 +15,7 @@
             </GroupBox>
         </materialDesign:Card>
         <Label Content="Reservas" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,133,0,0" VerticalAlignment="Top" Width="120" Foreground="#DD000000" FontWeight="Bold" Height="39" FontSize="18" FontStyle="Normal" FontFamily="Arial Black" />
-        <TextBox x:Name="txtBoxReservaSearch" HorizontalAlignment="Left" Margin="50,71,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Foreground="White" Height="40" />
+        <TextBox x:Name="txtBoxReservaSearch" HorizontalAlignment="Left" Margin="50,71,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Foreground="White" Height="40" TextChanged="txtBoxReservaSearch_TextChanged" />
         <ComboBox x:Name="comboSearchType" HorizontalAlignment="Left" Margin="235,71,0,0" VerticalAlignment="Top" Width="140" Height="40" />
         <Button x:Name="btnAddReserva" Content="Adicionar" HorizontalAlignment="Left" Margin="817,71,0,0" VerticalAlignment="Top" Width="120" Height="40" FontSize="16" Click="btnAddReserva_Click" />
         <Button x:Name="btnEditarReserva" Content="Editar" HorizontalAlignment="Left" Margin="950,71,0,0" VerticalAlignment="Top" Width="120" Height="40" FontSize="16" Click="btnEditarReserva_Click" />
