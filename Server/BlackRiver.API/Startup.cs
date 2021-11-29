@@ -78,10 +78,10 @@ namespace BlackRiver.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, BlackRiverDBContext context)
+        public async void Configure(IApplicationBuilder app, IWebHostEnvironment env, BlackRiverDBContext context)
         {
             context.Database.Migrate();
-            context.DefaultSeed();
+            await context.DefaultSeed();
 
             if (env.IsDevelopment())
             {

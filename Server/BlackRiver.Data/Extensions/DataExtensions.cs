@@ -1,6 +1,7 @@
 ﻿using BlackRiver.EntityModels;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BlackRiver.Data
 {
@@ -17,7 +18,7 @@ namespace BlackRiver.Data
             return user;
         }
 
-        public static async void DefaultSeed(this BlackRiverDBContext context)
+        public static async Task DefaultSeed(this BlackRiverDBContext context)
         {
             if (context.Set<UserLogin>().Local.Any(e => e.Username.Equals("admin")))
                 return;
