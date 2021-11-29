@@ -1,5 +1,4 @@
-﻿using BlackRiver.Data;
-using BlackRiver.Data.Services;
+﻿using BlackRiver.Data.Services;
 using BlackRiver.EntityModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,19 +13,19 @@ namespace BlackRiver.API.Controllers
     [ApiController]
     public class HotelController : Controller
     {
-        private readonly GenericDataService<Hotel> service = new(new BlackRiverDBContextFactory());
 
         [HttpGet]
+        [Authorize(Roles = "manager")]
         public async Task<IEnumerable<Hotel>> Get()
         {
-            return await service.GetAll();
+            return await DataServices.HotelService.GetAll();
         }
 
         [HttpGet("{id}")]
         [Authorize(Roles = "manager")]
         public async Task<Hotel> Get(int id)
         {
-            return await service.Get(id);
+            return await DataServices.HotelService.Get(id);
         }
 
         [HttpPost]
@@ -35,7 +34,7 @@ namespace BlackRiver.API.Controllers
         {
             try
             {
-                var result = await service.Create(hotel);
+                var result = await DataServices.HotelService.Create(hotel);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -50,7 +49,7 @@ namespace BlackRiver.API.Controllers
         {
             try
             {
-                var result = await service.Update(id, hotel);
+                var result = await DataServices.HotelService.Update(id, hotel);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -63,7 +62,7 @@ namespace BlackRiver.API.Controllers
         [Authorize(Roles = "manager")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (await service.Delete(id))
+            if (await DataServices.HotelService.Delete(id))
                 return Ok();
 
             return BadRequest("Item does't exist");

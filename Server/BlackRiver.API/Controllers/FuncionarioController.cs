@@ -1,5 +1,4 @@
-﻿using BlackRiver.Data;
-using BlackRiver.Data.Services;
+﻿using BlackRiver.Data.Services;
 using BlackRiver.EntityModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,20 +13,19 @@ namespace BlackRiver.API.Controllers
     [ApiController]
     public class FuncionarioController : Controller
     {
-        private readonly GenericDataService<Funcionario> service = new(new BlackRiverDBContextFactory());
 
         [HttpGet]
         [Authorize(Roles = "manager")]
         public async Task<IEnumerable<Funcionario>> Get()
         {
-            return await service.GetAll();
+            return await DataServices.FuncionarioService.GetAll();
         }
 
         [HttpGet("{id}")]
         [Authorize(Roles = "manager")]
         public async Task<Funcionario> Get(int id)
         {
-            return await service.Get(id);
+            return await DataServices.FuncionarioService.Get(id);
         }
 
         [HttpPost]
@@ -36,7 +34,7 @@ namespace BlackRiver.API.Controllers
         {
             try
             {
-                var result = await service.Create(funcionario);
+                var result = await DataServices.FuncionarioService.Create(funcionario);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -51,7 +49,7 @@ namespace BlackRiver.API.Controllers
         {
             try
             {
-                var result = await service.Update(id, new Funcionario
+                var result = await DataServices.FuncionarioService.Update(id, new Funcionario
                 {
                     Nome = value,
                 });
@@ -68,7 +66,7 @@ namespace BlackRiver.API.Controllers
         [Authorize(Roles = "manager")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (await service.Delete(id))
+            if (await DataServices.FuncionarioService.Delete(id))
                 return Ok();
 
             return BadRequest("Item does't exist");

@@ -20,12 +20,12 @@ namespace BlackRiver.Desktop.Views
 
         private void btnAddProduto_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            new CriarProdutoWindow().SafeShowDialog(null);
+            new CriarProdutoWindow().SafeShowDialog();
         }
 
         private void btnEditarProduto_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            new EditarProdutoWindow().SafeShowDialog(null);
+            new EditarProdutoWindow().SafeShowDialog();
         }
     }
 }

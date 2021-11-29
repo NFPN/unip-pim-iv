@@ -16,24 +16,20 @@ namespace BlackRiver.API.Controllers
     [ApiController]
     public class ReservaController : Controller
     {
-        private readonly GenericDataService<Reserva> reservaService = new(new BlackRiverDBContextFactory());
-        private readonly GenericDataService<Hospede> hospedeService = new(new BlackRiverDBContextFactory());
-        private readonly GenericDataService<Quarto> quartoService = new(new BlackRiverDBContextFactory());
-
         #region Workers
 
         [HttpGet]
         [Authorize(Roles = "employee,manager")]
         public async Task<IEnumerable<Reserva>> Get()
         {
-            return await reservaService.GetAll();
+            return await DataServices.ReservaService.GetAll();
         }
 
         [HttpGet("{id}")]
         [Authorize(Roles = "employee,manager")]
         public async Task<Reserva> Get(int id)
         {
-            return await reservaService.Get(id);
+            return await DataServices.ReservaService.Get(id);
         }
 
         [HttpPost]
@@ -41,7 +37,7 @@ namespace BlackRiver.API.Controllers
         {
             try
             {
-                var result = await reservaService.Create(reserva);
+                var result = await DataServices.ReservaService.Create(reserva);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -55,7 +51,7 @@ namespace BlackRiver.API.Controllers
         {
             try
             {
-                var result = await reservaService.Update(id, reserva);
+                var result = await DataServices.ReservaService.Update(id, reserva);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -68,7 +64,7 @@ namespace BlackRiver.API.Controllers
         [Authorize(Roles = "manager")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (await reservaService.Delete(id))
+            if (await DataServices.ReservaService.Delete(id))
                 return Ok();
 
             return BadRequest("Reserva não existe ou já foi excluída");
@@ -82,7 +78,7 @@ namespace BlackRiver.API.Controllers
         [Route("token/all")]
         public async Task<IEnumerable<Reserva>> CustomerGetAll()
         {
-            var all = await reservaService.GetAll();
+            var all = await DataServices.ReservaService.GetAll();
             var user = await GetHospede();
             return all.Where(r => user.Reservas.Any(u => u.Id == r.Id));
         }
@@ -111,8 +107,8 @@ namespace BlackRiver.API.Controllers
                 var hospede = await GetHospede();
                 var reserva = await CreateReserva(dataInicial, qtdDias, hospede);
 
-                _ = await hospedeService.Update(hospede.Id, hospede);
-                _ = await reservaService.Update(reserva.Id, reserva);
+                _ = await DataServices.HospedeService.Update(hospede.Id, hospede);
+                _ = await DataServices.ReservaService.Update(reserva.Id, reserva);
 
                 return Ok(true);
             }
@@ -135,7 +131,7 @@ namespace BlackRiver.API.Controllers
                 reserva.Status = "Cancelado";
                 reserva.DataCancelamento = DateTime.UtcNow;
 
-                var result = await reservaService.Update(reserva.Id, reserva);
+                var result = await DataServices.ReservaService.Update(reserva.Id, reserva);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -166,7 +162,7 @@ namespace BlackRiver.API.Controllers
 
         private async Task<Reserva> CreateReserva(DateTime dataInicial, int qtdDias, Hospede user)
         {
-            var quartos = await quartoService.GetAll();
+            var quartos = await DataServices.QuartoService.GetAll();
             var quarto = quartos.FirstOrDefault(q => q.StatusQuarto == (int)QuartoStatus.Disponivel);
 
             return new Reserva

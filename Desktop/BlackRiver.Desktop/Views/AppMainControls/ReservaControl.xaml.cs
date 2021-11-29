@@ -16,12 +16,12 @@ namespace BlackRiver.Desktop.Views.AppMainControls
 
         private void btnAddReserva_Click(object sender, RoutedEventArgs e)
         {
-            new CriarReservaWindow().SafeShowDialog(null);
+            new CriarReservaWindow().SafeShowDialog();
         }
 
         private void btnEditarReserva_Click(object sender, RoutedEventArgs e)
         {
-            new EditarReservaWindow().SafeShowDialog(null);
+            new EditarReservaWindow().SafeShowDialog();
         }
     }
 }

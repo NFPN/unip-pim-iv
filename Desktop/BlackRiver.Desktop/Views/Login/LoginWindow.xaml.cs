@@ -1,9 +1,6 @@
 ﻿using BlackRiver.Desktop.Extensions;
 using BlackRiver.Desktop.Views.Login;
-using BlackRiver.EntityModels;
-using Newtonsoft.Json;
 using System;
-using System.IO;
 using System.Windows;
 using System.Windows.Input;
 
@@ -30,60 +27,38 @@ namespace BlackRiver.Desktop.Views
             };
         }
 
-        private void btnCloseWindow_Click(object sender, RoutedEventArgs e)
-        {
-            Environment.Exit(0);
-        }
+        private void btnCloseWindow_Click(object sender, RoutedEventArgs e) => Environment.Exit(0);
 
         private async void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             var admin = "admin";
 
-            if (!File.Exists(BlackRiverGlobal.FirstUseFile) && txtBoxUsername.Text.Equals(admin) && txtBoxPassword.Password.Equals(admin))
+            if (!await BlackRiverAPI.FetchToken(txtBoxUsername.Text, txtBoxPassword.Password))
+                return;
+
+            var user = await BlackRiverAPI.GetLoggedUser();
+            var userType = (LoginTypes)user.Type;
+
+            if (txtBoxUsername.Text.Equals(admin, StringComparison.Ordinal) && txtBoxPassword.Password.Equals(admin, StringComparison.Ordinal))
             {
-                _ = Directory.CreateDirectory(BlackRiverGlobal.FirstUseFolder);
-                new NewPasswordEditWindow(admin).Show();
+                new NewPasswordEditWindow(user).Show();
                 Close();
                 return;
             }
 
-            var tokenResponse = await BlackRiverAPI.Client
-                .GetAsync(BlackRiverAPI.LoginUri + $"?username={txtBoxUsername.Text}&password={txtBoxPassword.Password}");
-
-            if (!tokenResponse.IsSuccessStatusCode)
-            {
-                BlackRiverExtensions.ShowMessage("Login Incorreto", "Error");
-                return;
-            }
-
-            var token = JsonConvert.DeserializeObject<APIToken>(await tokenResponse.Content.ReadAsStringAsync());
-            BlackRiverAPI.Token = token.Token;
-
-            var userResponse = await BlackRiverAPI.Client.GetAsync(BlackRiverAPI.AuthUserUri);
-
-            if (!userResponse.IsSuccessStatusCode)
-            {
-                BlackRiverExtensions.ShowMessage("Falha ao carregar usuário", "Error");
-                return;
-            }
-
-            var user = JsonConvert.DeserializeObject<UserLogin>(await userResponse.Content.ReadAsStringAsync());
-            var userType = (LoginTypes)user.Type;
-
-            if (userType == LoginTypes.Customer || userType == LoginTypes.Customer)
+            if (userType is LoginTypes.Customer or LoginTypes.None)
             {
                 BlackRiverExtensions.ShowMessage("Usuário inválido", "Erro");
                 return;
             }
 
             BlackRiverGlobal.IsAdminLogin = userType == LoginTypes.Manager;
-
             var mainWindow = new LoggedAreaWindow();
             mainWindow.Show();
             Close();
         }
 
-        private void txtBlockForgotPassword_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void txtBlockForgotPassword_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             _ = new NewPasswordEditWindow(txtBoxUsername.Text).ShowDialog();
             return;

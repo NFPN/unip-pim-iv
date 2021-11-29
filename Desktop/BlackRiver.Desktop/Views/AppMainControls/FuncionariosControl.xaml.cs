@@ -20,12 +20,12 @@ namespace BlackRiver.Desktop.Views
 
         private void btnAddFuncionario_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            new CriarFuncionarioWindow().SafeShowDialog(null);
+            new CriarFuncionarioWindow().SafeShowDialog();
         }
 
         private void btnEditarFuncionario_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            new EditarFuncionarioWindow().SafeShowDialog(null);
+            new EditarFuncionarioWindow().SafeShowDialog();
         }
     }
 }

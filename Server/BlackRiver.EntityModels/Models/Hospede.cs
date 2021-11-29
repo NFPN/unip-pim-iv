@@ -17,6 +17,9 @@ namespace BlackRiver.EntityModels
         public string CPF { get; set; }
 
         [DataMember]
+        public string CNPJ { get; set; }
+
+        [DataMember]
         public string RG { get; set; }
 
         [DataMember]

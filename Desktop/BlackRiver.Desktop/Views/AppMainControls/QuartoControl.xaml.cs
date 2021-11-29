@@ -20,12 +20,12 @@ namespace BlackRiver.Desktop.Views
 
         private void btnAddQuarto_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            new CriarQuartoWindow().SafeShowDialog(null);
+            new CriarQuartoWindow().SafeShowDialog();
         }
 
         private void btnEditarQuarto_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            new EditarQuartoWindow().SafeShowDialog(null);
+            new EditarQuartoWindow().SafeShowDialog();
         }
     }
 }

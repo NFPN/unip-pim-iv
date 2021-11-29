@@ -20,12 +20,12 @@ namespace BlackRiver.Desktop.Views
 
         private void btnNovoHospede_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            new CriarHospedeWindow().SafeShowDialog(null);
+            new CriarHospedeWindow().SafeShowDialog();
         }
 
         private void btnEditarHospede_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            new EditarHospedeWindow().SafeShowDialog(null);
+            new EditarHospedeWindow().SafeShowDialog();
         }
     }
 }

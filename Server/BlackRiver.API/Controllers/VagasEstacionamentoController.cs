@@ -1,5 +1,4 @@
-﻿using BlackRiver.Data;
-using BlackRiver.Data.Services;
+﻿using BlackRiver.Data.Services;
 using BlackRiver.EntityModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,19 +13,16 @@ namespace BlackRiver.API.Controllers
     [ApiController]
     public class VagasEstacionamentoController : Controller
     {
-        private readonly GenericDataService<VagaEstacionamento> service = new(new BlackRiverDBContextFactory());
-
-
         [HttpGet]
         public async Task<IEnumerable<VagaEstacionamento>> Get()
         {
-            return await service.GetAll();
+            return await DataServices.VagaEstacionamentoService.GetAll();
         }
 
         [HttpGet("{id}")]
         public async Task<VagaEstacionamento> Get(int id)
         {
-            return await service.Get(id);
+            return await DataServices.VagaEstacionamentoService.Get(id);
         }
 
         [HttpPost]
@@ -34,7 +30,7 @@ namespace BlackRiver.API.Controllers
         {
             try
             {
-                var result = await service.Create(vagas);
+                var result = await DataServices.VagaEstacionamentoService.Create(vagas);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -48,7 +44,7 @@ namespace BlackRiver.API.Controllers
         {
             try
             {
-                var result = await service.Update(id, vaga);
+                var result = await DataServices.VagaEstacionamentoService.Update(id, vaga);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -60,7 +56,7 @@ namespace BlackRiver.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (await service.Delete(id))
+            if (await DataServices.VagaEstacionamentoService.Delete(id))
                 return Ok();
 
             return BadRequest("Item does't exist");

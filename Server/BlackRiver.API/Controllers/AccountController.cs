@@ -10,7 +10,7 @@ namespace BlackRiver.API.Controllers
     [Route("api/[controller]")]
     public class AccountController : Controller
     {
-        private UserService userService = new();
+        private readonly UserService userService = new();
 
         [HttpPost]
         [Route("register")]

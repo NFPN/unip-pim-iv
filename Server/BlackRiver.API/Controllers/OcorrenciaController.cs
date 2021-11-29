@@ -1,5 +1,4 @@
-﻿using BlackRiver.Data;
-using BlackRiver.Data.Services;
+﻿using BlackRiver.Data.Services;
 using BlackRiver.EntityModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +13,6 @@ namespace BlackRiver.API.Controllers
     [ApiController]
     public class OcorrenciaController : Controller
     {
-        private readonly GenericDataService<Ocorrencia> service = new(new BlackRiverDBContextFactory());
 
         #region Workers
 
@@ -22,14 +20,14 @@ namespace BlackRiver.API.Controllers
         [Authorize(Roles = "employee,manager")]
         public async Task<IEnumerable<Ocorrencia>> Get()
         {
-            return await service.GetAll();
+            return await DataServices.OcorrenciaService.GetAll();
         }
 
         [HttpGet("{id}")]
         [Authorize(Roles = "employee,manager")]
         public async Task<Ocorrencia> Get(int id)
         {
-            return await service.Get(id);
+            return await DataServices.OcorrenciaService.Get(id);
         }
 
         [HttpPost]
@@ -38,7 +36,7 @@ namespace BlackRiver.API.Controllers
         {
             try
             {
-                var result = await service.Create(ocorrencia);
+                var result = await DataServices.OcorrenciaService.Create(ocorrencia);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -53,7 +51,7 @@ namespace BlackRiver.API.Controllers
         {
             try
             {
-                var result = await service.Update(id, ocorrencia);
+                var result = await DataServices.OcorrenciaService.Update(id, ocorrencia);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -66,7 +64,7 @@ namespace BlackRiver.API.Controllers
         [Authorize(Roles = "manager")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (await service.Delete(id))
+            if (await DataServices.OcorrenciaService.Delete(id))
                 return Ok();
 
             return BadRequest("Item does't exist");
@@ -83,7 +81,7 @@ namespace BlackRiver.API.Controllers
         {
             try
             {
-                var result = await service.Create(ocorrencia);
+                var result = await DataServices.OcorrenciaService.Create(ocorrencia);
                 return Ok(result);
             }
             catch (Exception ex)

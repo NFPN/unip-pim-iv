@@ -1,5 +1,4 @@
-﻿using BlackRiver.Data;
-using BlackRiver.Data.Services;
+﻿using BlackRiver.Data.Services;
 using BlackRiver.EntityModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,20 +13,18 @@ namespace BlackRiver.API.Controllers
     [ApiController]
     public class ProdutoCategoriaController : ControllerBase
     {
-        private readonly GenericDataService<ProdutoCategoria> service = new(new BlackRiverDBContextFactory());
-
         [HttpGet]
         [Authorize(Roles = "employee, manager")]
         public async Task<IEnumerable<ProdutoCategoria>> Get()
         {
-            return await service.GetAll();
+            return await DataServices.ProdutoCategoriaService.GetAll();
         }
 
         [HttpGet("{id}")]
         [Authorize(Roles = "employee, manager")]
         public async Task<ProdutoCategoria> Get(int id)
         {
-            return await service.Get(id);
+            return await DataServices.ProdutoCategoriaService.Get(id);
         }
 
         [HttpPost]
@@ -36,7 +33,7 @@ namespace BlackRiver.API.Controllers
         {
             try
             {
-                var result = await service.Create(produtoCategoria);
+                var result = await DataServices.ProdutoCategoriaService.Create(produtoCategoria);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -51,7 +48,7 @@ namespace BlackRiver.API.Controllers
         {
             try
             {
-                var result = await service.Update(id, produtoCategoria);
+                var result = await DataServices.ProdutoCategoriaService.Update(id, produtoCategoria);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -64,7 +61,7 @@ namespace BlackRiver.API.Controllers
         [Authorize(Roles = "employee, manager")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (await service.Delete(id))
+            if (await DataServices.ProdutoCategoriaService.Delete(id))
                 return Ok();
 
             return BadRequest("Item does't exist");

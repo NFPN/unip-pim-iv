@@ -1,7 +1,5 @@
 ﻿using BlackRiver.Desktop.Extensions;
 using BlackRiver.EntityModels;
-using System.IO;
-using System.Net.Http.Json;
 using System.Windows;
 
 namespace BlackRiver.Desktop.Views.Login
@@ -21,6 +19,9 @@ namespace BlackRiver.Desktop.Views.Login
             if (user.Equals("admin", System.StringComparison.Ordinal))
                 txtBoxOldPassword.Password = user;
         }
+
+        public NewPasswordEditWindow(UserLogin user)
+            : this(user.Username) { }
 
         private void btnCloseWindow_Click(object sender, RoutedEventArgs e)
         {
@@ -44,37 +45,16 @@ namespace BlackRiver.Desktop.Views.Login
                 return;
             }
 
-            if (File.Exists(BlackRiverGlobal.FirstUseFile))
+            var resetResponse = await BlackRiverAPI.Client
+                .PostAsync(BlackRiverAPI.UpdateLoginUri + $"?username={txtBoxUser.Text}&password={txtBoxPassword.Password}", null);
+
+            if (resetResponse.IsSuccessStatusCode)
             {
-                var resetResponse = await BlackRiverAPI.Client.GetAsync(BlackRiverAPI.UpdateLoginUri + $"?username={txtBoxUser.Text}&password={txtBoxPassword.Password}");
-
-                if (resetResponse.IsSuccessStatusCode)
-                    Close();
-
-                return;
-            }
-
-            var adminLogin = new UserLogin
-            {
-                Username = txtBoxUser.Text,
-                Password = txtBoxPassword.Password,
-                Type = 1,
-            };
-
-            var postResponse = await BlackRiverAPI.Client.PostAsJsonAsync(BlackRiverAPI.RegisterUri + $"?isCustomer={false}", adminLogin);
-
-            if (postResponse.IsSuccessStatusCode)
-            {
-                using FileStream file = File.Create(BlackRiverGlobal.FirstUseFile);
-                var login = new LoginWindow();
-                login.Show();
+                new LoginWindow().Show();
                 Close();
             }
-
-            var error = new BlackRiverMessageWindow("Não pode criar Admin", "Erro");
-
-            if (error.IsLoaded)
-                error.ShowDialog();
+            else if (resetResponse.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                BlackRiverExtensions.ShowMessage("Não pode criar Admin", "Erro");
         }
     }
 }

@@ -16,22 +16,20 @@ namespace BlackRiver.API.Controllers
     [ApiController]
     public class QuartoController : Controller
     {
-        private readonly GenericDataService<Quarto> quartoService = new(new BlackRiverDBContextFactory());
-
         #region Workers
 
         [HttpGet]
         [Authorize(Roles = "employee,manager")]
         public async Task<IEnumerable<Quarto>> Get()
         {
-            return await quartoService.GetAll();
+            return await DataServices.QuartoService.GetAll();
         }
 
         [HttpGet("{id}")]
         [Authorize(Roles = "employee,manager")]
         public async Task<Quarto> Get(int id)
         {
-            return await quartoService.Get(id);
+            return await DataServices.QuartoService.Get(id);
         }
 
         [HttpPost]
@@ -40,7 +38,7 @@ namespace BlackRiver.API.Controllers
         {
             try
             {
-                var result = await quartoService.Create(quarto);
+                var result = await DataServices.QuartoService.Create(quarto);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -55,7 +53,7 @@ namespace BlackRiver.API.Controllers
         {
             try
             {
-                var result = await quartoService.Update(id, quarto);
+                var result = await DataServices.QuartoService.Update(id, quarto);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -68,7 +66,7 @@ namespace BlackRiver.API.Controllers
         [Authorize(Roles = "manager")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (await quartoService.Delete(id))
+            if (await DataServices.QuartoService.Delete(id))
                 return Ok();
 
             return BadRequest("Item does't exist");
@@ -85,7 +83,7 @@ namespace BlackRiver.API.Controllers
                 var user = await GetUser();
                 var reserva = user.Reservas.LastOrDefault();
 
-                return await quartoService.Get(reserva.Quarto.Id);
+                return await DataServices.QuartoService.Get(reserva.Quarto.Id);
             }
             catch
             {

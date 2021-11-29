@@ -20,7 +20,7 @@ namespace BlackRiver.Desktop.Views
 
         private void btnAddPagamento_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            new PagamentoWindow().SafeShowDialog(null);
+            new PagamentoWindow().SafeShowDialog();
         }
     }
 }

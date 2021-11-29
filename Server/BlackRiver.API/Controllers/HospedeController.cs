@@ -1,5 +1,4 @@
-﻿using BlackRiver.Data;
-using BlackRiver.Data.Services;
+﻿using BlackRiver.Data.Services;
 using BlackRiver.EntityModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,22 +14,20 @@ namespace BlackRiver.API.Controllers
     [ApiController]
     public class HospedeController : Controller
     {
-        private readonly GenericDataService<Hospede> service = new(new BlackRiverDBContextFactory());
-
         #region Hotel workers
 
         [HttpGet]
         [Authorize(Roles = "employee,manager")]
         public async Task<IEnumerable<Hospede>> Get()
         {
-            return await service.GetAll();
+            return await DataServices.HospedeService.GetAll();
         }
 
         [HttpGet("{id}")]
         [Authorize(Roles = "employee,manager")]
         public async Task<Hospede> Get(int id)
         {
-            return await service.Get(id);
+            return await DataServices.HospedeService.Get(id);
         }
 
         [HttpPost]
@@ -38,10 +35,16 @@ namespace BlackRiver.API.Controllers
         {
             try
             {
-                if (string.IsNullOrEmpty(hospede.Login.Username) && string.IsNullOrEmpty(hospede.Login.Password))
-                    return BadRequest("Para cadastrar passe as credenciais corretamente");
+                if (string.IsNullOrEmpty(hospede.Email))
+                    return BadRequest("Email inválido");
 
-                var result = await service.Create(hospede);
+                if (string.IsNullOrWhiteSpace(hospede.Login.Username))
+                    hospede.Login.Username = hospede.Email;
+
+                if (string.IsNullOrWhiteSpace(hospede.Login.Password))
+                    hospede.Login.Password = hospede.CPF ?? hospede.CNPJ;
+
+                var result = await DataServices.HospedeService.Create(hospede);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -56,7 +59,7 @@ namespace BlackRiver.API.Controllers
         {
             try
             {
-                var result = await service.Update(id, hospede);
+                var result = await DataServices.HospedeService.Update(id, hospede);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -69,7 +72,7 @@ namespace BlackRiver.API.Controllers
         [Authorize(Roles = "manager")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (await service.Delete(id))
+            if (await DataServices.HospedeService.Delete(id))
                 return Ok();
 
             return BadRequest("Objeto não existe");
@@ -86,7 +89,7 @@ namespace BlackRiver.API.Controllers
             try
             {
                 var id = await GetUserID();
-                var result = await service.Update(id, hospede);
+                var result = await DataServices.HospedeService.Update(id, hospede);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -100,12 +103,12 @@ namespace BlackRiver.API.Controllers
         public async Task<Hospede> CustomerGet()
         {
             var id = await GetUserID();
-            return await service.Get(id);
+            return await DataServices.HospedeService.Get(id);
         }
 
         private async Task<int> GetUserID()
         {
-            var all = await service.GetAll();
+            var all = await DataServices.HospedeService.GetAll();
 
             if (all.Any(h => h.Email.Equals(User.Identity.Name)))
                 return all.FirstOrDefault(h => h.Email.Equals(User.Identity.Name, StringComparison.InvariantCultureIgnoreCase)).Id;

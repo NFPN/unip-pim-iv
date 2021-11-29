@@ -26,6 +26,38 @@ namespace BlackRiver.Desktop.Views
 
         public void UpdateControlData()
         {
+            var rand = new Random();
+
+            for (int i = 0; i < 30; i++)
+            {
+                var status = rand.Next(1000) > 500 ? "Não confirmado" : "Reservado";
+
+                currentReservas.Add(
+                    new Reserva
+                    {
+                        Id = rand.Next(1000),
+                        ValorDiaria = (decimal)(rand.NextDouble() * 27 * rand.NextDouble() * 99),
+                        Quarto = new Quarto
+                        {
+                            Id = rand.Next(1000),
+                            NumeroAndar = rand.Next(10),
+                            NumeroQuarto = rand.Next(1000),
+                            StatusQuarto = rand.Next(2),
+                        },
+                        Hospedes = new List<Hospede>
+                    {
+                        new Hospede
+                        {
+                            Id = rand.Next(1000),
+                            Nome = $"TEST{rand.Next(1000)}" ,
+                            Email = $"TEST{rand.Next(1000)}@TEST.COM"
+                        },
+                    },
+                        Status = status,
+                        DataEntrada = DateTime.Today.AddHours(rand.Next(72)),
+                    });
+            }
+
             foreach (var item in currentReservas)
             {
                 currentDatalist.Add(new DashboardReservaDataItem
@@ -67,21 +99,5 @@ namespace BlackRiver.Desktop.Views
         {
             SetDashboardDataGrid(e.AddedDate.GetValueOrDefault().ToUniversalTime());
         }
-    }
-
-    [Serializable]
-    public class DashboardReservaDataItem
-    {
-        [DisplayName("Nome")]
-        public string Nome { get; set; }
-
-        [DisplayName("Horário de chegada")]
-        public DateTime Horário { get; set; }
-
-        [DisplayName("Numero do Quarto")]
-        public int NumeroQuarto { get; set; }
-
-        [DisplayName("Reservado")]
-        public bool Status { get; set; }
     }
 }

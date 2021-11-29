@@ -73,12 +73,15 @@ namespace BlackRiver.API
                     Description = "JWT Authorization header. \r\n\r\n Enter the token in the text input below.",
                 });
             });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, BlackRiverDBContext context)
         {
             context.Database.Migrate();
+            context.DefaultSeed();
 
             if (env.IsDevelopment())
             {

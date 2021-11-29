@@ -1,5 +1,4 @@
-﻿using BlackRiver.Data;
-using BlackRiver.Data.Services;
+﻿using BlackRiver.Data.Services;
 using BlackRiver.EntityModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,21 +12,20 @@ namespace BlackRiver.API.Controllers
     [ApiController]
     public class MunicipioController:Controller
     {
-        private readonly GenericDataService<Municipio> service = new(new BlackRiverDBContextFactory());
 
 
         [HttpGet]
         [Authorize(Roles = "employee,manager")]
         public async Task<IEnumerable<Municipio>> Get()
         {
-            return await service.GetAll();
+            return await DataServices.MunicipioService.GetAll();
         }
 
         [HttpGet("{id}")]
         [Authorize(Roles = "employee,manager")]
         public async Task<Municipio> Get(int id)
         {
-            return await service.Get(id);
+            return await DataServices.MunicipioService.Get(id);
         }
 
         [HttpPost]
@@ -36,7 +34,7 @@ namespace BlackRiver.API.Controllers
         {
             try
             {
-                var result = await service.Create(municipio);
+                var result = await DataServices.MunicipioService.Create(municipio);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -51,7 +49,7 @@ namespace BlackRiver.API.Controllers
         {
             try
             {
-                var result = await service.Update(id, municipio);
+                var result = await DataServices.MunicipioService.Update(id, municipio);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -64,7 +62,7 @@ namespace BlackRiver.API.Controllers
         [Authorize(Roles = "manager")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (await service.Delete(id))
+            if (await DataServices.MunicipioService.Delete(id))
                 return Ok();
 
             return BadRequest("Item does't exist");
