@@ -18,7 +18,7 @@ namespace BlackRiver.Data
             return user;
         }
 
-        public static async Task DefaultSeed(this BlackRiverDBContext context)
+        public static async Task DefaultSeed(BlackRiverDBContext context)
         {
             if (context.Set<UserLogin>().Local.Any(e => e.Username.Equals("admin")))
                 return;

@@ -32,6 +32,7 @@ namespace BlackRiver.Desktop.Views.Login
 
         private void btnSendMail_Click(object sender, RoutedEventArgs e)
         {
+            BlackRiverExtensions.ShowMessage("Ação indisponível no momento", "Erro");
             var login = new LoginWindow();
             login.Show();
             Close();
