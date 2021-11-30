@@ -35,6 +35,7 @@ namespace BlackRiver.Desktop.Views
                 });
             }
 
+            if(datagridQuartos.ItemsSource.t)
             datagridQuartos.ItemsSource = quartoDataViewList;
             datagridQuartos.UpdateLayout();
         }
@@ -53,7 +54,7 @@ namespace BlackRiver.Desktop.Views
 
         private void btnQuartoRefresh_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            UpdateLayout();
+            UpdateControlData();
         }
 
         [Serializable]

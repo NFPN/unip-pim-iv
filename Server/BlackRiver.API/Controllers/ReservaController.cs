@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BlackRiver.API.Controllers
 {
-    [Authorize]
+
     [Route("api/[controller]")]
     [ApiController]
     public class ReservaController : Controller

@@ -25,7 +25,7 @@ namespace BlackRiver.Desktop.Views
             datagridDashboard.Loaded += CorrectColumHeaders;
         }
 
-        public void UpdateControlData()
+        public async void UpdateControlData()
         {
             //LoadMockData();
 
@@ -40,8 +40,12 @@ namespace BlackRiver.Desktop.Views
                 });
             }
 
-            lblDashboardQuartosDisp.Content = 999;
-            lblDashboardOcupacao.Content = $"{85.5}%";
+            var todosQuartos = await BlackRiverAPI.GetQuartos();
+            var quartosDisponiveis = todosQuartos.Select(q => q.StatusQuarto == (int)QuartoStatus.Disponivel).Count();
+            var ocupacao = (todosQuartos.Count / 100.0) * quartosDisponiveis;
+
+            lblDashboardQuartosDisp.Content = todosQuartos.Select(q=>q.StatusQuarto);
+            lblDashboardOcupacao.Content = ocupacao.ToString("0.00%");
 
             SetDashboardDataGrid(DateTime.UtcNow);
         }
