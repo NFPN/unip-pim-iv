@@ -2,7 +2,6 @@
 using BlackRiver.EntityModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace BlackRiver.API.Controllers
 {
-
     [Route("api/[controller]")]
     [ApiController]
     public class ReservaController : Controller
@@ -26,29 +24,12 @@ namespace BlackRiver.API.Controllers
 
         [HttpGet("{id}")]
         [Authorize(Roles = "employee,manager")]
-        public async Task<Reserva> Get(int id)
-        {
-            using var context = DataServices.HospedeService.ContextFactory.CreateDbContext();
-
-            return await context
-                .Set<Reserva>()
-                .Include(h => h.Hospedes)
-                .Include(h => h.Quarto)
-                .FirstOrDefaultAsync(r => r.Id == id);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Reserva reserva)
+        public async Task<IActionResult> Get(int id)
         {
             try
             {
-                var reservas = await DataServices.ReservaService.GetAll();
-                var match = reservas.FirstOrDefault(r => r.DataEntrada.Equals(reserva.DataEntrada));
+                var result = await DataServices.ReservaService.Get(id);
 
-                if (match != null && match.Hospedes.Any(h => h.Id == reserva.Hospedes[0].Id))
-                    throw new Exception("Reserva não pode ser criada, tente outra data");
-
-                var result = await DataServices.ReservaService.Create(reserva);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -56,6 +37,24 @@ namespace BlackRiver.API.Controllers
                 return BadRequest(ex);
             }
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] Reserva reserva)
+        {
+            try
+            {
+                var result = await DataServices.ReservaService.Create(reserva);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] Reserva reserva)
@@ -91,7 +90,7 @@ namespace BlackRiver.API.Controllers
         {
             var all = await DataServices.ReservaService.GetAll();
             var user = await GetHospede();
-            return all.Where(r => user.Reservas.Any(u => u.Id == r.Id));
+            return all.Where(r => r.HospedeId == user.Id);
         }
 
         [HttpGet]
@@ -100,8 +99,9 @@ namespace BlackRiver.API.Controllers
         {
             try
             {
+                var all = await DataServices.ReservaService.GetAll();
                 var user = await GetHospede();
-                return user.Reservas.LastOrDefault();
+                return all.Where(r => r.HospedeId == user.Id).LastOrDefault();
             }
             catch
             {
@@ -116,19 +116,34 @@ namespace BlackRiver.API.Controllers
             try
             {
                 var hospede = await GetHospede();
-                var reserva = await CreateReserva(dataInicial, qtdDias, hospede);
+                var reservas = await DataServices.ReservaService.GetAll();
+                var match = reservas.FirstOrDefault(r => r.DataEntrada.Equals(dataInicial));
 
-                if (reserva == null)
+                if (match != null && match.HospedeId == hospede.Id)
                     throw new Exception("Reserva não pode ser criada, tente outra data");
 
-                _ = await DataServices.HospedeService.Update(hospede.Id, hospede);
-                _ = await DataServices.ReservaService.Update(reserva.Id, reserva);
+                var quartos = await DataServices.QuartoService.GetAll();
+                var quarto = quartos.FirstOrDefault(q => q.StatusQuarto == (int)QuartoStatus.Disponivel);
 
-                return Ok(true);
+                var reserva = new Reserva
+                {
+                    DataEntrada = dataInicial,
+                    DataSaida = dataInicial.AddDays(qtdDias),
+                    Status = ReservaStatus.Aberto.ToString(),
+                    HospedeId = hospede.Id,
+                    QuartoId = quarto.Id
+                };
+
+                quarto.StatusQuarto = (int)QuartoStatus.Ocupado;
+
+                await DataServices.QuartoService.Update(quarto.Id, quarto);
+
+                var result = await DataServices.ReservaService.Create(reserva);
+                return Ok(result);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -139,9 +154,9 @@ namespace BlackRiver.API.Controllers
             try
             {
                 var hospede = await GetHospede();
-                var reserva = hospede.Reservas.FirstOrDefault(r => r.DataEntrada.Equals(dataInicial));
+                var reservas = await DataServices.ReservaService.GetAll();
+                var reserva = reservas.FirstOrDefault(r => r.DataEntrada.Equals(dataInicial));
 
-                reserva.Quarto = null;
                 reserva.Status = ReservaStatus.Cancelado.ToString();
                 reserva.DataCancelamento = DateTime.UtcNow;
 
@@ -158,41 +173,12 @@ namespace BlackRiver.API.Controllers
 
         private async Task<Hospede> GetHospede()
         {
-            using var context = DataServices.HospedeService.ContextFactory.CreateDbContext();
-
-            var all = await context
-                .Set<Hospede>()
-                .Include(h => h.Ocorrencias)
-                .Include(h => h.VagaEstacionamento)
-                .Include(h => h.Reservas)
-                .ThenInclude(r => r.Quarto)
-                .ToListAsync();
+            var all = await DataServices.HospedeService.GetAll();
 
             if (all.Any(h => h.Email.Equals(User.Identity.Name)))
                 return all.FirstOrDefault(h => h.Email.Equals(User.Identity.Name, StringComparison.InvariantCultureIgnoreCase));
 
             return all.FirstOrDefault(h => h.Nome.Equals(User.Identity.Name, StringComparison.InvariantCultureIgnoreCase));
-        }
-
-        private async Task<Reserva> CreateReserva(DateTime dataInicial, int qtdDias, Hospede user)
-        {
-            var reservas = await DataServices.ReservaService.GetAll();
-            var match = reservas.FirstOrDefault(r => r.DataEntrada.Equals(dataInicial));
-
-            if (match != null && match.Hospedes.Any(h => h.Id == user.Id))
-                return null;
-
-            var quartos = await DataServices.QuartoService.GetAll();
-            var quarto = quartos.FirstOrDefault(q => q.StatusQuarto == (int)QuartoStatus.Disponivel);
-
-            return new Reserva
-            {
-                DataEntrada = dataInicial,
-                DataSaida = dataInicial.AddDays(qtdDias),
-                Status = ReservaStatus.Aberto.ToString(),
-                Hospedes = new() { user },
-                Quarto = quarto
-            };
         }
     }
 }

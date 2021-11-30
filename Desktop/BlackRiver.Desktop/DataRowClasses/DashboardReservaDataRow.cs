@@ -4,7 +4,7 @@ using System.ComponentModel;
 namespace BlackRiver.Desktop.Views
 {
     [Serializable]
-    public class DashboardReservaDataItem
+    public class DashboardReservaDataRow
     {
         [DisplayName("Nome")]
         public string Nome { get; set; }

@@ -2,7 +2,6 @@
 using BlackRiver.EntityModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -50,6 +49,7 @@ namespace BlackRiver.API.Controllers
             try
             {
                 var result = await DataServices.HotelService.Update(id, hotel);
+
                 return Ok(result);
             }
             catch (Exception ex)
@@ -70,14 +70,7 @@ namespace BlackRiver.API.Controllers
 
         private async Task<Hotel> GetHotel(int id)
         {
-            using var context = DataServices.HotelService.ContextFactory.CreateDbContext();
-
-            return await context
-                .Set<Hotel>()
-                .Include(h => h.MunicipioAtual)
-                .Include(h => h.VagasEstacionamento)
-                .Include(h => h.Quartos)
-                .FirstOrDefaultAsync(h => h.Id == id);
+            return await DataServices.HotelService.Get(id);
         }
     }
 }

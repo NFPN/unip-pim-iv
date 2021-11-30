@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace BlackRiver.EntityModels
 {
@@ -13,18 +12,6 @@ namespace BlackRiver.EntityModels
         public string Endereco { get; set; }
 
         [DataMember]
-        public Municipio MunicipioAtual { get; set; }
-
-        [DataMember]
-        public List<Quarto> Quartos { get; set; }
-
-        [DataMember]
-        public List<VagaEstacionamento> VagasEstacionamento { get; set; }
-
-        [IgnoreDataMember]
-        public int TotalVagasEstacionamento => VagasEstacionamento?.Count ?? 0;
-
-        [IgnoreDataMember]
-        public int TotalQuartos => Quartos?.Count ?? 0;
+        public int MunicipioId { get; set; }
     }
 }

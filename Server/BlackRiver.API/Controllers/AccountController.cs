@@ -3,6 +3,7 @@ using BlackRiver.EntityModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BlackRiver.API.Controllers
@@ -15,17 +16,24 @@ namespace BlackRiver.API.Controllers
         [HttpPost]
         [Route("register")]
         [AllowAnonymous]
-        public async Task<ActionResult<dynamic>> Register([FromBody] UserLogin model, int userId, bool isCustomer = true)
+        public async Task<ActionResult<dynamic>> Register([FromBody] UserLogin model)
         {
             try
             {
                 if (model.Username == null || string.IsNullOrEmpty(model.Password) || model.Password.Length < 8)
                     return BadRequest(new { message = "Usuário ou senha inválidos" });
 
-                if (await userService.Register(model, userId, isCustomer) is var result)
-                    return Ok(result);
+                var user = (await DataServices.UserLoginService.GetAll()).FirstOrDefault(l => l.Username.Equals(model.Username));
 
-                return BadRequest("Usuário não foi criado");
+                if (user != null)
+                    return false;
+
+                var result = await DataServices.UserLoginService.Create(model);
+
+                if (result == null)
+                    return BadRequest("Usuário não foi criado");
+
+                return Ok(result.Id);
             }
             catch (Exception ex)
             {

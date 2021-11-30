@@ -16,15 +16,25 @@ namespace BlackRiver.Desktop.Extensions
 
         public static void SafeShowDialog<T>(this T window) where T : Window
         {
-            Application.Current.Dispatcher.Invoke(delegate
+            try
             {
-                _ = window.ShowDialog();
-            });
+                Application.Current.Dispatcher.Invoke(delegate
+                {
+                    _ = window.ShowDialog();
+                });
+            }
+            catch { }
         }
 
         public static T GetParentWindow<T>(this Control control) where T : Window
         {
             return (T)Window.GetWindow(control);
+        }
+
+        public static void SafeDragMove(this Window window)
+        {
+            try { window.DragMove(); }
+            catch { }
         }
     }
 }

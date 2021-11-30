@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using BlackRiver.Desktop.Extensions;
+using BlackRiver.EntityModels;
+using System;
+using System.Windows;
 
 namespace BlackRiver.Desktop.Views
 {
@@ -7,21 +10,59 @@ namespace BlackRiver.Desktop.Views
     /// </summary>
     public partial class EditarQuartoWindow : Window
     {
-        public EditarQuartoWindow(object[] arguments = null)
+        private Quarto EditQuarto { get; set; }
+
+        public EditarQuartoWindow(Quarto quarto = null)
         {
-            MouseDown += delegate { DragMove(); };
             InitializeComponent();
+            MouseDown += delegate { this.SafeDragMove(); };
+            EditQuarto = quarto;
+            UpdateControlData();
+
+            txtBoxEditQuartoAndar.Text = EditQuarto.NumeroAndar.ToString();
+            comboEditQuartoStatus.SelectedItem = (QuartoStatus)EditQuarto.StatusQuarto;
+            comboEditQuartoTipo.SelectedItem = (QuartoTypes)EditQuarto.TipoQuarto;
+            txtBoxEditQuartoValorDiaria.Text = EditQuarto.ValorQuarto.ToString();
         }
 
-        private void btnEditQuartoAdicionar_Click(object sender, RoutedEventArgs e)
+        private async void btnEditQuartoAdicionar_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: get quarto from api
-            //update quarto
+            try
+            {
+                EditQuarto.NumeroAndar = int.Parse(txtBoxEditQuartoAndar.Text);
+                EditQuarto.StatusQuarto = (int)(QuartoStatus)comboEditQuartoStatus.SelectedItem;
+                EditQuarto.TipoQuarto = (int)(QuartoTypes)comboEditQuartoTipo.SelectedItem;
+                EditQuarto.ValorQuarto = decimal.Parse(txtBoxEditQuartoValorDiaria.Text);
+                EditQuarto.Vip = (QuartoTypes)EditQuarto.TipoQuarto == QuartoTypes.Vip;
+
+                var result = await BlackRiverAPI.UpdateQuarto(EditQuarto);
+
+                if (result != null)
+                    BlackRiverExtensions.ShowMessage("Editado com sucesso", "Erro");
+
+                Close();
+            }
+            catch (Exception ex)
+            {
+                BlackRiverExtensions.ShowMessage(ex.Message, "Erro");
+            }
         }
 
         private void btnCloseWindow_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        public void UpdateControlData()
+        {
+            foreach (var item in Enum.GetValues(typeof(QuartoStatus)))
+                comboEditQuartoStatus.Items.Add(item);
+
+            foreach (var item in Enum.GetValues(typeof(QuartoTypes)))
+                comboEditQuartoTipo.Items.Add(item);
+
+            comboEditQuartoStatus.UpdateLayout();
+            comboEditQuartoTipo.UpdateLayout();
         }
     }
 }

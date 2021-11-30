@@ -14,7 +14,7 @@ namespace BlackRiver.EntityModels
         public DateTime DataVenda { get; set; }
 
         [DataMember]
-        public Hospede HospedePagador { get; set; }
+        public int HospedeId { get; set; }
 
         [DataMember]
         public List<Produto> Produtos { get; set; }

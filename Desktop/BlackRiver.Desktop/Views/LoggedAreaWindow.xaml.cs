@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlackRiver.Desktop.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,10 +28,9 @@ namespace BlackRiver.Desktop.Views
         public LoggedAreaWindow()
         {
             InitializeComponent();
+            MouseDown += delegate { this.SafeDragMove(); };
             SetControlButtons();
             SwitchContent(ContentType.Dashboard);
-
-            MouseDown += delegate { SafeDragMove(); };
             lastSenderButton = DashboardButton;
         }
 
@@ -78,8 +78,13 @@ namespace BlackRiver.Desktop.Views
             if (sender != null)
                 ChangeButtonColor((Button)sender);
 
+            var control = controls[content];
+
             ControlGrid.Children.Clear();
-            _ = ControlGrid.Children.Add(controls[content]);
+            _ = ControlGrid.Children.Add(control);
+
+            if (control is IControlUpdate controlUpdate)
+                controlUpdate.UpdateControlData();
         }
 
         private void ChangeButtonColor(Button button)
@@ -91,15 +96,6 @@ namespace BlackRiver.Desktop.Views
             button.Foreground = Brushes.Black;
 
             lastSenderButton = button;
-        }
-
-        public void SafeDragMove()
-        {
-            try
-            {
-                DragMove();
-            }
-            catch { }
         }
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)

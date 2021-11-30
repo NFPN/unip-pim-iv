@@ -14,9 +14,6 @@ namespace BlackRiver.Data
 
             builder.Property(v => v.ValorPago)
                 .HasPrecision(7, 2);
-
-            builder.HasMany(v => v.Produtos)
-                .WithMany(p => p.Vendas);
         }
     }
 }

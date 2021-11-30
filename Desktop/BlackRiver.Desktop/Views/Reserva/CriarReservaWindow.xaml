@@ -26,11 +26,15 @@
         <TextBox x:Name="txtBoxNovaReservaEmail" HorizontalAlignment="Left" Margin="39,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25" Foreground="White" />
         <Label Content="Quantidade Pessoas*" HorizontalAlignment="Left" Margin="39,192,0,0" VerticalAlignment="Top" Foreground="White" Width="125" />
         <TextBox x:Name="txtBoxNovaReservaQtdPessoas" HorizontalAlignment="Left" Margin="39,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" Height="25" Foreground="White" />
-        <Label Content="Quantidade Dias*" HorizontalAlignment="Center" Margin="0,197,0,0" VerticalAlignment="Top" Foreground="White" Width="130" />
+        <Label Content="Quantidade Dias*" HorizontalAlignment="Center" Margin="0,192,0,0" VerticalAlignment="Top" Foreground="White" Width="130" />
         <TextBox x:Name="txtBoxNovaReservaQtdDias" HorizontalAlignment="Left" Margin="235,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" Height="25" Foreground="White" />
-        <CheckBox x:Name="checkNovaReservaVaga" Content="Vaga de estacionamento" HorizontalAlignment="Left" Margin="39,269,0,0" VerticalAlignment="Top" Foreground="White" />
-        <ComboBox x:Name="comboNovaReservaVagas" HorizontalAlignment="Left" Margin="39,295,0,0" VerticalAlignment="Top" Width="120" Foreground="White" />
-        <CheckBox x:Name="checkNovaReservaVIP" Content="VIP" HorizontalAlignment="Left" Margin="235,269,0,0" VerticalAlignment="Top" Foreground="White" />
+
+        <!--<CheckBox x:Name="checkNovaReservaVaga" Content="Vaga de estacionamento" HorizontalAlignment="Left" Margin="39,269,0,0" VerticalAlignment="Top" Foreground="White" />
+        <ComboBox x:Name="comboNovaReservaVagas" HorizontalAlignment="Left" Margin="39,295,0,0" VerticalAlignment="Top" Width="120" Foreground="White" />-->
+
+        <Label Content="Valor diária*" HorizontalAlignment="Left" Margin="385,192,0,0" VerticalAlignment="Top" Foreground="White" Width="130" />
+        <TextBox x:Name="txtBoxNovaReservaValor" HorizontalAlignment="Left" Margin="385,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="25" Foreground="White" />
+        <CheckBox x:Name="checkNovaReservaVIP" Content="VIP" HorizontalAlignment="Left" Margin="39,291,0,0" VerticalAlignment="Top" Foreground="White" />
         <Button x:Name="btnNovaReservaCriar" Content="Criar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Height="40" Width="100" Click="btnNovaReservaCriar_Click" />
         <Button x:Name="btnCloseWindow" HorizontalAlignment="Right" Margin="0,3,0,0" VerticalAlignment="Top" Width="35" BorderBrush="{x:Null}" Click="btnCloseWindow_Click">
             <Button.Background>

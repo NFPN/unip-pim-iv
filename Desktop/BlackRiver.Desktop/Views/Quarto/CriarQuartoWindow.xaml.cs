@@ -12,8 +12,8 @@ namespace BlackRiver.Desktop.Views
     {
         public CriarQuartoWindow()
         {
-            MouseDown += delegate { DragMove(); };
             InitializeComponent();
+            MouseDown += delegate { this.SafeDragMove(); };
             UpdateControlData();
         }
 
@@ -55,6 +55,7 @@ namespace BlackRiver.Desktop.Views
                 comboAddQuartoTipo.Items.Add(item);
 
             comboAddQuartoStatus.UpdateLayout();
+            comboAddQuartoTipo.UpdateLayout();
         }
     }
 }

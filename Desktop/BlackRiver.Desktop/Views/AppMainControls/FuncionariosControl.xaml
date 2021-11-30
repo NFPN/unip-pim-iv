@@ -9,21 +9,19 @@
              d:DesignHeight="680" d:DesignWidth="1080">
     <Grid>
 
-        <Label Content="Funcionarios" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="400" FontWeight="Bold" />
         <UserControl
             d:DesignHeight="680" d:DesignWidth="1080" Margin="1,1,-1,-1">
             <Grid>
 
                 <materialDesign:Card HorizontalAlignment="Center" Margin="0,133,0,0" VerticalAlignment="Top" Height="537" Width="1060">
                     <GroupBox Header=" " FontSize="16" FontWeight="Bold">
-                        <DataGrid x:Name="datagridQuartos" RowHeight="40" Background="#FF444343" IsReadOnly="True" CanUserAddRows="False"  ScrollViewer.CanContentScroll="True" />
+                        <DataGrid x:Name="datagridFuncionarios" RowHeight="40" Background="#FF444343" IsReadOnly="True" CanUserAddRows="False"  ScrollViewer.CanContentScroll="True" />
                     </GroupBox>
                 </materialDesign:Card>
                 <Label Content="Funcionarios" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,133,0,0" VerticalAlignment="Top" Width="140" Foreground="#DD000000" FontWeight="Bold" Height="39" FontSize="18" FontStyle="Normal" FontFamily="Arial Black" />
-                <TextBox x:Name="txtBoxFuncionarioSearch" HorizontalAlignment="Left" Margin="50,71,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Foreground="White" Height="40" />
-                <ComboBox x:Name="comboSearchType" HorizontalAlignment="Left" Margin="235,71,0,0" VerticalAlignment="Top" Width="140" Height="40" />
                 <Button x:Name="btnAddFuncionario" Content="Adicionar" HorizontalAlignment="Left" Margin="817,71,0,0" VerticalAlignment="Top" Width="120" Height="40" FontSize="16" Click="btnAddFuncionario_Click" />
                 <Button x:Name="btnEditarFuncionario" Content="Editar" HorizontalAlignment="Left" Margin="950,71,0,0" VerticalAlignment="Top" Width="120" Height="40" FontSize="16" Click="btnEditarFuncionario_Click" />
+                <Button x:Name="btnRefresh" Content="Carregar dados" HorizontalAlignment="Left" Margin="615,71,0,0" VerticalAlignment="Top" Height="40" Width="145" FontSize="16" Click="btnRefresh_Click"/>
             </Grid>
         </UserControl>
     </Grid>

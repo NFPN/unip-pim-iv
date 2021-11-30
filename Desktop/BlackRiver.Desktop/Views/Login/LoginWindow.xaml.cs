@@ -17,45 +17,45 @@ namespace BlackRiver.Desktop.Views
             BringIntoView();
             _ = Focus();
 
-            MouseDown += delegate
-            {
-                try
-                {
-                    DragMove();
-                }
-                catch { }
-            };
+            MouseDown += delegate { this.SafeDragMove(); };
         }
 
         private void btnCloseWindow_Click(object sender, RoutedEventArgs e) => Environment.Exit(0);
 
         private async void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            var admin = "admin";
-
-            if (!await BlackRiverAPI.FetchToken(txtBoxUsername.Text, txtBoxPassword.Password))
-                return;
-
-            var user = await BlackRiverAPI.GetLoggedUser();
-            var userType = (LoginTypes)user.Type;
-
-            if (user.Username.Equals(admin, StringComparison.Ordinal) && txtBoxPassword.Password.Equals(admin, StringComparison.Ordinal))
+            try
             {
-                new NewPasswordEditWindow(user).Show();
+                var admin = "admin";
+
+                if (!await BlackRiverAPI.FetchToken(txtBoxUsername.Text, txtBoxPassword.Password))
+                    return;
+
+                var user = await BlackRiverAPI.GetLoggedUser();
+                var userType = (LoginTypes)user.Type;
+
+                if (user.Username.Equals(admin, StringComparison.Ordinal) && txtBoxPassword.Password.Equals(admin, StringComparison.Ordinal))
+                {
+                    new NewPasswordEditWindow(user).Show();
+                    Close();
+                    return;
+                }
+
+                if (userType is LoginTypes.Customer or LoginTypes.None)
+                {
+                    BlackRiverExtensions.ShowMessage("Usuário inválido", "Erro");
+                    return;
+                }
+
+                BlackRiverGlobal.IsAdminLogin = userType == LoginTypes.Manager;
+                var mainWindow = new LoggedAreaWindow();
+                mainWindow.Show();
                 Close();
-                return;
             }
-
-            if (userType is LoginTypes.Customer or LoginTypes.None)
+            catch (Exception ex)
             {
-                BlackRiverExtensions.ShowMessage("Usuário inválido", "Erro");
-                return;
+                BlackRiverExtensions.ShowMessage(ex.Message, "Erro");
             }
-
-            BlackRiverGlobal.IsAdminLogin = userType == LoginTypes.Manager;
-            var mainWindow = new LoggedAreaWindow();
-            mainWindow.Show();
-            Close();
         }
 
         private void txtBlockForgotPassword_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

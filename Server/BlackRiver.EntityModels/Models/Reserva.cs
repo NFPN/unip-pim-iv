@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace BlackRiver.EntityModels
@@ -17,16 +16,16 @@ namespace BlackRiver.EntityModels
         public DateTime DataSaida { get; set; }
 
         [DataMember]
-        public DateTime DataCancelamento { get; set; }
+        public DateTime? DataCancelamento { get; set; }
 
         [DataMember]
-        public Quarto Quarto { get; set; }
+        public string Status { get; set; }
 
         [DataMember]
-        public string Status { get; set; } // ativo, concluido, cancelado
+        public int QuartoId { get; set; }
 
         [DataMember]
-        public List<Hospede> Hospedes { get; set; }
+        public int HospedeId { get; set; }
 
         [IgnoreDataMember]
         public TimeSpan TempoEstadia => DataSaida.Subtract(DataEntrada);

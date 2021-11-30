@@ -1,5 +1,5 @@
 ﻿using BlackRiver.Desktop.Extensions;
-using System;
+using BlackRiver.EntityModels;
 using System.Collections.Generic;
 using System.Windows.Controls;
 
@@ -10,33 +10,37 @@ namespace BlackRiver.Desktop.Views
     /// </summary>
     public partial class QuartoControl : UserControl, IControlUpdate
     {
+        private List<Quarto> quartoList;
         private List<QuartoDataRow> quartoDataViewList = new();
 
         public QuartoControl()
         {
             InitializeComponent();
-            UpdateControlData();
         }
 
         public async void UpdateControlData()
         {
-            var quartoList = await BlackRiverAPI.GetQuartos();
+            quartoList = await BlackRiverAPI.GetQuartos();
+
+            datagridQuartos.UnselectAllCells();
+            datagridQuartos.ItemsSource = null;
+            datagridQuartos.UpdateLayout();
             quartoDataViewList.Clear();
+            datagridQuartos.ItemsSource = quartoDataViewList;
 
             foreach (var quarto in quartoList)
             {
-                quartoDataViewList.Add(new QuartoDataRow
+                var quartoRow = new QuartoDataRow
                 {
                     Numero = quarto.Id,
                     Andar = quarto.NumeroAndar,
                     Status = ((QuartoStatus)quarto.StatusQuarto).ToString(),
                     Tipo = ((QuartoTypes)quarto.TipoQuarto).ToString(),
-                    Vip = quarto.Vip
-                });
+                    Vip = quarto.Vip,
+                    Diaria = quarto.ValorQuarto,
+                };
+                quartoDataViewList.Add(quartoRow);
             }
-
-            if(datagridQuartos.ItemsSource.t)
-            datagridQuartos.ItemsSource = quartoDataViewList;
             datagridQuartos.UpdateLayout();
         }
 
@@ -48,23 +52,18 @@ namespace BlackRiver.Desktop.Views
 
         private void btnEditarQuarto_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            new EditarQuartoWindow().SafeShowDialog();
+            var row = datagridQuartos.SelectedItems[0];
+            var index = datagridQuartos.Items.IndexOf(row);
+
+            new EditarQuartoWindow(quartoList[index]).SafeShowDialog();
             UpdateLayout();
         }
 
-        private void btnQuartoRefresh_Click(object sender, System.Windows.RoutedEventArgs e)
+
+        private void btnRefresh_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             UpdateControlData();
         }
 
-        [Serializable]
-        public class QuartoDataRow
-        {
-            public int Numero { get; set; }
-            public int Andar { get; set; }
-            public string Status { get; set; }
-            public string Tipo { get; set; }
-            public bool Vip { get; set; }
-        }
     }
 }

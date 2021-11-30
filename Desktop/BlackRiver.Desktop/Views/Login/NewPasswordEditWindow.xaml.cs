@@ -11,9 +11,9 @@ namespace BlackRiver.Desktop.Views.Login
     {
         public NewPasswordEditWindow(string user = null)
         {
-            MouseDown += delegate { DragMove(); };
             InitializeComponent();
 
+            MouseDown += delegate { this.SafeDragMove(); };
             txtBoxUser.Text = user;
 
             if (user.Equals("admin", System.StringComparison.Ordinal))
@@ -45,6 +45,10 @@ namespace BlackRiver.Desktop.Views.Login
                 BlackRiverExtensions.ShowMessage("A senha de confirmação não é a mesma", "Erro");
                 return;
             }
+
+            //login with oldpassword
+            //get funcionario
+            //update funcionario
 
             var resetResponse = await BlackRiverAPI.Client
                 .PostAsync(BlackRiverAPI.UpdateLoginUri + @$"?username={txtBoxUser.Text}&password={txtBoxPassword.Password}", null);

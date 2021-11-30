@@ -37,12 +37,15 @@ namespace BlackRiver.EntityModels
         public string Cargo { get; set; }
 
         [DataMember]
-        public Municipio MunicipioAtual { get; set; }
+        public bool Ativo { get; set; }
 
         [DataMember]
-        public Hotel HotelAtual { get; set; }
+        public int MunicipioId { get; set; }
 
         [DataMember]
-        public UserLogin Login { get; set; }
+        public int HotelId { get; set; }
+
+        [DataMember]
+        public int LoginId { get; set; }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace BlackRiver.EntityModels
@@ -35,15 +34,9 @@ namespace BlackRiver.EntityModels
         public string Email { get; set; }
 
         [DataMember]
-        public UserLogin Login { get; set; }
+        public int LoginId { get; set; }
 
         [DataMember]
-        public VagaEstacionamento VagaEstacionamento { get; set; }
-
-        [DataMember]
-        public List<Ocorrencia> Ocorrencias { get; set; }
-
-        [DataMember]
-        public List<Reserva> Reservas { get; set; }
+        public int VagaEstacionamentoId { get; set; }
     }
 }

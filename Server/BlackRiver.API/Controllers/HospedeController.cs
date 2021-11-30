@@ -37,12 +37,6 @@ namespace BlackRiver.API.Controllers
                 if (string.IsNullOrEmpty(hospede.Email))
                     return BadRequest("Email inválido");
 
-                if (string.IsNullOrWhiteSpace(hospede.Login.Username))
-                    hospede.Login.Username = hospede.Email;
-
-                if (string.IsNullOrWhiteSpace(hospede.Login.Password))
-                    hospede.Login.Password = hospede.CPF ?? hospede.CNPJ;
-
                 var all = await DataServices.HospedeService.GetAll();
 
                 if (all.Any(a => a.Email == hospede.Email))

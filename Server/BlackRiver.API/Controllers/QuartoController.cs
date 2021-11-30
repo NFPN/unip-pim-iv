@@ -1,9 +1,7 @@
-﻿using BlackRiver.Data;
-using BlackRiver.Data.Services;
+﻿using BlackRiver.Data.Services;
 using BlackRiver.EntityModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -80,10 +78,14 @@ namespace BlackRiver.API.Controllers
         {
             try
             {
-                var user = await GetUser();
-                var reserva = user.Reservas.LastOrDefault();
+                var hospede = await GetHospede();
+                var reservas = await DataServices.ReservaService.GetAll();
+                var reserva = reservas.LastOrDefault(r => r.HospedeId == hospede.Id);
+                var quartos = await DataServices.QuartoService.GetAll();
 
-                return await DataServices.QuartoService.Get(reserva.Quarto.Id);
+                var quarto = quartos.FirstOrDefault(q => reserva.QuartoId == q.Id);
+
+                return quarto;
             }
             catch
             {
@@ -91,17 +93,9 @@ namespace BlackRiver.API.Controllers
             }
         }
 
-        private async Task<Hospede> GetUser()
+        private async Task<Hospede> GetHospede()
         {
-            var factory = new BlackRiverDBContextFactory();
-
-            using var context = factory.CreateDbContext();
-
-            var all = await context
-                .Set<Hospede>()
-                .Include(h => h.Reservas)
-                .ThenInclude(r => r.Quarto)
-                .ToListAsync();
+            var all = await DataServices.HospedeService.GetAll();
 
             if (all.Any(h => h.Email.Equals(User.Identity.Name)))
                 return all.FirstOrDefault(h => h.Email.Equals(User.Identity.Name, StringComparison.InvariantCultureIgnoreCase));

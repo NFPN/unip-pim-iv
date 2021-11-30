@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlackRiver.Data.Migrations
 {
     [DbContext(typeof(BlackRiverDBContext))]
-    [Migration("20211128165200_updatehospede_migration")]
-    partial class updatehospede_migration
+    [Migration("20211130221749_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,6 +29,9 @@ namespace BlackRiver.Data.Migrations
                         .HasAnnotation("SqlServer:IdentityIncrement", 1)
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
 
                     b.Property<string>("CPF")
                         .HasMaxLength(14)
@@ -57,13 +60,13 @@ namespace BlackRiver.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("HotelAtualId")
+                    b.Property<int>("HotelId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LoginId")
+                    b.Property<int>("LoginId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("MunicipioAtualId")
+                    b.Property<int>("MunicipioId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
@@ -79,12 +82,6 @@ namespace BlackRiver.Data.Migrations
                         .HasColumnType("nvarchar(14)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("HotelAtualId");
-
-                    b.HasIndex("LoginId");
-
-                    b.HasIndex("MunicipioAtualId");
 
                     b.ToTable("Funcionarios");
                 });
@@ -120,7 +117,7 @@ namespace BlackRiver.Data.Migrations
                         .HasMaxLength(14)
                         .HasColumnType("nvarchar(14)");
 
-                    b.Property<int?>("LoginId")
+                    b.Property<int>("LoginId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
@@ -135,14 +132,10 @@ namespace BlackRiver.Data.Migrations
                         .HasMaxLength(14)
                         .HasColumnType("nvarchar(14)");
 
-                    b.Property<int?>("VagaEstacionamentoId")
+                    b.Property<int>("VagaEstacionamentoId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LoginId");
-
-                    b.HasIndex("VagaEstacionamentoId");
 
                     b.ToTable("Hospedes");
                 });
@@ -160,7 +153,7 @@ namespace BlackRiver.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("MunicipioAtualId")
+                    b.Property<int>("MunicipioId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
@@ -168,8 +161,6 @@ namespace BlackRiver.Data.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MunicipioAtualId");
 
                     b.ToTable("Hoteis");
                 });
@@ -216,12 +207,6 @@ namespace BlackRiver.Data.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<int?>("HospedeId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ReservaId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Score")
                         .HasPrecision(2, 1)
                         .HasColumnType("decimal(2,1)");
@@ -230,10 +215,6 @@ namespace BlackRiver.Data.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("HospedeId");
-
-                    b.HasIndex("ReservaId");
 
                     b.ToTable("Ocorrencias");
                 });
@@ -247,7 +228,7 @@ namespace BlackRiver.Data.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoriaId")
+                    b.Property<int>("CategoriaId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DataAquisicao")
@@ -283,9 +264,12 @@ namespace BlackRiver.Data.Migrations
                         .HasPrecision(7, 2)
                         .HasColumnType("decimal(7,2)");
 
+                    b.Property<int?>("VendaId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoriaId");
+                    b.HasIndex("VendaId");
 
                     b.ToTable("Produtos");
                 });
@@ -318,9 +302,6 @@ namespace BlackRiver.Data.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("HotelId")
-                        .HasColumnType("int");
-
                     b.Property<int>("NumeroAndar")
                         .HasColumnType("int");
 
@@ -343,8 +324,6 @@ namespace BlackRiver.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("HotelId");
-
                     b.ToTable("Quartos");
                 });
 
@@ -357,7 +336,7 @@ namespace BlackRiver.Data.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DataCancelamento")
+                    b.Property<DateTime?>("DataCancelamento")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DataEntrada")
@@ -366,7 +345,10 @@ namespace BlackRiver.Data.Migrations
                     b.Property<DateTime>("DataSaida")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("QuartoId")
+                    b.Property<int>("HospedeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuartoId")
                         .HasColumnType("int");
 
                     b.Property<string>("Status")
@@ -378,8 +360,6 @@ namespace BlackRiver.Data.Migrations
                         .HasColumnType("decimal(7,2)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("QuartoId");
 
                     b.ToTable("Reservas");
                 });
@@ -414,9 +394,6 @@ namespace BlackRiver.Data.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("HotelId")
-                        .HasColumnType("int");
-
                     b.Property<string>("NumeroVaga")
                         .HasMaxLength(5)
                         .HasColumnType("nvarchar(5)");
@@ -426,8 +403,6 @@ namespace BlackRiver.Data.Migrations
                         .HasColumnType("nvarchar(7)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("HotelId");
 
                     b.ToTable("VagasEstacionamento");
                 });
@@ -444,7 +419,7 @@ namespace BlackRiver.Data.Migrations
                     b.Property<DateTime>("DataVenda")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("HospedePagadorId")
+                    b.Property<int>("HospedeId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("ValorPago")
@@ -453,180 +428,19 @@ namespace BlackRiver.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("HospedePagadorId");
-
                     b.ToTable("Vendas");
-                });
-
-            modelBuilder.Entity("HospedeReserva", b =>
-                {
-                    b.Property<int>("HospedesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ReservasId")
-                        .HasColumnType("int");
-
-                    b.HasKey("HospedesId", "ReservasId");
-
-                    b.HasIndex("ReservasId");
-
-                    b.ToTable("HospedeReserva");
-                });
-
-            modelBuilder.Entity("ProdutoVenda", b =>
-                {
-                    b.Property<int>("ProdutosId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("VendasId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProdutosId", "VendasId");
-
-                    b.HasIndex("VendasId");
-
-                    b.ToTable("ProdutoVenda");
-                });
-
-            modelBuilder.Entity("BlackRiver.EntityModels.Funcionario", b =>
-                {
-                    b.HasOne("BlackRiver.EntityModels.Hotel", "HotelAtual")
-                        .WithMany()
-                        .HasForeignKey("HotelAtualId");
-
-                    b.HasOne("BlackRiver.EntityModels.UserLogin", "Login")
-                        .WithMany()
-                        .HasForeignKey("LoginId");
-
-                    b.HasOne("BlackRiver.EntityModels.Municipio", "MunicipioAtual")
-                        .WithMany()
-                        .HasForeignKey("MunicipioAtualId");
-
-                    b.Navigation("HotelAtual");
-
-                    b.Navigation("Login");
-
-                    b.Navigation("MunicipioAtual");
-                });
-
-            modelBuilder.Entity("BlackRiver.EntityModels.Hospede", b =>
-                {
-                    b.HasOne("BlackRiver.EntityModels.UserLogin", "Login")
-                        .WithMany()
-                        .HasForeignKey("LoginId");
-
-                    b.HasOne("BlackRiver.EntityModels.VagaEstacionamento", "VagaEstacionamento")
-                        .WithMany()
-                        .HasForeignKey("VagaEstacionamentoId");
-
-                    b.Navigation("Login");
-
-                    b.Navigation("VagaEstacionamento");
-                });
-
-            modelBuilder.Entity("BlackRiver.EntityModels.Hotel", b =>
-                {
-                    b.HasOne("BlackRiver.EntityModels.Municipio", "MunicipioAtual")
-                        .WithMany()
-                        .HasForeignKey("MunicipioAtualId");
-
-                    b.Navigation("MunicipioAtual");
-                });
-
-            modelBuilder.Entity("BlackRiver.EntityModels.Ocorrencia", b =>
-                {
-                    b.HasOne("BlackRiver.EntityModels.Hospede", null)
-                        .WithMany("Ocorrencias")
-                        .HasForeignKey("HospedeId");
-
-                    b.HasOne("BlackRiver.EntityModels.Reserva", "Reserva")
-                        .WithMany()
-                        .HasForeignKey("ReservaId");
-
-                    b.Navigation("Reserva");
                 });
 
             modelBuilder.Entity("BlackRiver.EntityModels.Produto", b =>
                 {
-                    b.HasOne("BlackRiver.EntityModels.ProdutoCategoria", "Categoria")
-                        .WithMany()
-                        .HasForeignKey("CategoriaId");
-
-                    b.Navigation("Categoria");
-                });
-
-            modelBuilder.Entity("BlackRiver.EntityModels.Quarto", b =>
-                {
-                    b.HasOne("BlackRiver.EntityModels.Hotel", null)
-                        .WithMany("Quartos")
-                        .HasForeignKey("HotelId");
-                });
-
-            modelBuilder.Entity("BlackRiver.EntityModels.Reserva", b =>
-                {
-                    b.HasOne("BlackRiver.EntityModels.Quarto", "Quarto")
-                        .WithMany()
-                        .HasForeignKey("QuartoId");
-
-                    b.Navigation("Quarto");
-                });
-
-            modelBuilder.Entity("BlackRiver.EntityModels.VagaEstacionamento", b =>
-                {
-                    b.HasOne("BlackRiver.EntityModels.Hotel", null)
-                        .WithMany("VagasEstacionamento")
-                        .HasForeignKey("HotelId");
+                    b.HasOne("BlackRiver.EntityModels.Venda", null)
+                        .WithMany("Produtos")
+                        .HasForeignKey("VendaId");
                 });
 
             modelBuilder.Entity("BlackRiver.EntityModels.Venda", b =>
                 {
-                    b.HasOne("BlackRiver.EntityModels.Hospede", "HospedePagador")
-                        .WithMany()
-                        .HasForeignKey("HospedePagadorId");
-
-                    b.Navigation("HospedePagador");
-                });
-
-            modelBuilder.Entity("HospedeReserva", b =>
-                {
-                    b.HasOne("BlackRiver.EntityModels.Hospede", null)
-                        .WithMany()
-                        .HasForeignKey("HospedesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BlackRiver.EntityModels.Reserva", null)
-                        .WithMany()
-                        .HasForeignKey("ReservasId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ProdutoVenda", b =>
-                {
-                    b.HasOne("BlackRiver.EntityModels.Produto", null)
-                        .WithMany()
-                        .HasForeignKey("ProdutosId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BlackRiver.EntityModels.Venda", null)
-                        .WithMany()
-                        .HasForeignKey("VendasId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("BlackRiver.EntityModels.Hospede", b =>
-                {
-                    b.Navigation("Ocorrencias");
-                });
-
-            modelBuilder.Entity("BlackRiver.EntityModels.Hotel", b =>
-                {
-                    b.Navigation("Quartos");
-
-                    b.Navigation("VagasEstacionamento");
+                    b.Navigation("Produtos");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace BlackRiver.EntityModels
@@ -35,9 +34,6 @@ namespace BlackRiver.EntityModels
         public string Tipo { get; set; }
 
         [DataMember]
-        public ProdutoCategoria Categoria { get; set; }
-
-        [DataMember]
-        public List<Venda> Vendas { get; set; }
+        public int CategoriaId { get; set; }
     }
 }

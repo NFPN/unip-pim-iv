@@ -24,5 +24,7 @@
                 <ImageBrush ImageSource="/Resources/Icons/window-close.png" Stretch="UniformToFill" />
             </Button.Background>
         </Button>
+        <Label Content="Andar" HorizontalAlignment="Left" Margin="264,203,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="txtBoxEditQuartoAndar" HorizontalAlignment="Center" Margin="0,243,0,0" Text="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Foreground="White" />
     </Grid>
 </Window>

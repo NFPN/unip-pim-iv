@@ -19,6 +19,6 @@
         <ComboBox x:Name="comboSearchType" HorizontalAlignment="Left" Margin="235,71,0,0" VerticalAlignment="Top" Width="140" Height="40" />
         <Button x:Name="btnAddQuarto" Content="Adicionar" HorizontalAlignment="Left" Margin="817,71,0,0" VerticalAlignment="Top" Width="120" Height="40" FontSize="16" Click="btnAddQuarto_Click" />
         <Button x:Name="btnEditarQuarto" Content="Editar" HorizontalAlignment="Left" Margin="950,71,0,0" VerticalAlignment="Top" Width="120" Height="40" FontSize="16" Click="btnEditarQuarto_Click" />
-        <Button x:Name="btnQuartoRefresh" Content="Carregar dados" HorizontalAlignment="Left" Margin="615,71,0,0" VerticalAlignment="Top" Height="45" Width="133" Click="btnQuartoRefresh_Click"/>
+        <Button x:Name="btnRefresh" Content="Carregar dados" HorizontalAlignment="Left" Margin="615,71,0,0" VerticalAlignment="Top" Height="40" Width="145" FontSize="16" Click="btnRefresh_Click"/>
     </Grid>
 </UserControl>

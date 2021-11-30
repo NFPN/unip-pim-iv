@@ -15,23 +15,20 @@ namespace BlackRiver.Desktop.Views
     public partial class DashboardControl : UserControl, IControlUpdate
     {
         private List<Reserva> currentReservas = new();
-        private List<DashboardReservaDataItem> currentDatalist = new();
+        private List<DashboardReservaDataRow> currentDatalist = new();
 
         public DashboardControl()
         {
             InitializeComponent();
-            UpdateControlData();
-
-            datagridDashboard.Loaded += CorrectColumHeaders;
         }
 
         public async void UpdateControlData()
         {
-            //LoadMockData();
+            currentReservas = await BlackRiverAPI.GetReservas();
 
             foreach (var item in currentReservas)
             {
-                currentDatalist.Add(new DashboardReservaDataItem
+                currentDatalist.Add(new DashboardReservaDataRow
                 {
                     Nome = item.Hospedes.First().Nome,
                     Horário = item.DataEntrada,
@@ -41,47 +38,19 @@ namespace BlackRiver.Desktop.Views
             }
 
             var todosQuartos = await BlackRiverAPI.GetQuartos();
-            var quartosDisponiveis = todosQuartos.Select(q => q.StatusQuarto == (int)QuartoStatus.Disponivel).Count();
-            var ocupacao = (todosQuartos.Count / 100.0) * quartosDisponiveis;
+            var quartosOcupados = todosQuartos.Where(q => q.StatusQuarto is ((int)QuartoStatus.Ocupado) or ((int)QuartoStatus.Indisponível)).Count();
+            var ocupacao = quartosOcupados == 0 ? 0 : (double)quartosOcupados / todosQuartos.Count;
 
-            lblDashboardQuartosDisp.Content = todosQuartos.Select(q=>q.StatusQuarto);
+            lblDashboardQuartosDisp.Content = todosQuartos.Count - quartosOcupados;
             lblDashboardOcupacao.Content = ocupacao.ToString("0.00%");
 
+            lblDashboardQuartosDisp.UpdateLayout();
+            lblDashboardOcupacao.UpdateLayout();
+
             SetDashboardDataGrid(DateTime.UtcNow);
-        }
 
-        private void LoadMockData()
-        {
-            var rand = new Random();
-            for (int i = 0; i < 30; i++)
-            {
-                var status = rand.Next(1000) > 500 ? "Não confirmado" : "Reservado";
-
-                currentReservas.Add(
-                    new Reserva
-                    {
-                        Id = rand.Next(1000),
-                        ValorDiaria = (decimal)(rand.NextDouble() * 27 * rand.NextDouble() * 99),
-                        Quarto = new Quarto
-                        {
-                            Id = rand.Next(1000),
-                            NumeroAndar = rand.Next(10),
-                            NumeroQuarto = rand.Next(1000),
-                            StatusQuarto = rand.Next(2),
-                        },
-                        Hospedes = new List<Hospede>
-                    {
-                        new Hospede
-                        {
-                            Id = rand.Next(1000),
-                            Nome = $"TEST{rand.Next(1000)}" ,
-                            Email = $"TEST{rand.Next(1000)}@TEST.COM"
-                        },
-                    },
-                        Status = status,
-                        DataEntrada = DateTime.Today.AddHours(rand.Next(72)),
-                    });
-            }
+            if (datagridDashboard.IsLoaded)
+                CorrectDatagridHeaders();
         }
 
         public void SetDashboardDataGrid(DateTime date)
@@ -93,9 +62,9 @@ namespace BlackRiver.Desktop.Views
             datagridDashboard.UpdateLayout();
         }
 
-        private void CorrectColumHeaders(object sender = null, RoutedEventArgs e = null)
+        private void CorrectDatagridHeaders(object sender = null, RoutedEventArgs e = null)
         {
-            foreach (var prop in typeof(DashboardReservaDataItem).GetProperties())
+            foreach (var prop in typeof(DashboardReservaDataRow).GetProperties())
             {
                 var column = datagridDashboard.Columns.FirstOrDefault(c => c.Header.ToString().Equals(prop.Name, StringComparison.InvariantCultureIgnoreCase));
                 var displayName = prop.GetCustomAttributes(typeof(DisplayNameAttribute), true).FirstOrDefault() as DisplayNameAttribute;

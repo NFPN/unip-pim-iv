@@ -19,23 +19,21 @@ namespace BlackRiver.Desktop.Views
             Close();
         }
 
-        private void btnNovaReservaCriar_Click(object sender, RoutedEventArgs e)
+        private async void btnNovaReservaCriar_Click(object sender, RoutedEventArgs e)
         {
-            //get quartos
-            //get hospedes
-            //compare & vip
-
             var data = dateNovaReserva.SelectedDate.GetValueOrDefault();
+            var time = timeNovaReserva.SelectedTime.GetValueOrDefault();
+
+            int dias = int.Parse(txtBoxNovaReservaQtdDias.Text);
             var reserva = new Reserva
             {
-                DataEntrada = data.ToUniversalTime(),
-                DataSaida = data.AddDays(int.Parse(txtBoxNovaReservaQtdDias.Text)),
+                DataEntrada = data.AddHours(time.Hour).AddMinutes(time.Minute).ToUniversalTime(),
+                DataSaida = data.AddDays(dias),
                 Status = ReservaStatus.Aberto.ToString(),
+                ValorDiaria = decimal.Parse(txtBoxNovaReservaValor.Text)
             };
 
-            BlackRiverAPI.CreateReserva(reserva);
-
-            //TODO: call API 
+            await BlackRiverAPI.CreateReserva(reserva);
         }
     }
 }

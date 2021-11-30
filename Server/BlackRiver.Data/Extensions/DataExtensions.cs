@@ -31,15 +31,17 @@ namespace BlackRiver.Data
                 Type = (int)LoginTypes.Manager
             });
 
+            await context.AddAsync(new Municipio
+            {
+                Nome = "São José do Rio Preto",
+                UF = "SP"
+            });
+
             await context.AddAsync(new Hotel
             {
                 Nome = "Black River",
                 Endereco = "Av. Pres. Juscelino K. de Oliveira, s/n - Jardim Tarraf II",
-                MunicipioAtual =  new () 
-                {
-                    Nome = "São José do Rio Preto",
-                    UF = "SP"
-                },
+                MunicipioId = 1,
             });
 
             await context.SaveChangesAsync();
