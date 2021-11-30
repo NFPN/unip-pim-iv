@@ -47,7 +47,7 @@ namespace BlackRiver.Desktop.Views.Login
             }
 
             var resetResponse = await BlackRiverAPI.Client
-                .PostAsync(BlackRiverAPI.UpdateLoginUri + $"?username={txtBoxUser.Text}&password={txtBoxPassword.Password}", null);
+                .PostAsync(BlackRiverAPI.UpdateLoginUri + @$"?username={txtBoxUser.Text}&password={txtBoxPassword.Password}", null);
 
             if (resetResponse.IsSuccessStatusCode)
             {

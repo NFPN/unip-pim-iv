@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -291,7 +292,7 @@ namespace BlackRiver.Desktop
         public static async Task<List<Quarto>> CreateQuarto(Quarto quarto, int quantity)
         {
             var responses = new List<Quarto>();
-            var count = 1;
+            var count = 0;
             for (int i = 0; i < quantity; i++)
             {
                 var quartoAnon = new
@@ -304,7 +305,7 @@ namespace BlackRiver.Desktop
                 };
 
                 var content = JsonConvert.SerializeObject(quartoAnon);
-                var response = await Client.PostAsJsonAsync(QuartosUri, content);
+                var response = await Client.PostAsync(QuartosUri, new StringContent(content, Encoding.UTF8, MediaTypeNames.Application.Json)) ;
 
                 if (!response.IsSuccessStatusCode)
                 {

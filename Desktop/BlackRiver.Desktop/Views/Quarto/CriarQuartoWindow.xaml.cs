@@ -35,8 +35,10 @@ namespace BlackRiver.Desktop.Views
                     Vip = (QuartoTypes)comboAddQuartoTipo.SelectedItem == QuartoTypes.Vip,
                 };
 
-
-                await BlackRiverAPI.CreateQuarto(quarto, int.Parse(txtBoxAddQuartoQtd.Text));
+                var quantidate = int.Parse(txtBoxAddQuartoQtd.Text);
+                await BlackRiverAPI.CreateQuarto(quarto, quantidate);
+                BlackRiverExtensions.ShowMessage($"{quantidate} quartos criados! ", "Sucesso");
+                Close();
             }
             catch (Exception ex)
             {

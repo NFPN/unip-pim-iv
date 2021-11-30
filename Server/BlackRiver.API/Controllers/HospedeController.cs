@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace BlackRiver.API.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class HospedeController : Controller
@@ -44,12 +43,17 @@ namespace BlackRiver.API.Controllers
                 if (string.IsNullOrWhiteSpace(hospede.Login.Password))
                     hospede.Login.Password = hospede.CPF ?? hospede.CNPJ;
 
+                var all = await DataServices.HospedeService.GetAll();
+
+                if (all.Any(a => a.Email == hospede.Email))
+                    throw new Exception("Usuário já existe");
+
                 var result = await DataServices.HospedeService.Create(hospede);
-                return Ok(result);
+                return Ok("Hóspede criado com sucesso");
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -84,6 +88,7 @@ namespace BlackRiver.API.Controllers
 
         [HttpPut]
         [Route("token")]
+        [Authorize]
         public async Task<IActionResult> CustomerPut([FromBody] Hospede hospede)
         {
             try
@@ -100,6 +105,7 @@ namespace BlackRiver.API.Controllers
 
         [HttpGet]
         [Route("token")]
+        [Authorize]
         public async Task<Hospede> CustomerGet()
         {
             var id = await GetUserID();
@@ -113,7 +119,7 @@ namespace BlackRiver.API.Controllers
             if (all.Any(h => h.Email.Equals(User.Identity.Name)))
                 return all.FirstOrDefault(h => h.Email.Equals(User.Identity.Name, StringComparison.InvariantCultureIgnoreCase)).Id;
 
-            return all.FirstOrDefault(h => h.Nome.Equals(User.Identity.Name, StringComparison.InvariantCultureIgnoreCase)).Id;
+            return all.FirstOrDefault(h => h.Email.Equals(User.Identity.Name, StringComparison.InvariantCultureIgnoreCase)).Id;
         }
 
         #endregion Customer

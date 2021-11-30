@@ -39,7 +39,7 @@ namespace BlackRiver.Desktop.Views
             var user = await BlackRiverAPI.GetLoggedUser();
             var userType = (LoginTypes)user.Type;
 
-            if (txtBoxUsername.Text.Equals(admin, StringComparison.Ordinal) && txtBoxPassword.Password.Equals(admin, StringComparison.Ordinal))
+            if (user.Username.Equals(admin, StringComparison.Ordinal) && txtBoxPassword.Password.Equals(admin, StringComparison.Ordinal))
             {
                 new NewPasswordEditWindow(user).Show();
                 Close();
