@@ -21,7 +21,7 @@
                 <Label Content="Funcionarios" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,133,0,0" VerticalAlignment="Top" Width="140" Foreground="#DD000000" FontWeight="Bold" Height="39" FontSize="18" FontStyle="Normal" FontFamily="Arial Black" />
                 <Button x:Name="btnAddFuncionario" Content="Adicionar" HorizontalAlignment="Left" Margin="817,71,0,0" VerticalAlignment="Top" Width="120" Height="40" FontSize="16" Click="btnAddFuncionario_Click" />
                 <Button x:Name="btnEditarFuncionario" Content="Editar" HorizontalAlignment="Left" Margin="950,71,0,0" VerticalAlignment="Top" Width="120" Height="40" FontSize="16" Click="btnEditarFuncionario_Click" />
-                <Button x:Name="btnRefresh" Content="Carregar dados" HorizontalAlignment="Left" Margin="615,71,0,0" VerticalAlignment="Top" Height="40" Width="145" FontSize="16" Click="btnRefresh_Click"/>
+                <Button x:Name="btnRefresh" Content="Carregar dados" HorizontalAlignment="Left" Margin="615,71,0,0" VerticalAlignment="Top" Height="40" Width="145" FontSize="16" Click="btnRefresh_Click" />
             </Grid>
         </UserControl>
     </Grid>

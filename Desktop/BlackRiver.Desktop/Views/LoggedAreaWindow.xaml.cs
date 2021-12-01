@@ -65,7 +65,7 @@ namespace BlackRiver.Desktop.Views
             else
             {
                 FuncionariosButton.Visibility = Visibility.Collapsed;
-                RelatoriosButton.Visibility = Visibility.Collapsed;
+                //RelatoriosButton.Visibility = Visibility.Collapsed;
                 HotelButton.Visibility = Visibility.Collapsed;
             }
         }

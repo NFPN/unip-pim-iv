@@ -11,6 +11,6 @@
     <Grid Background="#FF3F3F46">
         <Image x:Name="LoadingLogo" HorizontalAlignment="Center" Height="252" Margin="0,46,0,0" VerticalAlignment="Top" Width="726" Source="/Resources/BlackRiverLogo_White.png" />
 
-        <ProgressBar Visibility="Visible" Name="MyProgressBar" HorizontalAlignment="Center" Margin="0,324,0,0"  Height="8" VerticalAlignment="Top" Width="568" Background="#FF2D2D30" />
+        <ProgressBar Visibility="Visible" Name="MyProgressBar" HorizontalAlignment="Center" Margin="0,324,0,0"  Height="8" VerticalAlignment="Top" Width="568" Background="#FF2D2D31" />
     </Grid>
 </Window>

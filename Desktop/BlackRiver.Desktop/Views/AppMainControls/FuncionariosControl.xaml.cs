@@ -1,6 +1,9 @@
 ﻿using BlackRiver.Desktop.Extensions;
 using BlackRiver.EntityModels;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace BlackRiver.Desktop.Views
@@ -43,19 +46,35 @@ namespace BlackRiver.Desktop.Views
             datagridFuncionarios.UpdateLayout();
         }
 
-        private void btnAddFuncionario_Click(object sender, System.Windows.RoutedEventArgs e)
+        private async void btnAddFuncionario_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             new CriarFuncionarioWindow().SafeShowDialog();
-            UpdateControlData();
+            await Application.Current.Dispatcher.Invoke(async delegate
+            {
+                await Task.Delay(1000);
+                UpdateControlData();
+                UpdateLayout();
+            });
         }
 
-        private void btnEditarFuncionario_Click(object sender, System.Windows.RoutedEventArgs e)
+        private async void btnEditarFuncionario_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            var row = datagridFuncionarios.SelectedItems[0];
-            var index = datagridFuncionarios.Items.IndexOf(row);
+            try
+            {
+                var row = datagridFuncionarios.SelectedItems[0];
+                var index = datagridFuncionarios.Items.IndexOf(row);
 
-            new EditarFuncionarioWindow(funcionarioList[index]).SafeShowDialog();
-            UpdateControlData();
+                new EditarFuncionarioWindow(funcionarioList[index]).SafeShowDialog();
+                await Application.Current.Dispatcher.Invoke(async delegate
+                {
+                    await Task.Delay(1000);
+                    UpdateControlData();
+                    UpdateLayout();
+                });
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void btnRefresh_Click(object sender, System.Windows.RoutedEventArgs e)

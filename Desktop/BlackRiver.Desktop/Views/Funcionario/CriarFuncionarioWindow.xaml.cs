@@ -44,11 +44,10 @@ namespace BlackRiver.Desktop.Views
                 Id = 0,
             };
 
+            var municipios = await BlackRiverAPI.GetMunicipios();
 
-            var muns = await BlackRiverAPI.GetMunicipios();
-
-            if (muns.Any(m => m.Nome.Equals(comboFuncionarioCidade.SelectedItem.ToString())))
-                newFuncionaro.MunicipioId = muns.FirstOrDefault(m => m.Nome.Equals(comboFuncionarioCidade.SelectedItem.ToString())).Id;
+            if (municipios.Any(m => m.Nome.Equals(comboFuncionarioCidade.SelectedItem.ToString())))
+                newFuncionaro.MunicipioId = municipios.FirstOrDefault(m => m.Nome.Equals(comboFuncionarioCidade.SelectedItem.ToString())).Id;
             else
             {
                 var mun = await BlackRiverAPI.CreateMunicipio(new Municipio
@@ -60,15 +59,21 @@ namespace BlackRiver.Desktop.Views
                 newFuncionaro.MunicipioId = mun.Id;
             }
 
-
             var tipo = (Cargos)comboAddFuncCargo.SelectedItem == Cargos.GerenteGeral ? (int)LoginTypes.Manager : (int)LoginTypes.Employee;
-            var user = await BlackRiverAPI.Register(newFuncionaro.Email, newFuncionaro.CPF, tipo);
 
-            newFuncionaro.LoginId = user.Id;
+            try
+            {
+                var user = await BlackRiverAPI.Register(newFuncionaro.Email, newFuncionaro.CPF, tipo);
+                newFuncionaro.LoginId = user.Id;
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
 
             var result = await BlackRiverAPI.CreateFuncionario(newFuncionaro);
 
-            if(result!= null)
+            if (result != null)
                 Close();
         }
 

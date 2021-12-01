@@ -43,12 +43,14 @@ namespace BlackRiver.Desktop
         public static string QuartosUri => "Quarto/";
 
         public static string HospedeUri => "Hospede/";
+
         public static string ReservaUri => "Reserva/";
         public static string OcorrenciaUri => "Ocorrencia/";
 
         public static string ProdutoUri => "Produto/";
         public static string ProdutoCategoriaUri => "ProdutoCategoria/";
         public static string VagasUri => "VagasEstacionamento/";
+
         public static string VendasUri => "Venda/";
 
         #region ExternalAPIs
@@ -103,17 +105,33 @@ namespace BlackRiver.Desktop
             return null;
         }
 
-        public static async Task<UserLogin> Register(string email, string senha, int tipo)
+        public static async Task<UserLogin> Register(string email, string password, int type)
         {
-            var user = new UserLogin { Username = email, Password = senha, Type = tipo };
+            var loginResponse = await Client.GetAsync($"{LoginUri}?username={email}&password={password}");
+
+            if (loginResponse.IsSuccessStatusCode)
+            {
+                var userLogin = JsonConvert.DeserializeObject<Credentials>(await loginResponse.Content.ReadAsStringAsync());
+
+                if (userLogin.User != null)
+                    return userLogin.User;
+            }
+
+            var user = new UserLogin { Username = email, Password = password, Type = type };
             var content = JsonConvert.SerializeObject(user);
             var response = await Client.PostAsync(RegisterUri, new StringContent(content, Encoding.UTF8, MediaTypeNames.Application.Json));
 
             if (response.IsSuccessStatusCode)
-                return JsonConvert.DeserializeObject<UserLogin>(await response.Content.ReadAsStringAsync());
+                return new() { Id = JsonConvert.DeserializeObject<int>(await response.Content.ReadAsStringAsync()) };
 
-            BlackRiverExtensions.ShowMessage("Falha ao carregar usuário", "Erro");
+            BlackRiverExtensions.ShowMessage("Falha ao registrar usuário", "Erro");
             return null;
+        }
+
+        private class Credentials
+        {
+            public UserLogin User { get; set; }
+            public string Token { get; set; }
         }
 
         #endregion Account
@@ -126,7 +144,7 @@ namespace BlackRiver.Desktop
 
             if (!response.IsSuccessStatusCode)
             {
-                BlackRiverExtensions.ShowMessage("Falha ao carregar hóspede", "Erro");
+                BlackRiverExtensions.ShowMessage("Falha ao carregar hóspedes", "Erro");
                 return null;
             }
 
@@ -134,29 +152,36 @@ namespace BlackRiver.Desktop
         }
 
         //Create hospede
-        public static async Task<Reserva> CreateHospede(Hospede hospede)
+        public static async Task<Hospede> CreateHospede(Hospede hospede)
         {
-            var reservaHospede = new
-            {
-            };
-
-            var reservaAnon = new
-            {
-            };
-
-            var content = JsonConvert.SerializeObject(reservaAnon);
-            var response = await Client.PostAsJsonAsync(ReservaUri, content);
+            var json = JsonConvert.SerializeObject(hospede);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await Client.PostAsync(HospedeUri, content);
 
             if (!response.IsSuccessStatusCode)
             {
-                BlackRiverExtensions.ShowMessage("Falha ao criar reserva", "Erro");
+                BlackRiverExtensions.ShowMessage("Falha ao criar hóspede", "Erro");
                 return null;
             }
 
-            return JsonConvert.DeserializeObject<Reserva>(await response.Content.ReadAsStringAsync());
+            return JsonConvert.DeserializeObject<Hospede>(await response.Content.ReadAsStringAsync());
         }
 
         //Update hospede
+        public static async Task<Hospede> UpdateHospede(Hospede hospede)
+        {
+            var json = JsonConvert.SerializeObject(hospede);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await Client.PutAsync(HospedeUri + hospede.Id, content);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                BlackRiverExtensions.ShowMessage("Falha ao atualizar hospede", "Erro");
+                return null;
+            }
+            BlackRiverExtensions.ShowMessage("Hóspede foi atualizado", "Sucesso");
+            return JsonConvert.DeserializeObject<Hospede>(await response.Content.ReadAsStringAsync());
+        }
 
         #endregion Hospede
 
@@ -178,17 +203,9 @@ namespace BlackRiver.Desktop
         //Create reserva
         public static async Task<Reserva> CreateReserva(Reserva reserva)
         {
-            var reservaHospede = new
-            {
-            };
-
-            var reservaAnon = new
-            {
-                reserva.DataEntrada,
-            };
-
-            var content = JsonConvert.SerializeObject(reservaAnon);
-            var response = await Client.PostAsJsonAsync(ReservaUri, content);
+            var json = JsonConvert.SerializeObject(reserva);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await Client.PostAsync(ReservaUri, content);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -200,6 +217,20 @@ namespace BlackRiver.Desktop
         }
 
         //Update reserva
+        public static async Task<Reserva> UpdateReserva(Reserva reserva)
+        {
+            var json = JsonConvert.SerializeObject(reserva);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await Client.PutAsync(ReservaUri + reserva.Id, content);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                BlackRiverExtensions.ShowMessage("Falha ao atualizar reserva", "Erro");
+                return null;
+            }
+            BlackRiverExtensions.ShowMessage("Reserva foi atualizada", "Sucesso");
+            return JsonConvert.DeserializeObject<Reserva>(await response.Content.ReadAsStringAsync());
+        }
 
         #endregion Reserva
 
@@ -411,5 +442,23 @@ namespace BlackRiver.Desktop
         }
 
         #endregion Municipio
+
+        #region Produto
+
+        //Get Produto
+        public static async Task<List<Produto>> GetProdutos()
+        {
+            var response = await Client.GetAsync(ProdutoUri);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                BlackRiverExtensions.ShowMessage("Falha ao carregar municipios", "Erro");
+                return null;
+            }
+
+            return JsonConvert.DeserializeObject<List<Produto>>(await response.Content.ReadAsStringAsync());
+        }
+
+        #endregion Produto
     }
 }

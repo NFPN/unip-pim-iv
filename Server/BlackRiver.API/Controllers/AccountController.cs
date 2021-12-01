@@ -21,17 +21,17 @@ namespace BlackRiver.API.Controllers
             try
             {
                 if (string.IsNullOrEmpty(login.Username) || string.IsNullOrEmpty(login.Password) || login.Password.Length < 8)
-                    return BadRequest(new { message = "Usuário ou senha inválidos" });
+                    return BadRequest(-1);
 
                 var user = (await DataServices.UserLoginService.GetAll()).FirstOrDefault(l => l.Username.Equals(login.Username));
 
                 if (user != null)
-                    return false;
+                    return BadRequest(0);
 
                 var result = await DataServices.UserLoginService.Create(login);
 
                 if (result == null)
-                    return BadRequest("Usuário não foi criado");
+                    return BadRequest(-2);
 
                 return Ok(result.Id);
             }

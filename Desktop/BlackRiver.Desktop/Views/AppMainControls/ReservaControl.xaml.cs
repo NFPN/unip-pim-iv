@@ -1,5 +1,6 @@
 ﻿using BlackRiver.Desktop.Extensions;
 using BlackRiver.EntityModels;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,21 +24,31 @@ namespace BlackRiver.Desktop.Views
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
             UpdateControlData();
+            UpdateLayout();
         }
 
         private void btnAddReserva_Click(object sender, RoutedEventArgs e)
         {
             new CriarReservaWindow().SafeShowDialog();
             UpdateControlData();
+            UpdateLayout();
         }
 
         private void btnEditarReserva_Click(object sender, RoutedEventArgs e)
         {
-            var row = datagridReserva.SelectedItems[0];
-            var index = datagridReserva.Items.IndexOf(row);
+            try
+            {
+                var row = datagridReserva.SelectedItems[0];
+                var index = datagridReserva.Items.IndexOf(row);
 
-            new EditarReservaWindow(reservaList[index]).SafeShowDialog();
-            UpdateControlData();
+                new EditarReservaWindow(reservaList[index]).SafeShowDialog();
+                UpdateControlData();
+                UpdateLayout();
+            }
+            catch (Exception)
+            {
+                BlackRiverExtensions.ShowMessage("Falha ao editar, verifique se uma reserva está selecionada", "Erro");
+            }
         }
 
         public async void UpdateControlData()
@@ -56,12 +67,12 @@ namespace BlackRiver.Desktop.Views
                 {
                     DataEntrada = reserva.DataEntrada,
                     DataSaida = reserva.DataSaida,
-                    Cancelado = reserva.DataCancelamento != System.DateTime.MinValue,
+                    Cancelado = reserva.DataCancelamento != null,
                 };
 
                 ReservaDataViewList.Add(funcionarioRow);
+                datagridReserva.UpdateLayout();
             }
-            datagridReserva.UpdateLayout();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BlackRiver.Desktop.Extensions;
+using BlackRiver.EntityModels;
 using System.Windows;
 
 namespace BlackRiver.Desktop.Views
@@ -8,10 +9,13 @@ namespace BlackRiver.Desktop.Views
     /// </summary>
     public partial class EditarProdutoWindow : Window
     {
-        public EditarProdutoWindow(object[] arguments = null)
+        public Produto Produto { get; set; }
+
+        public EditarProdutoWindow(Produto produto = null)
         {
             InitializeComponent();
             MouseDown += delegate { this.SafeDragMove(); };
+            Produto = produto;
         }
 
         private void btnCloseWindow_Click(object sender, RoutedEventArgs e)

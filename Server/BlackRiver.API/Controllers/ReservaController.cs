@@ -38,7 +38,6 @@ namespace BlackRiver.API.Controllers
             }
         }
 
-
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> Post([FromBody] Reserva reserva)
@@ -54,8 +53,6 @@ namespace BlackRiver.API.Controllers
                 return BadRequest(ex);
             }
         }
-
-
 
         [HttpPut("{id}")]
         [Authorize]
@@ -130,13 +127,18 @@ namespace BlackRiver.API.Controllers
                 var quartos = await DataServices.QuartoService.GetAll();
                 var quarto = quartos.FirstOrDefault(q => q.StatusQuarto == (int)QuartoStatus.Disponivel);
 
+                if (quarto == null)
+                    return BadRequest("Não há quartos disponíveis");
+
                 var reserva = new Reserva
                 {
                     DataEntrada = dataInicial,
                     DataSaida = dataInicial.AddDays(qtdDias),
                     Status = ReservaStatus.Aberto.ToString(),
-                    HospedeId = hospede?.Id??0,
-                    QuartoId = quarto?.Id??0
+                    HospedeId = hospede?.Id ?? 0,
+                    QuartoId = quarto?.Id ?? 0,
+                    ValorDiaria = quarto?.ValorQuarto ?? 0,
+                    QuantidadePessoas = 1,
                 };
 
                 quarto.StatusQuarto = (int)QuartoStatus.Ocupado;

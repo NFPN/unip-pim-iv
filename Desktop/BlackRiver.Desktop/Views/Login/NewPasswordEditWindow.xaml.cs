@@ -9,19 +9,24 @@ namespace BlackRiver.Desktop.Views.Login
     /// </summary>
     public partial class NewPasswordEditWindow : Window
     {
-        public NewPasswordEditWindow(string user = null)
+        public NewPasswordEditWindow(UserLogin user = null)
         {
             InitializeComponent();
 
             MouseDown += delegate { this.SafeDragMove(); };
-            txtBoxUser.Text = user;
 
-            if (user.Equals("admin", System.StringComparison.Ordinal))
-                txtBoxOldPassword.Password = user;
+            txtBoxUser.Text = user?.Username ?? string.Empty;
+            txtBoxPassword.Password = user?.Password ?? string.Empty;
+            txtBoxOldPassword.Password = user?.Password ?? string.Empty;
+
+            if (user.Password == "admin")
+            {
+                txtBoxUser.IsEnabled = false;
+                txtBoxOldPassword.IsEnabled = false;
+            }
+
+            UpdateLayout();
         }
-
-        public NewPasswordEditWindow(UserLogin user)
-            : this(user.Username) { }
 
         private void btnCloseWindow_Click(object sender, RoutedEventArgs e)
         {

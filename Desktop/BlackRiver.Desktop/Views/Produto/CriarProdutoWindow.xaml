@@ -4,22 +4,30 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Adicionar Produto" Height="400" Width="600" Background="#FF2D2D30" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+        BorderBrush="White" BorderThickness="1"
+        Title="Adicionar Produto" Height="400" Width="600" Background="#FF2D2D31" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid>
-        <Label Content="Nome*" HorizontalAlignment="Left" Margin="55,45,0,0" VerticalAlignment="Top" Height="25" Width="45" />
+        <Label Content="Nome*" HorizontalAlignment="Left" Margin="30,47,0,0" VerticalAlignment="Top" Height="25" Width="45" />
         <Label Content="Adicionar Produto" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Height="35" Width="600" FontWeight="Bold" FontSize="14" />
-        <TextBox x:Name="txtBoxAddProdutoNome" HorizontalAlignment="Left" Margin="60,75,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Foreground="White" Height="25" />
-        <Label Content="Tipo*" HorizontalAlignment="Left" Margin="55,141,0,0" VerticalAlignment="Top" Width="45" Height="25" />
-        <ComboBox x:Name="comboAddProdutoTipo" HorizontalAlignment="Left" Margin="60,167,0,0" VerticalAlignment="Top" Width="120" Foreground="White" />
-        <Label Content="Quantidade*" HorizontalAlignment="Left" Margin="55,218,0,0" VerticalAlignment="Top" />
-        <TextBox x:Name="txtBoxAddProdutoQtd" HorizontalAlignment="Left" Margin="60,247,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Foreground="White" Height="25" />
-        <Label Content="Valor unitário*" HorizontalAlignment="Left" Margin="295,218,0,0" VerticalAlignment="Top" />
-        <TextBox x:Name="txtBoxAddProdutoValorUnit" HorizontalAlignment="Left" Margin="300,247,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Foreground="White" Height="25" />
+        <TextBox x:Name="txtBoxAddProdutoNome" HorizontalAlignment="Left" Margin="35,72,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Foreground="White" Height="25" />
+        <Label Content="Tipo*" HorizontalAlignment="Left" Margin="30,117,0,0" VerticalAlignment="Top" Width="45" Height="25" />
+        <ComboBox x:Name="comboAddProdutoTipo" HorizontalAlignment="Left" Margin="35,147,0,0" VerticalAlignment="Top" Width="120" Foreground="White" />
+        <Label Content="Quantidade*" HorizontalAlignment="Left" Margin="30,186,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="txtBoxAddProdutoQtd" HorizontalAlignment="Left" Margin="35,215,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Foreground="White" Height="25" />
+        <Label Content="Valor unitário*" HorizontalAlignment="Left" Margin="30,260,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="txtBoxAddProdutoValorUnit" HorizontalAlignment="Left" Margin="35,289,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Foreground="White" Height="25" />
         <Button x:Name="btnProdutoAdicionar" Content="Adicionar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="100" Height="40" Click="btnProdutoAdicionar_Click" />
         <Button x:Name="btnCloseWindow" HorizontalAlignment="Right" Margin="0,3,0,0" VerticalAlignment="Top" Width="35" BorderBrush="{x:Null}" Click="btnCloseWindow_Click">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/Icons/window-close.png" Stretch="UniformToFill" />
             </Button.Background>
         </Button>
+        <Label Content="Marca" HorizontalAlignment="Left" Margin="299,46,0,0" VerticalAlignment="Top" />
+        <TextBox HorizontalAlignment="Left" Margin="299,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="White" />
+        <Label Content="Lote" HorizontalAlignment="Left" Margin="299,112,0,0" VerticalAlignment="Top" />
+        <TextBox HorizontalAlignment="Left" Margin="299,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="White" />
+        <Label Content="Fornecedor" HorizontalAlignment="Left" Margin="299,184,0,0" VerticalAlignment="Top" />
+        <TextBox HorizontalAlignment="Left" Margin="299,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="219" Foreground="White" />
+        <DatePicker HorizontalAlignment="Left" Margin="299,289,0,0" VerticalAlignment="Top" Width="94" IsEnabled="False" />
     </Grid>
 </Window>

@@ -8,8 +8,8 @@
     <Grid>
 
         <Label Content="Relatorios" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="400" FontWeight="Bold" />
-        <Button Content="Gerar Relatório" HorizontalAlignment="Left" Margin="209,134,0,0" VerticalAlignment="Top" Width="140" Height="40"/>
-        <Button Content="Gerar Relatório" HorizontalAlignment="Left" Margin="735,134,0,0" VerticalAlignment="Top" Width="140" Height="40"/>
+        <Button Content="Gerar Relatório" HorizontalAlignment="Left" Margin="209,134,0,0" VerticalAlignment="Top" Width="140" Height="40" />
+        <Button Content="Gerar Relatório" HorizontalAlignment="Left" Margin="735,134,0,0" VerticalAlignment="Top" Width="140" Height="40" />
         <materialDesign:Card HorizontalAlignment="Left" Margin="52,200,0,0" VerticalAlignment="Top" Height="430" Width="454">
             <GroupBox Header=" " FontSize="16" FontWeight="Bold">
                 <DataGrid x:Name="datagridFinanceiro" RowHeight="40" Background="#FF444343" IsReadOnly="True" CanUserAddRows="False"  ScrollViewer.CanContentScroll="True" />

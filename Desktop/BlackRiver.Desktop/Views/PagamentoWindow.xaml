@@ -4,7 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Pagamento" Height="400" Width="600" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="#FF2D2D30">
+        Title="Pagamento" Height="400" Width="600" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="#FF2D2D31">
     <Grid>
 
         <Label Content="Novo Pagamento" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="490" FontWeight="Bold" FontSize="14" />

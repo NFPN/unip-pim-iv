@@ -40,10 +40,10 @@ namespace BlackRiver.API.Controllers
                 var all = await DataServices.HospedeService.GetAll();
 
                 if (all.Any(a => a.Email == hospede.Email))
-                    throw new Exception("Usuário já existe");
+                    throw new Exception("Hóspede já existe");
 
                 var result = await DataServices.HospedeService.Create(hospede);
-                return Ok("Hóspede criado com sucesso");
+                return Ok(result);
             }
             catch (Exception ex)
             {

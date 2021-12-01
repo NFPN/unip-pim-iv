@@ -38,7 +38,7 @@ namespace BlackRiver.Desktop.Views
                 var result = await BlackRiverAPI.UpdateQuarto(EditQuarto);
 
                 if (result != null)
-                    BlackRiverExtensions.ShowMessage("Editado com sucesso", "Erro");
+                    return;
 
                 Close();
             }

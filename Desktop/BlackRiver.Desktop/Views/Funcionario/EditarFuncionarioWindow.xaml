@@ -4,7 +4,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Editar Funcionario"  Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="#FF2D2D30">
+        BorderBrush="White" BorderThickness="1"
+        Title="Editar Funcionario"  Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="#FF2D2D31">
     <Grid>
 
         <Label Content="Editar Funcionário" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="600" FontWeight="Bold" FontSize="14" />
@@ -33,7 +34,7 @@
         <ComboBox x:Name="comboFuncionarioCidade" HorizontalAlignment="Left" Margin="318,366,0,0" VerticalAlignment="Top" Width="222" Foreground="White" />
         <ComboBox x:Name="comboEditFuncDept" HorizontalAlignment="Left" Margin="616,82,0,0" VerticalAlignment="Top" Width="120" Foreground="White" />
         <ComboBox x:Name="comboEditFuncCargo" HorizontalAlignment="Left" Margin="616,155,0,0" VerticalAlignment="Top" Width="120" Foreground="White" />
-        <CheckBox x:Name="checkEditFuncionarioAtivo" Content="Ativo" HorizontalAlignment="Left" Margin="687,219,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <CheckBox x:Name="checkEditFuncionarioAtivo" Content="Ativo" HorizontalAlignment="Left" Margin="687,219,0,0" VerticalAlignment="Top" Foreground="White" />
         <Button Name="btnEditFunc" Content="Atualizar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="100" Height="40" Click="btnEditFunc_Click" />
         <Button x:Name="btnCloseWindow" HorizontalAlignment="Right" Margin="0,3,0,0" VerticalAlignment="Top" Width="35" BorderBrush="{x:Null}" Click="btnCloseWindow_Click">
             <Button.Background>

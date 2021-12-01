@@ -1,5 +1,6 @@
 ﻿using BlackRiver.Desktop.Extensions;
 using BlackRiver.EntityModels;
+using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
 
@@ -42,28 +43,37 @@ namespace BlackRiver.Desktop.Views
                 quartoDataViewList.Add(quartoRow);
             }
             datagridQuartos.UpdateLayout();
+            datagridQuartos.Items.Refresh();
         }
 
         private void btnAddQuarto_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             new CriarQuartoWindow().SafeShowDialog();
+            UpdateControlData();
             UpdateLayout();
         }
 
         private void btnEditarQuarto_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            var row = datagridQuartos.SelectedItems[0];
-            var index = datagridQuartos.Items.IndexOf(row);
+            try
+            {
+                var row = datagridQuartos.SelectedItems[0];
+                var index = datagridQuartos.Items.IndexOf(row);
 
-            new EditarQuartoWindow(quartoList[index]).SafeShowDialog();
-            UpdateLayout();
+                new EditarQuartoWindow(quartoList[index]).SafeShowDialog();
+                UpdateControlData();
+                UpdateLayout();
+            }
+            catch (Exception)
+            {
+                BlackRiverExtensions.ShowMessage("Falha ao editar, verifique se um quarto está selecionado", "Erro");
+            }
         }
-
 
         private void btnRefresh_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             UpdateControlData();
+            UpdateLayout();
         }
-
     }
 }
