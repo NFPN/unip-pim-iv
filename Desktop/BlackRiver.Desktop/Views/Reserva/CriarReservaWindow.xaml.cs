@@ -1,4 +1,7 @@
-﻿using BlackRiver.EntityModels;
+﻿using BlackRiver.Desktop.Extensions;
+using BlackRiver.EntityModels;
+using System;
+using System.Linq;
 using System.Windows;
 
 namespace BlackRiver.Desktop.Views
@@ -10,8 +13,8 @@ namespace BlackRiver.Desktop.Views
     {
         public CriarReservaWindow()
         {
-            MouseDown += delegate { DragMove(); };
             InitializeComponent();
+            MouseDown += delegate { this.SafeDragMove(); };
         }
 
         private void btnCloseWindow_Click(object sender, RoutedEventArgs e)
@@ -21,19 +24,37 @@ namespace BlackRiver.Desktop.Views
 
         private async void btnNovaReservaCriar_Click(object sender, RoutedEventArgs e)
         {
-            var data = dateNovaReserva.SelectedDate.GetValueOrDefault();
-            var time = timeNovaReserva.SelectedTime.GetValueOrDefault();
-
-            int dias = int.Parse(txtBoxNovaReservaQtdDias.Text);
-            var reserva = new Reserva
+            try
             {
-                DataEntrada = data.AddHours(time.Hour).AddMinutes(time.Minute).ToUniversalTime(),
-                DataSaida = data.AddDays(dias),
-                Status = ReservaStatus.Aberto.ToString(),
-                ValorDiaria = decimal.Parse(txtBoxNovaReservaValor.Text)
-            };
+                var data = dateNovaReserva.SelectedDate.GetValueOrDefault();
+                var time = timeNovaReserva.SelectedTime.GetValueOrDefault();
+                var dias = int.Parse(txtBoxNovaReservaQtdDias.Text);
+                var email = txtBoxNovaReservaEmail.Text;
 
-            await BlackRiverAPI.CreateReserva(reserva);
+                var hospedes = await BlackRiverAPI.GetHospedes();
+                var hospede = hospedes.FirstOrDefault(h => h.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+
+                var reserva = new Reserva
+                {
+                    DataEntrada = data.AddHours(time.Hour).AddMinutes(time.Minute).ToUniversalTime(),
+                    DataSaida = data.AddDays(dias),
+                    Status = ReservaStatus.Aberto.ToString(),
+                    ValorDiaria = decimal.Parse(txtBoxNovaReservaValor.Text),
+                    HospedeId = hospede.Id,
+                };
+
+                var result = await BlackRiverAPI.CreateReserva(reserva);
+
+                if (result == null)
+                    return;
+
+                BlackRiverExtensions.ShowMessage("Reserva criada", "Sucesso");
+                Close();
+            }
+            catch (Exception ex)
+            {
+                BlackRiverExtensions.ShowMessage(ex.Message, "Error");
+            }
         }
     }
 }

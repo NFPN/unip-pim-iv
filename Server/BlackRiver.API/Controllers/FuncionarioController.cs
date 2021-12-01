@@ -2,7 +2,6 @@
 using BlackRiver.EntityModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,12 +18,7 @@ namespace BlackRiver.API.Controllers
         [Authorize(Roles = "manager")]
         public async Task<IEnumerable<Funcionario>> Get()
         {
-            return await DataServices.FuncionarioService.ContextFactory.CreateDbContext()
-                .Set<Funcionario>()
-                .Include(h => h.MunicipioId)
-                .Include(h => h.HotelId)
-                .Include(h => h.LoginId)
-                .ToListAsync();
+            return await DataServices.FuncionarioService.GetAll();
         }
 
         [HttpGet("{id}")]

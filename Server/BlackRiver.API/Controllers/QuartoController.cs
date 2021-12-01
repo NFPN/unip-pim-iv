@@ -85,6 +85,7 @@ namespace BlackRiver.API.Controllers
 
                 var quarto = quartos.FirstOrDefault(q => reserva.QuartoId == q.Id);
 
+                quarto.NumeroQuarto = quarto.Id;
                 return quarto;
             }
             catch

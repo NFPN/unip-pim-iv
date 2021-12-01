@@ -16,6 +16,8 @@
         <TextBox x:Name="txtBoxNovoHospedeRG" HorizontalAlignment="Left" Margin="276,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25" Foreground="White" />
         <Label Content="Telefone" HorizontalAlignment="Left" Margin="42,183,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
         <TextBox x:Name="txtBoxNovoHospedeTel" HorizontalAlignment="Left" Margin="42,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25" Foreground="White" />
+        <Label Content="CNPJ" HorizontalAlignment="Left" Margin="276,183,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
+        <TextBox x:Name="txtBoxNovoHospedeCNPJ" HorizontalAlignment="Left" Margin="276,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25" Foreground="White" />
         <Label Content="Email*" HorizontalAlignment="Left" Margin="42,255,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
         <TextBox x:Name="txtBoxNovoHospedeEmail" HorizontalAlignment="Left" Margin="42,284,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="25" Foreground="White" />
         <Button x:Name="btnNovoHospedeCadastrar" Content="Cadastrar" HorizontalAlignment="Left" Margin="454,322,0,0" VerticalAlignment="Top" Height="40" Width="120" Click="btnNovoHospedeCadastrar_Click" />

@@ -16,19 +16,19 @@ namespace BlackRiver.API.Controllers
         [HttpPost]
         [Route("register")]
         [AllowAnonymous]
-        public async Task<ActionResult<dynamic>> Register([FromBody] UserLogin model)
+        public async Task<ActionResult<dynamic>> Register([FromBody] UserLogin login)
         {
             try
             {
-                if (model.Username == null || string.IsNullOrEmpty(model.Password) || model.Password.Length < 8)
+                if (string.IsNullOrEmpty(login.Username) || string.IsNullOrEmpty(login.Password) || login.Password.Length < 8)
                     return BadRequest(new { message = "Usuário ou senha inválidos" });
 
-                var user = (await DataServices.UserLoginService.GetAll()).FirstOrDefault(l => l.Username.Equals(model.Username));
+                var user = (await DataServices.UserLoginService.GetAll()).FirstOrDefault(l => l.Username.Equals(login.Username));
 
                 if (user != null)
                     return false;
 
-                var result = await DataServices.UserLoginService.Create(model);
+                var result = await DataServices.UserLoginService.Create(login);
 
                 if (result == null)
                     return BadRequest("Usuário não foi criado");

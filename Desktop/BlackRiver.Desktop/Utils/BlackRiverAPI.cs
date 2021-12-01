@@ -103,6 +103,19 @@ namespace BlackRiver.Desktop
             return null;
         }
 
+        public static async Task<UserLogin> Register(string email, string senha, int tipo)
+        {
+            var user = new UserLogin { Username = email, Password = senha, Type = tipo };
+            var content = JsonConvert.SerializeObject(user);
+            var response = await Client.PostAsync(RegisterUri, new StringContent(content, Encoding.UTF8, MediaTypeNames.Application.Json));
+
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<UserLogin>(await response.Content.ReadAsStringAsync());
+
+            BlackRiverExtensions.ShowMessage("Falha ao carregar usuário", "Erro");
+            return null;
+        }
+
         #endregion Account
 
         #region Hospede
@@ -163,7 +176,6 @@ namespace BlackRiver.Desktop
         }
 
         //Create reserva
-
         public static async Task<Reserva> CreateReserva(Reserva reserva)
         {
             var reservaHospede = new

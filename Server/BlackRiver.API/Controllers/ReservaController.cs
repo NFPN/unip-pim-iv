@@ -40,6 +40,7 @@ namespace BlackRiver.API.Controllers
 
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Post([FromBody] Reserva reserva)
         {
             try
@@ -57,6 +58,7 @@ namespace BlackRiver.API.Controllers
 
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> Put(int id, [FromBody] Reserva reserva)
         {
             try
@@ -85,6 +87,7 @@ namespace BlackRiver.API.Controllers
         #region Customer
 
         [HttpGet]
+        [Authorize]
         [Route("token/all")]
         public async Task<IEnumerable<Reserva>> CustomerGetAll()
         {
@@ -94,6 +97,7 @@ namespace BlackRiver.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [Route("token")]
         public async Task<Reserva> CustomerGet()
         {
@@ -110,6 +114,7 @@ namespace BlackRiver.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [Route("token")]
         public async Task<IActionResult> CustomerPost(DateTime dataInicial, int qtdDias)
         {
@@ -130,8 +135,8 @@ namespace BlackRiver.API.Controllers
                     DataEntrada = dataInicial,
                     DataSaida = dataInicial.AddDays(qtdDias),
                     Status = ReservaStatus.Aberto.ToString(),
-                    HospedeId = hospede.Id,
-                    QuartoId = quarto.Id
+                    HospedeId = hospede?.Id??0,
+                    QuartoId = quarto?.Id??0
                 };
 
                 quarto.StatusQuarto = (int)QuartoStatus.Ocupado;
@@ -148,6 +153,7 @@ namespace BlackRiver.API.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         [Route("token/cancel")]
         public async Task<IActionResult> CustomerPut(DateTime dataInicial)
         {

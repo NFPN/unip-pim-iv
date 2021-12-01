@@ -15,6 +15,7 @@ namespace BlackRiver.Desktop.Views
     public partial class DashboardControl : UserControl, IControlUpdate
     {
         private List<Reserva> currentReservas = new();
+        private List<Hospede> currentHospedes = new();
         private List<DashboardReservaDataRow> currentDatalist = new();
 
         public DashboardControl()
@@ -25,14 +26,15 @@ namespace BlackRiver.Desktop.Views
         public async void UpdateControlData()
         {
             currentReservas = await BlackRiverAPI.GetReservas();
+            currentHospedes = await BlackRiverAPI.GetHospedes();
 
             foreach (var item in currentReservas)
             {
                 currentDatalist.Add(new DashboardReservaDataRow
                 {
-                    Nome = item.Hospedes.First().Nome,
+                    Nome = currentHospedes.FirstOrDefault(h => h.Id == item.HospedeId).Nome,
                     Horário = item.DataEntrada,
-                    NumeroQuarto = item.Quarto.NumeroQuarto,
+                    NumeroQuarto = item.QuartoId,
                     Status = item.Status.Equals("Reservado", StringComparison.InvariantCultureIgnoreCase)
                 });
             }

@@ -105,17 +105,4 @@
     <Resource Include="Resources\img_contact.png" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Views\Login\AdminLoginWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Views\Login\AdminLoginWindow.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-
 </Project>

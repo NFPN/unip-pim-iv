@@ -39,28 +39,32 @@ namespace BlackRiver.Desktop.Views
                 Endereco = txtBoxAddFuncEndereco.Text,
                 Nome = txtBoxAddFuncNome.Text,
                 RG = txtBoxAddFuncRG.Text,
+                HotelId = 1,
                 Ativo = true,
                 Id = 0,
             };
 
-            newFuncionaro.HotelAtual = await BlackRiverAPI.GetHotel();
 
             var muns = await BlackRiverAPI.GetMunicipios();
 
             if (muns.Any(m => m.Nome.Equals(comboFuncionarioCidade.SelectedItem.ToString())))
-                newFuncionaro.MunicipioAtual = muns.FirstOrDefault(m => m.Nome.Equals(comboFuncionarioCidade.SelectedItem.ToString()));
+                newFuncionaro.MunicipioId = muns.FirstOrDefault(m => m.Nome.Equals(comboFuncionarioCidade.SelectedItem.ToString())).Id;
             else
-                newFuncionaro.MunicipioAtual = await BlackRiverAPI.CreateMunicipio(new Municipio
+            {
+                var mun = await BlackRiverAPI.CreateMunicipio(new Municipio
                 {
                     Nome = comboFuncionarioCidade.SelectedItem.ToString(),
                     UF = comboFuncionarioEstado.SelectedItem.ToString(),
                 });
 
-            newFuncionaro.Login = new()
-            {
-                Username = newFuncionaro.Email,
-                Type = (Cargos)comboAddFuncCargo.SelectedItem == Cargos.GerenteGeral ? (int)LoginTypes.Manager : (int)LoginTypes.Employee,
-            };
+                newFuncionaro.MunicipioId = mun.Id;
+            }
+
+
+            var tipo = (Cargos)comboAddFuncCargo.SelectedItem == Cargos.GerenteGeral ? (int)LoginTypes.Manager : (int)LoginTypes.Employee;
+            var user = await BlackRiverAPI.Register(newFuncionaro.Email, newFuncionaro.CPF, tipo);
+
+            newFuncionaro.LoginId = user.Id;
 
             var result = await BlackRiverAPI.CreateFuncionario(newFuncionaro);
 

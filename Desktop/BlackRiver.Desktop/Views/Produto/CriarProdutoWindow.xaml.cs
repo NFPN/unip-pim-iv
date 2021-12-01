@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using BlackRiver.Desktop.Extensions;
+using System.Windows;
 
 namespace BlackRiver.Desktop.Views
 {
@@ -9,8 +10,8 @@ namespace BlackRiver.Desktop.Views
     {
         public CriarProdutoWindow()
         {
-            MouseDown += delegate { DragMove(); };
             InitializeComponent();
+            MouseDown += delegate { this.SafeDragMove(); };
         }
 
         private void btnCloseWindow_Click(object sender, RoutedEventArgs e)

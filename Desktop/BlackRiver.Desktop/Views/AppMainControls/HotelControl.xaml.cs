@@ -32,19 +32,16 @@ namespace BlackRiver.Desktop.Views
             comboHotelCidade.UpdateLayout();
         }
 
-        private void UpdateHotelAtualLayout()
+        private async void UpdateHotelAtualLayout()
         {
-            if (hotelAtual == null)
-                return;
-
             txtBoxHotelNome.Text = hotelAtual.Nome;
             txtBoxHotelEndereco.Text = hotelAtual.Endereco;
 
-            if (hotelAtual.MunicipioAtual != null)
-            {
-                comboHotelEstado.SelectedValue = hotelAtual.MunicipioAtual.UF;
-                comboHotelCidade.SelectedValue = hotelAtual.MunicipioAtual.Nome;
-            }
+            var municipios = await BlackRiverAPI.GetMunicipios();
+            var municipio = municipios.FirstOrDefault(m => m.Id == hotelAtual.MunicipioId);
+
+            comboHotelEstado.SelectedValue = municipio.UF;
+            comboHotelCidade.SelectedValue = municipio.Nome;
 
             txtBoxHotelEndereco.UpdateLayout();
             comboHotelEstado.UpdateLayout();
@@ -71,16 +68,20 @@ namespace BlackRiver.Desktop.Views
             hotelAtual.Nome = txtBoxHotelNome.Text;
             hotelAtual.Endereco = txtBoxHotelEndereco.Text;
 
-            var muns = await BlackRiverAPI.GetMunicipios();
+            var municipios = await BlackRiverAPI.GetMunicipios();
 
-            if (muns.Any(m => m.Nome.Equals(comboHotelCidade.SelectedItem.ToString())))
-                hotelAtual.MunicipioAtual = muns.FirstOrDefault(m => m.Nome.Equals(comboHotelCidade.SelectedItem.ToString()));
+            if (municipios.Any(m => m.Nome.Equals(comboHotelCidade.SelectedItem.ToString())))
+                hotelAtual.MunicipioId = municipios.FirstOrDefault(m => m.Nome.Equals(comboHotelCidade.SelectedItem.ToString())).Id;
             else
-                hotelAtual.MunicipioAtual = await BlackRiverAPI.CreateMunicipio(new Municipio
+            {
+                var mun = await BlackRiverAPI.CreateMunicipio(new Municipio
                 {
                     Nome = comboHotelCidade.SelectedItem.ToString(),
                     UF = comboHotelEstado.SelectedItem.ToString(),
                 });
+
+                hotelAtual.MunicipioId = mun.Id;
+            }
 
             hotelAtual = await BlackRiverAPI.UpdateHotel(hotelAtual);
             UpdateHotelAtualLayout();
