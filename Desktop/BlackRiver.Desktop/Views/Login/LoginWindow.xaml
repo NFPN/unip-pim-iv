@@ -6,7 +6,7 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         Title="Black River" Width="740" Height="500"
-        WindowStartupLocation="CenterScreen" WindowStyle="None" Background="#FF2D2D30">
+        WindowStartupLocation="CenterScreen" WindowStyle="None" Background="#FF2D2D31">
 
     <Grid>
 

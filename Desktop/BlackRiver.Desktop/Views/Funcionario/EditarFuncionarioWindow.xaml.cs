@@ -80,7 +80,5 @@ namespace BlackRiver.Desktop.Views
                 comboFuncionarioCidade.UpdateLayout();
             }
         }
-
-
     }
 }

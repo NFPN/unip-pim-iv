@@ -13,7 +13,6 @@ namespace BlackRiver.API.Controllers
     [ApiController]
     public class ProdutoController : Controller
     {
-
         [HttpGet]
         [Authorize(Roles = "employee, manager")]
         public async Task<IEnumerable<Produto>> Get()

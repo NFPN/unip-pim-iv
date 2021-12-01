@@ -1,4 +1,5 @@
 ﻿using BlackRiver.EntityModels;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,9 +21,10 @@ namespace BlackRiver.Data
 
         public static async Task DefaultSeed(BlackRiverDBContext context)
         {
-            if (context.Set<UserLogin>().Local.Any(e => e.Username.Equals("admin")))
-                return;
+            var users = await context.Set<UserLogin>().ToListAsync();
 
+            if (users.Any(e => e.Username.Equals("admin")))
+                return;
 
             await context.AddAsync(new UserLogin
             {

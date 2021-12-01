@@ -21,7 +21,6 @@ namespace BlackRiver.Data
 
         public DbSet<UserLogin> Users { get; set; }
 
-
         public BlackRiverDBContext(DbContextOptions options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

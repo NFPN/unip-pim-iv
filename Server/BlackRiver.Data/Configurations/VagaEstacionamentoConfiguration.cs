@@ -12,7 +12,6 @@ namespace BlackRiver.Data
             builder.Property(ve => ve.Id)
                 .UseIdentityColumn();
 
-
             builder.Property(ve => ve.Placa)
                 .HasMaxLength(7);
 

@@ -37,8 +37,7 @@ namespace BlackRiver.Data.Services
         {
             return (await DataServices.UserLoginService
                 .GetAll())
-                .FirstOrDefault(x => x.Username == name)
-                .WithoutPassword();
+                .FirstOrDefault(x => x.Username == name);
         }
     }
 }

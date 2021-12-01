@@ -34,14 +34,14 @@ namespace BlackRiver.Desktop.Views
                 var user = await BlackRiverAPI.GetLoggedUser();
                 var userType = (LoginTypes)user.Type;
 
-                if (user.Username.Equals(admin, StringComparison.Ordinal) && txtBoxPassword.Password.Equals(admin, StringComparison.Ordinal))
+                if (user.Username.Equals(admin, StringComparison.Ordinal) && user.Password.Equals(admin, StringComparison.Ordinal))
                 {
                     new NewPasswordEditWindow(user).Show();
                     Close();
                     return;
                 }
 
-                if (userType is LoginTypes.Customer or LoginTypes.None)
+                if (userType is LoginTypes.Customer or LoginTypes.None && !user.Password.Equals(txtBoxPassword.Password))
                 {
                     BlackRiverExtensions.ShowMessage("Usuário inválido", "Erro");
                     return;
@@ -60,7 +60,7 @@ namespace BlackRiver.Desktop.Views
 
         private void txtBlockForgotPassword_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            _ = new NewPasswordEditWindow(txtBoxUsername.Text).ShowDialog();
+            _ = new NewPasswordEditWindow(new() { Username = txtBoxUsername.Text }).ShowDialog();
             return;
         }
 

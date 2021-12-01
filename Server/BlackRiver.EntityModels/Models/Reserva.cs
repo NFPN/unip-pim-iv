@@ -27,6 +27,9 @@ namespace BlackRiver.EntityModels
         [DataMember]
         public int HospedeId { get; set; }
 
+        [DataMember]
+        public int QuantidadePessoas { get; set; }
+
         [IgnoreDataMember]
         public TimeSpan TempoEstadia => DataSaida.Subtract(DataEntrada);
     }

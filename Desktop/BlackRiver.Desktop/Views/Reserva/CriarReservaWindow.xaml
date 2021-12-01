@@ -6,7 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Class="BlackRiver.Desktop.Views.CriarReservaWindow"
     mc:Ignorable="d"
-    Title="Criar Reserva" Height="400" Width="600" Background="#FF2D2D30" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    BorderBrush="White" BorderThickness="1"
+    Title="Criar Reserva" Height="400" Width="600" Background="#FF2D2D31" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid>
         <Label Content="Criar Reserva" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="46,11,0,0" VerticalAlignment="Top" Width="500" FontWeight="Bold" FontSize="14" />
 
@@ -33,8 +34,8 @@
         <ComboBox x:Name="comboNovaReservaVagas" HorizontalAlignment="Left" Margin="39,295,0,0" VerticalAlignment="Top" Width="120" Foreground="White" />-->
 
         <Label Content="Valor diária*" HorizontalAlignment="Left" Margin="385,192,0,0" VerticalAlignment="Top" Foreground="White" Width="130" />
-        <TextBox x:Name="txtBoxNovaReservaValor" HorizontalAlignment="Left" Margin="385,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="25" Foreground="White" />
-        <CheckBox x:Name="checkNovaReservaVIP" Content="VIP" HorizontalAlignment="Left" Margin="39,291,0,0" VerticalAlignment="Top" Foreground="White" />
+        <TextBox x:Name="txtBoxNovaReservaValor" HorizontalAlignment="Left" Margin="385,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="25" Foreground="White" IsEnabled="False" />
+        <CheckBox x:Name="checkNovaReservaVIP" Content="VIP" HorizontalAlignment="Left" Margin="39,291,0,0" VerticalAlignment="Top" Foreground="White" Checked="checkNovaReservaVIP_Checked" Unchecked="checkNovaReservaVIP_Unchecked" />
         <Button x:Name="btnNovaReservaCriar" Content="Criar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Height="40" Width="100" Click="btnNovaReservaCriar_Click" />
         <Button x:Name="btnCloseWindow" HorizontalAlignment="Right" Margin="0,3,0,0" VerticalAlignment="Top" Width="35" BorderBrush="{x:Null}" Click="btnCloseWindow_Click">
             <Button.Background>

@@ -1,5 +1,9 @@
 ﻿using BlackRiver.EntityModels;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace BlackRiver.Desktop.Views
@@ -10,43 +14,52 @@ namespace BlackRiver.Desktop.Views
     public partial class HotelControl : UserControl, IControlUpdate
     {
         private Hotel hotelAtual = new();
+        private List<string> cidades = new();
 
         public HotelControl()
         {
             InitializeComponent();
-            UpdateControlData();
         }
 
         public async void UpdateControlData()
         {
-            hotelAtual = await BlackRiverAPI.GetHotel();
-            UpdateHotelAtualLayout();
+            if (comboHotelEstado.Items.Count == 0)
+            {
+                foreach (var estado in await BlackRiverAPI.ExternalGetEstados())
+                    comboHotelEstado.Items.Add(estado.Sigla);
 
-            foreach (var estado in await BlackRiverAPI.ExternalGetEstados())
-                comboHotelEstado.Items.Add(estado.Sigla);
+                comboHotelEstado.SelectedValue = comboHotelEstado.Items[0];
 
-            foreach (var cidade in await BlackRiverAPI.ExternalGetCidades(comboHotelEstado.SelectedValue.ToString()))
-                comboHotelCidade.Items.Add(cidade.Nome);
+                foreach (var cidade in await BlackRiverAPI.ExternalGetCidades(comboHotelEstado.SelectedValue.ToString()))
+                    cidades.Add(cidade.Nome);
+
+                cidades.OrderBy(s => s).ToList().ForEach(s => comboHotelCidade.Items.Add(s));
+            }
 
             comboHotelEstado.UpdateLayout();
             comboHotelCidade.UpdateLayout();
+
+            CancellationTokenSource tokenSource = new CancellationTokenSource();
+
+            UpdateHotelAtualLayout();
+            await Application.Current.Dispatcher.Invoke(async delegate
+            {
+                await Task.Delay(1000);
+                UpdateHotelAtualLayout();
+            });
         }
 
         private async void UpdateHotelAtualLayout()
         {
-            txtBoxHotelNome.Text = hotelAtual.Nome;
-            txtBoxHotelEndereco.Text = hotelAtual.Endereco;
-
+            hotelAtual = await BlackRiverAPI.GetHotel();
             var municipios = await BlackRiverAPI.GetMunicipios();
             var municipio = municipios.FirstOrDefault(m => m.Id == hotelAtual.MunicipioId);
 
+            txtBoxHotelNome.Text = hotelAtual.Nome;
+            txtBoxHotelEndereco.Text = hotelAtual.Endereco;
+
             comboHotelEstado.SelectedValue = municipio.UF;
             comboHotelCidade.SelectedValue = municipio.Nome;
-
-            txtBoxHotelEndereco.UpdateLayout();
-            comboHotelEstado.UpdateLayout();
-            comboHotelCidade.UpdateLayout();
-            txtBoxHotelNome.UpdateLayout();
         }
 
         private async void comboHotelEstado_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -58,8 +71,9 @@ namespace BlackRiver.Desktop.Views
                     comboHotelCidade.SelectedValue = comboHotelCidade.Items[0];
 
                 comboHotelCidade.Items.Add(cidade.Nome);
-                comboHotelCidade.UpdateLayout();
             }
+            comboHotelCidade.UpdateLayout();
+            comboHotelCidade.Items.Refresh();
         }
 
         private async void btnHotelUpdate_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -84,7 +98,8 @@ namespace BlackRiver.Desktop.Views
             }
 
             hotelAtual = await BlackRiverAPI.UpdateHotel(hotelAtual);
-            UpdateHotelAtualLayout();
+            UpdateControlData();
+            UpdateLayout();
         }
     }
 }

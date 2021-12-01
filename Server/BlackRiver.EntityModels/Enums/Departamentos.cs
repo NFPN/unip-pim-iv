@@ -2,7 +2,6 @@
 {
     public enum Departamentos
     {
-
         Gerência,
         Financeiro,
         Marketing,
@@ -16,5 +15,4 @@
         Eventos,
         Recreação,
     }
-
 }

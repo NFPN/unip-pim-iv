@@ -5,24 +5,25 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Class="BlackRiver.Desktop.Views.EditarReservaWindow"
-        mc:Ignorable="d"
-        Title="Editar Reserva" Height="400" Width="600" Background="#FF2D2D30" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    mc:Ignorable="d"
+    BorderBrush="White" BorderThickness="1"
+    Title="Editar Reserva" Height="400" Width="600" Background="#FF2D2D31" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label Content="Editar Reserva" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,6,0,0" VerticalAlignment="Top" Width="500" FontWeight="Bold" FontSize="14" Height="26" />
 
         <Label Content="Email" HorizontalAlignment="Left" Margin="30,47,0,0" VerticalAlignment="Top" Foreground="White" Width="120" />
-        <TextBox x:Name="txtBoxEditReservaEmail" HorizontalAlignment="Left" Margin="30,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25" Foreground="White" />
+        <TextBox x:Name="txtBoxEditReservaEmail" HorizontalAlignment="Left" Margin="35,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="25" Foreground="White" />
         <Label Content="Quantidade Pessoas" HorizontalAlignment="Left" Margin="30,117,0,0" VerticalAlignment="Top" Foreground="White" Width="124" />
-        <TextBox x:Name="txtBoxEditReservaQtdPessoas" HorizontalAlignment="Left" Margin="30,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" Height="25" Foreground="White" />
+        <TextBox x:Name="txtBoxEditReservaQtdPessoas" HorizontalAlignment="Left" Margin="35,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" Height="25" Foreground="White" />
         <Label Content="Quantidade Dias" HorizontalAlignment="Left" Margin="30,185,0,0" VerticalAlignment="Top" Foreground="White" Width="99" />
-        <TextBox x:Name="txtBoxEditReservaQtdDias" HorizontalAlignment="Left" Margin="30,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" Height="25" Foreground="White" />
-        
+        <TextBox x:Name="txtBoxEditReservaQtdDias" HorizontalAlignment="Left" Margin="35,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" Height="25" Foreground="White" />
+
         <!--<CheckBox x:Name="checkEditReservaVaga" Content="Vaga de estacionamento" HorizontalAlignment="Left" Margin="30,247,0,0" VerticalAlignment="Top" Foreground="White" />
         <ComboBox x:Name="comboEditReservaVaga" HorizontalAlignment="Left" Margin="30,267,0,0" VerticalAlignment="Top" Width="120" Foreground="White" />-->
-        
-        <CheckBox x:Name="checkEditReservaVIP" Content="VIP" HorizontalAlignment="Left" Margin="30,314,0,0" VerticalAlignment="Top" Foreground="White" />
-        <CheckBox x:Name="checkEditReservaActive" Content="Reserva Ativa" HorizontalAlignment="Left" Margin="325,221,0,0" VerticalAlignment="Top" Foreground="White" />
-        <Label Content="Check-In" HorizontalAlignment="Left" Margin="325,47,0,0" VerticalAlignment="Top" Foreground="White" Width="130" />
+
+        <CheckBox x:Name="checkEditReservaVIP" Content="VIP" HorizontalAlignment="Left" Margin="474,221,0,0" VerticalAlignment="Top" Foreground="White" IsEnabled="False" />
+        <CheckBox x:Name="checkEditReservaActive" Content="Reserva Ativa" HorizontalAlignment="Left" Margin="320,221,0,0" VerticalAlignment="Top" Foreground="White" />
+        <Label Content="Check-In" HorizontalAlignment="Left" Margin="320,47,0,0" VerticalAlignment="Top" Foreground="White" Width="130" />
         <DatePicker x:Name="dateEditReservaCheckIn" HorizontalAlignment="Left" Margin="337,74,0,0" VerticalAlignment="Top" Height="27" Width="98" RenderTransformOrigin="0.5,0.5" Foreground="White">
             <DatePicker.RenderTransform>
                 <TransformGroup>
@@ -30,7 +31,7 @@
                 </TransformGroup>
             </DatePicker.RenderTransform>
         </DatePicker>
-        <materialDesign:TimePicker x:Name="timeEditReservaCheckIn" HorizontalAlignment="Left" Margin="484,74,0,0" VerticalAlignment="Top" Width="76" Height="27" RenderTransformOrigin="0.5,0.5" Foreground="White">
+        <materialDesign:TimePicker x:Name="timeEditReservaCheckIn" HorizontalAlignment="Left" Margin="484,74,0,0" VerticalAlignment="Top" Width="76" Height="27" RenderTransformOrigin="0.5,0.5" Foreground="White" Text="">
             <materialDesign:TimePicker.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="1.25" ScaleY="1.25" />
@@ -40,7 +41,7 @@
                 </TransformGroup>
             </materialDesign:TimePicker.RenderTransform>
         </materialDesign:TimePicker>
-        <Label Content="Check-Out" HorizontalAlignment="Left" Margin="325,122,0,0" VerticalAlignment="Top" Foreground="White" Width="130" />
+        <Label Content="Check-Out" HorizontalAlignment="Left" Margin="320,122,0,0" VerticalAlignment="Top" Foreground="White" Width="130" />
         <DatePicker x:Name="dateEditReservaCheckOut" HorizontalAlignment="Left" Margin="337,151,0,0" VerticalAlignment="Top" Height="27" Width="98" RenderTransformOrigin="0.5,0.5" Foreground="White">
             <DatePicker.RenderTransform>
                 <TransformGroup>

@@ -23,12 +23,14 @@ namespace BlackRiver.Desktop.Views
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
             UpdateControlData();
+            UpdateLayout();
         }
 
         private void btnAddReserva_Click(object sender, RoutedEventArgs e)
         {
             new CriarReservaWindow().SafeShowDialog();
             UpdateControlData();
+            UpdateLayout();
         }
 
         private void btnEditarReserva_Click(object sender, RoutedEventArgs e)
@@ -38,6 +40,7 @@ namespace BlackRiver.Desktop.Views
 
             new EditarReservaWindow(reservaList[index]).SafeShowDialog();
             UpdateControlData();
+            UpdateLayout();
         }
 
         public async void UpdateControlData()
@@ -56,12 +59,12 @@ namespace BlackRiver.Desktop.Views
                 {
                     DataEntrada = reserva.DataEntrada,
                     DataSaida = reserva.DataSaida,
-                    Cancelado = reserva.DataCancelamento != System.DateTime.MinValue,
+                    Cancelado = reserva.DataCancelamento != null,
                 };
 
                 ReservaDataViewList.Add(funcionarioRow);
+                datagridReserva.UpdateLayout();
             }
-            datagridReserva.UpdateLayout();
         }
     }
 }

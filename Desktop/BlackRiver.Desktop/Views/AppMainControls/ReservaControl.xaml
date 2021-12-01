@@ -17,6 +17,6 @@
         <Label Content="Reservas" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,133,0,0" VerticalAlignment="Top" Width="120" Foreground="#DD000000" FontWeight="Bold" Height="39" FontSize="18" FontStyle="Normal" FontFamily="Arial Black" />
         <Button x:Name="btnAddReserva" Content="Adicionar" HorizontalAlignment="Left" Margin="817,71,0,0" VerticalAlignment="Top" Width="120" Height="40" FontSize="16" Click="btnAddReserva_Click" />
         <Button x:Name="btnEditarReserva" Content="Editar" HorizontalAlignment="Left" Margin="950,71,0,0" VerticalAlignment="Top" Width="120" Height="40" FontSize="16" Click="btnEditarReserva_Click" />
-        <Button x:Name="btnRefresh" Content="Carregar dados" HorizontalAlignment="Left" Margin="615,71,0,0" VerticalAlignment="Top" Height="40" Width="145" FontSize="16" Click="btnRefresh_Click"/>
+        <Button x:Name="btnRefresh" Content="Carregar dados" HorizontalAlignment="Left" Margin="615,71,0,0" VerticalAlignment="Top" Height="40" Width="145" FontSize="16" Click="btnRefresh_Click" />
     </Grid>
 </UserControl>

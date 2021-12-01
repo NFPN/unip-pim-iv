@@ -42,11 +42,13 @@ namespace BlackRiver.Desktop.Views
                 quartoDataViewList.Add(quartoRow);
             }
             datagridQuartos.UpdateLayout();
+            datagridQuartos.Items.Refresh();
         }
 
         private void btnAddQuarto_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             new CriarQuartoWindow().SafeShowDialog();
+            UpdateControlData();
             UpdateLayout();
         }
 
@@ -56,14 +58,14 @@ namespace BlackRiver.Desktop.Views
             var index = datagridQuartos.Items.IndexOf(row);
 
             new EditarQuartoWindow(quartoList[index]).SafeShowDialog();
+            UpdateControlData();
             UpdateLayout();
         }
-
 
         private void btnRefresh_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             UpdateControlData();
+            UpdateLayout();
         }
-
     }
 }

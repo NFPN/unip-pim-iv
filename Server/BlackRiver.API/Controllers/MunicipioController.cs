@@ -5,15 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+
 namespace BlackRiver.API.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class MunicipioController:Controller
+    public class MunicipioController : Controller
     {
-
-
         [HttpGet]
         [Authorize(Roles = "employee,manager")]
         public async Task<IEnumerable<Municipio>> Get()

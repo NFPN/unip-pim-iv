@@ -22,5 +22,10 @@ namespace BlackRiver.Desktop.Views
         {
             new PagamentoWindow().SafeShowDialog();
         }
+
+        private void btnRefresh_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            UpdateControlData();
+        }
     }
 }

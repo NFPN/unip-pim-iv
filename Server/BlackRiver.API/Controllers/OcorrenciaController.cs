@@ -13,7 +13,6 @@ namespace BlackRiver.API.Controllers
     [ApiController]
     public class OcorrenciaController : Controller
     {
-
         #region Workers
 
         [HttpGet]
@@ -72,7 +71,6 @@ namespace BlackRiver.API.Controllers
 
         #endregion Workers
 
-
         #region Customer
 
         [HttpPost]
@@ -89,6 +87,7 @@ namespace BlackRiver.API.Controllers
                 return BadRequest(ex);
             }
         }
-        #endregion
+
+        #endregion Customer
     }
 }

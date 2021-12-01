@@ -6,7 +6,7 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         Title="Black River" Width="400" Height="250"
-        WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" Background="#FF2D2D30">
+        WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" Background="#FF2D2D31">
     <Grid>
 
         <Button Content="OK" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Click="Button_Click" />
