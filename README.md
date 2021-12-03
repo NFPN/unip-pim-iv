@@ -1,6 +1,4 @@
-# unip-pim-iv
-
- Projeto Integrador Multidisciplinar - UNIP
+# Projeto Integrador Multidisciplinar - UNIP
 
 Este projeto visa ajudar uma empresa Hoteleira a registrar e guardar informações de hóspedes e gerenciar funcionários
 
